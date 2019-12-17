@@ -2,6 +2,10 @@
 
 return [
 
+    "session_domain" => ".easysite.me",
+
+    "admin_sub_domain" => "a.easysite.me",
+
     /*
     |--------------------------------------------------------------------------
     | Application Name

@@ -153,7 +153,7 @@ return [
     |
     */
 
-    'domain' => env('SESSION_DOMAIN', null),
+    'domain' => config("app.session_domain"), //env('SESSION_DOMAIN', null),
 
     /*
     |--------------------------------------------------------------------------
