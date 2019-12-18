@@ -1,0 +1,55 @@
+
+@font-face {
+    font-family: 'Droid Arabic Kufi';
+    font-style: normal;
+    font-weight: 400;
+    src: url(../dashboard/fonts2/DroidKufi-Regular.eot);
+    src: url(../dashboard/fonts2/DroidKufi-Regular.eot?#iefix) format('embedded-opentype'), url(../dashboard/fonts2/DroidKufi-Regular.woff2) format('woff2'), url(../fonts2/DroidKufi-Regular.woff) format('woff'), url(../fonts2/DroidKufi-Regular.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: 'Droid Arabic Kufi';
+    font-style: Bold;
+    font-weight: 700;
+    src: url(../dashboard/fonts2/DroidKufi-Bold.eot);
+    src: url(../dashboard/fonts2/DroidKufi-Bold.eot?#iefix) format('embedded-opentype'), url(../dashboard/fonts2/DroidKufi-Bold.woff2) format('woff2'), url(../fonts2/DroidKufi-Bold.woff) format('woff'), url(../fonts2/DroidKufi-Bold.ttf) format('truetype');
+}
+
+html, body {
+    font-family: "Droid Arabic Kufi"
+}
+
+body * {
+    font-family: "Droid Arabic Kufi"
+}
+body{
+    background: #ecedf2;
+}
+
+.btn.btn-xs{
+    height: 2rem;
+    width: 2rem;
+    padding: 0px;
+    text-align: center;
+    line-height: 2.3rem;
+}
+.btn.btn-xs .fa{
+    padding: 0px;
+    font-size: 1em;
+}
+
+.db{
+    display: block !important;
+}
+
+.di{
+    display: inline !important;
+}
+
+.dib{
+    display: inline-block !important;
+}
+
+.form-control{
+    border-radius: 0px !important;
+}

@@ -31,4 +31,6 @@
     <link rel="stylesheet" href="{{asset("public/dashboard/css/animate.min.css")}}" />
     <link rel="stylesheet" href="{{asset("public/dashboard/css/bootstrap.css")}}" />
     <link rel="stylesheet" href="{{asset("public/dashboard/css/main.css")}}" />
+    <link rel="stylesheet" href="{{asset("public/dashboard/custom.css")}}" />
+    <script src="{{asset("public/dashboard/js/jquery.js")}}"></script>
 </head>

@@ -13,9 +13,12 @@
                         </div>
                     </div>
                     <div class="header__topbar-item dropdown ml-2">
-                        <div class="header__topbar-wrapper" data-toggle="dropdown" aria-expanded="false">
+                        <a href="{{ route('admin.logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="header__topbar-wrapper" data-toggle="dropdown" aria-expanded="false">
                             <span class="header__topbar-icon"><i class="far fa-sign-out"></i></span>
-                        </div>
+                        </a>
+                        <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
                     </div>
                     <div class="header__topbar-item dropdown ml-2">
                         <div class="header__topbar-wrapper" data-toggle="dropdown" aria-expanded="false">
@@ -101,9 +104,26 @@
         <div class="container">
             <div class="header_menu">
                 <ul class="header_menu_nav">
-                    <li class="menu-item">
-                        <a class="menu-item-link @if(Request::url() == route("admin.home")) active @endif" href="{{route("admin.home")}}"><span class="menu-item-icon"><i class="fa fa-home fa-2x text-white"></i></span><span class="menu-item-text">الرئيسية</span></a>
-                    </li>
+                    @if(permissions("statistics"))
+                        <li class="menu-item">
+                            <a class="menu-item-link @if(Request::url() == route("admin.home")) active @endif" href="{{route("admin.home")}}"><span class="menu-item-icon"><i class="fa fa-home fa-2x text-white"></i></span><span class="menu-item-text">الرئيسية</span></a>
+                        </li>
+                    @endif
+                    @if(permissions("users"))
+                        <li class="menu-item">
+                            <a class="menu-item-link @if(Request::is("users/*")) active @endif" href="{{route("admin.users.index")}}"><span class="menu-item-icon"><i class="fa fa-user-secret fa-2x text-white"></i></span><span class="menu-item-text">قسم المستخدمين</span></a>
+                        </li>
+                    @endif
+                    @if(permissions("clients"))
+                        <li class="menu-item">
+                            <a class="menu-item-link @if(Request::is("clients/*")) active @endif" href="{{route("admin.clients.index")}}"><span class="menu-item-icon"><i class="fa fa-users fa-2x text-white"></i></span><span class="menu-item-text">قسم العملاء</span></a>
+                        </li>
+                    @endif
+                    @if(permissions("settings"))
+                        <li class="menu-item">
+                            <a class="menu-item-link @if(Request::is("settings/*")) active @endif" href="{{route("admin.settings.index")}}"><span class="menu-item-icon"><i class="fa fa-cogs fa-2x text-white"></i></span><span class="menu-item-text">الإعدادات</span></a>
+                        </li>
+                    @endif
                 </ul>
             </div>
         </div>

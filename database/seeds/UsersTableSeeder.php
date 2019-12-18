@@ -11,8 +11,9 @@ class UsersTableSeeder extends Seeder
      * @return void
      */
     public function run(){
-        $user           = new User;
+        $user           = User::firstOrNew(["email" => "admin@admin.com"]);
         $user->name     = "الأدمن";
+        $user->role_id  = 1;
         $user->email    = "admin@admin.com";
         $user->password = bcrypt("admin");
         $user->save();
