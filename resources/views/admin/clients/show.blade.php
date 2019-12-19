@@ -79,17 +79,18 @@
                                 @if(@$client->plan->root_domain==1)
                                     <td class="text-center">
                                         @if($website->slug)
-                                            <a href="{{route("website.index2", [$website->slug])}}" class="text-primary" target="_blank">{{$website->slug}}</a>
+                                            <a href="{{--route("website.index2", [$website->slug])--}}" class="text-primary" target="_blank">{{$website->slug}}</a>
                                         @endif
                                     </td>
                                 @endif
                                 <td class="text-center">{{count($website->pages)}}</td>
                                 <td class="text-center">{{count($website->visits)}}</td>
                                 <td class="text-center">
-                                    @if($website->slug)
-                                        <a href="{{route("website.index2", [$website->slug])}}" class="btn btn-xs btn-dark" target="_blank"
-                                           data-toggle="tooltip" title="رابط القالب"><i class="fa fa-link"></i></a>
-                                    @endif
+                                    <div class="action">
+                                        @if($website->slug)
+                                            <a href="{{--route("website.index2", [$website->slug])--}}" target="_blank" title="رابط القالب"><img src="{{asset("public/dashboard/images/eye.png")}}" alt="" /></a>
+                                        @endif
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach

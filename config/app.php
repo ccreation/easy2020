@@ -170,6 +170,7 @@ return [
          * Package Service Providers...
          */
         Gabievi\Promocodes\PromocodesServiceProvider::class,
+        Sarfraznawaz2005\VisitLog\VisitLogServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -230,6 +231,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Promocodes' => Gabievi\Promocodes\Facades\Promocodes::class,
+        'VisitLog' => Sarfraznawaz2005\VisitLog\Facades\VisitLog::class,
 
     ],
 

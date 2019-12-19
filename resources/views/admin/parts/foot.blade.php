@@ -55,6 +55,12 @@
         padding: 15px 20px 0px;
         display: none;
     }
+    .header_menu .header_menu_nav .menu-item{
+        margin-top: 10px;
+    }
+    .header_menu .header_menu_nav .menu-item .menu-item-link.active::before{
+        display: none;
+    }
 </style>
 
 <script>

@@ -192,7 +192,7 @@
                         <div class="action">
                             @if(permissions("show_client"))
                                 <a href="{{route("admin.clients.show", $client->id)}}" title="عرض">
-                                    <i class="fa fa-eye"></i>
+                                    <img src="{{asset("public/dashboard/images/eye.png")}}" alt="" />
                                 </a>
                             @endif
                             @if(permissions("update_client"))

@@ -54,6 +54,9 @@ class CreateWebsitesTable extends Migration
             $table->tinyInteger("default_color_n_font")->default(0);
             $table->tinyInteger('status')->default(1);
             $table->text('block_reason')->nullable();
+            $table->string("image")->nullable();
+            $table->string("image_ipad")->nullable();
+            $table->string("image_mobile")->nullable();
             $table->timestamps();
         });
     }
