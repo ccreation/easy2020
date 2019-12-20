@@ -26,7 +26,7 @@
             <tbody>
             @foreach ($tickets as $ticket)
                 <tr class="ticketlistproperties">
-                    <td  width="50" class="text-center">{{$ticket->id+1000}}</td>
+                    <td  width="50" class="text-center"><strong>{{$ticket->id+1000}}</strong></td>
                     <td><a target="_blank" href="{{route("admin.clients.edit", @$ticket->client_id)}}">{{@$ticket->client->name}}</a></td>
                     <td>{{$ticket->name}}</td>
                     <td>{{@$ticket->type->name}}</td>
