@@ -340,18 +340,18 @@
 
 
   $('.main_header_option .widget__item-option.list-nav .widget__item-option-item > .nav-item').click(function(){
-    $(this).closest('.widget__item-option-item').siblings().find('.dropdown_widget.dropdown_widget_first').removeClass('active_dropdown_widget')
+    $(this).closest('.widget__item-option-item').siblings().find('.dropdown_widget').removeClass('active_dropdown_widget')
     $(this).closest('.widget__item-option-item').siblings().find('.nav-item').removeClass('active')
     $('.dropdown_widget.dropdown_widget_second').removeClass('active_dropdown_widget')
-    $(this).closest('.widget__item-option-item').find('.dropdown_widget.dropdown_widget_first').toggleClass('active_dropdown_widget')
+    $(this).closest('.widget__item-option-item').find('.dropdown_widget').toggleClass('active_dropdown_widget')
     $(this).closest('.widget__item-option-item').find('.nav-item').toggleClass('active')
   })
 
 
-  $('.add_new_page,.add_new_color,.add_new_section').click(function(){
-    $('.dropdown_widget.dropdown_widget_first').removeClass('active_dropdown_widget')
-    $(this).closest('.widget__item-option-item').find('.dropdown_widget.dropdown_widget_second').toggleClass('active_dropdown_widget')
-  })
+  // $('.add_new_page,.add_new_color,.add_new_section').click(function(){
+  //   $('.dropdown_widget.dropdown_widget_first').removeClass('active_dropdown_widget')
+  //   $(this).closest('.widget__item-option-item').find('.dropdown_widget.dropdown_widget_second').toggleClass('active_dropdown_widget')
+  // })
 
   
 

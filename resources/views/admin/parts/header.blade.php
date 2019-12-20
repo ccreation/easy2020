@@ -3,7 +3,7 @@
         <div class="container">
             <div class="s-container">
                 <div class="main-header-logo">
-                    <a href="{{route("admin.home")}}"><img src="{{asset("public/dashboard/images/favicon.jpg")}}" alt="Logo"/></a>
+                    <a href="{{route("admin.home")}}"><img src="{{asset("public/favicon.jpg")}}" alt="Logo"/></a>
                 </div>
                 <div class="header__topbar">
                     <div class="header__topbar-item dropdown ml-5">
