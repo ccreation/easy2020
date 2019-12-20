@@ -130,6 +130,7 @@
     </style>
 
     <script>
+
         $(function () {
 
             $(document).on("click", ".widget__item_dropdown-link", function (e) {
@@ -154,6 +155,7 @@
             }) ;
 
         });
+
     </script>
 
 @endsection

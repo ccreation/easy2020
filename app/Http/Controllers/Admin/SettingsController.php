@@ -30,6 +30,7 @@ class SettingsController extends AdminBaseController
     }
 
     public function add_month(Request $request){
+        session(['settingsTab2' => 3]);
         $months = intval($request->month)+(12*intval($request->year));
         $s = Setting::where("key", "months")->first();
         if($s and is_array(unserialize($s->value))){
@@ -48,6 +49,7 @@ class SettingsController extends AdminBaseController
     }
 
     public function remove_month($index = 0){
+        session(['settingsTab2' => 3]);
         $s = Setting::where("key", "months")->first();
         if($s and is_array(unserialize($s->value))){
             $m = unserialize($s->value);
@@ -63,6 +65,7 @@ class SettingsController extends AdminBaseController
     }
 
     public function update_month(Request $request){
+        session(['settingsTab2' => 3]);
         $months = intval($request->month)+(12*intval($request->year));
         $s = Setting::where("key", "months")->first();
         if($s and is_array(unserialize($s->value))){
@@ -128,6 +131,8 @@ class SettingsController extends AdminBaseController
 
     public function save_settings(Request $request){
         session(['settingsTab' => 1]);
+        if($request->has("entity_id"))
+            session(['settingsTab2' => 1]);
         foreach ($request->except("_token") as $k => $v) {
             $this->s_save($k, $v, $request);
         }
@@ -331,6 +336,8 @@ class SettingsController extends AdminBaseController
     }
 
     public function update_plugin(Request $request){
+        session(['settingsTab2' => 2]);
+
         if($request->hasFile("image"))
             $request->validate(["image" => "image"]);
 
@@ -342,7 +349,8 @@ class SettingsController extends AdminBaseController
         $plugin->name_en    = $request->name_en;
         $plugin->price      = $request->price;
         if($request->hasFile("image")){
-            unlink(storage_path("app/".$plugin->image));
+            if($plugin->image and file_exists(storage_path("app/".$plugin->image)) and is_file(storage_path("app/".$plugin->image)))
+                unlink(storage_path("app/".$plugin->image));
             $plugin->image  = $request->image->store("uploads");
         }
         $plugin->save();

@@ -28,6 +28,10 @@ Route::group(["prefix" => "settings", "as" => "settings."], function () {
     Route::post('save_smtp_settings', 'SettingsController@save_smtp_settings')->name('save_smtp_settings');
     Route::post('save_yamamah_settings', 'SettingsController@save_yamamah_settings')->name('save_yamamah_settings');
 
+    // Plugin
+    Route::post('/add_plugin', 'SettingsController@add_plugin')->name('add_plugin');
+    Route::post('/update_plugin', 'SettingsController@update_plugin')->name('update_plugin');
+
 });
 
 // Users
@@ -145,5 +149,42 @@ Route::group(["prefix" => "promocodes", "as" => "promocodes."], function () {
     Route::get('edit/{id?}', 'PromocodesController@edit')->name('edit');
     Route::post('update', 'PromocodesController@update')->name('update');
     Route::get('delete/{id?}', 'PromocodesController@delete')->name('delete');
+
+});
+
+//Banks
+Route::resource('banks', 'BanksController');
+Route::group(["prefix" => "banks", "as" => "banks."], function () {
+    Route::get('banks2/create', 'BanksController@banks2_create')->name('banks2.create');
+    Route::post('banks2/store', 'BanksController@banks2_store')->name('banks2.store');
+    Route::get('banks2/edit/{id?}', 'BanksController@banks2_edit')->name('banks2.edit');
+    Route::put('banks2/update/{id?}', 'BanksController@banks2_update')->name('banks2.update');
+    Route::delete('banks2/destroy/{id?}', 'BanksController@banks2_destroy')->name('banks2.destroy');
+});
+
+// Payments
+Route::group(["prefix" => "payments", "as" => "payments."], function () {
+
+    Route::get('index', 'PaymentsController@index')->name('index');
+    Route::get('details/{id?}', 'PaymentsController@details')->name('details');
+    Route::get('accept/{id?}', 'PaymentsController@accept')->name('accept');
+    Route::get('reject/{id?}', 'PaymentsController@reject')->name('reject');
+
+});
+
+// Tickets
+Route::group(["prefix" => "tickets", "as" => "tickets."], function () {
+
+    Route::get('index', 'TicketsController@index')->name('index');
+    Route::get('add', 'TicketsController@add')->name('add');
+    Route::post('send', 'TicketsController@send')->name('send');
+    Route::get('edit/{id?}', 'TicketsController@edit')->name('edit');
+    Route::get('show/{id?}', 'TicketsController@show')->name('show');
+    Route::post('update', 'TicketsController@update')->name('update');
+    Route::get('delete/{id?}', 'TicketsController@delete')->name('delete');
+    Route::post('status', 'TicketsController@status')->name('status');
+    Route::get('download_attachement/{id?}/{num?}', 'TicketsController@download_attachement')->name('download_attachement');
+    Route::post('reply', 'TicketsController@reply')->name('reply');
+    Route::get('status/{id?}/{status?}', 'TicketsController@status')->name('status');
 
 });

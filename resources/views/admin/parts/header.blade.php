@@ -20,82 +20,6 @@
                             @csrf
                         </form>
                     </div>
-                    <div class="header__topbar-item dropdown ml-2">
-                        <div class="header__topbar-wrapper" data-toggle="dropdown" aria-expanded="false">
-                            <span class="header__topbar-icon"><i class="far fa-bell"></i></span>
-                            <span class="header__topbar-text">0</span>
-                        </div>
-                        <div class="dropdown-menu dropdown-menu-fit   dropdown-menu-lg">
-                            <div class="a-notification ">
-                                <a href="myProfile.html" class="a-notification__item">
-                                    <div class="a-notification__item-details flex-row">
-                                        <div class="a-notification__item-title">
-                                            رسالة جديدة من احمد
-                                        </div>
-                                    </div>
-                                </a>
-                                <a href="balance.html" class="a-notification__item">
-                                    <div class="a-notification__item-details flex-row">
-                                        <div class="a-notification__item-title">
-                                            رسالة جديدة من احمد الريس
-                                        </div>
-                                    </div>
-                                </a>
-                                <a href="fav.html" class="a-notification__item">
-                                    <div class="a-notification__item-details flex-row">
-                                        <div class="a-notification__item-title">
-                                            رسالة جديدة من تسجين يوسف
-                                        </div>
-                                    </div>
-                                </a>
-                                <a href="login.html" class="a-notification__item">
-                                    <div class="a-notification__item-details flex-row">
-                                        <div class="a-notification__item-title">
-                                            رسالة جديدة من خالد احمد
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="header__topbar-item dropdown ml-2">
-                        <div class="header__topbar-wrapper" data-toggle="dropdown" aria-expanded="false">
-                            <span class="header__topbar-icon"><i class="fal fa-envelope-open-text"></i></span>
-                            <span class="header__topbar-text">0 </span>
-                        </div>
-                        <div class="dropdown-menu dropdown-menu-fit   dropdown-menu-lg">
-                            <div class="a-notification ">
-                                <a href="myProfile.html" class="a-notification__item">
-                                    <div class="a-notification__item-details flex-row">
-                                        <div class="a-notification__item-title">
-                                            رسالة جديدة من احمد
-                                        </div>
-                                    </div>
-                                </a>
-                                <a href="balance.html" class="a-notification__item">
-                                    <div class="a-notification__item-details flex-row">
-                                        <div class="a-notification__item-title">
-                                            رسالة جديدة من احمد الريس
-                                        </div>
-                                    </div>
-                                </a>
-                                <a href="fav.html" class="a-notification__item">
-                                    <div class="a-notification__item-details flex-row">
-                                        <div class="a-notification__item-title">
-                                            رسالة جديدة من تسجين يوسف
-                                        </div>
-                                    </div>
-                                </a>
-                                <a href="login.html" class="a-notification__item">
-                                    <div class="a-notification__item-details flex-row">
-                                        <div class="a-notification__item-title">
-                                            رسالة جديدة من خالد احمد
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -150,9 +74,29 @@
                             <a class="menu-item-link @if(Request::is("promocodes/*")) active @endif" href="{{route("admin.promocodes.index")}}"><span class="menu-item-icon"><i class="fa fa-money-check-alt fa-2x text-white"></i></span><span class="menu-item-text">الكوبونات</span></a>
                         </li>
                     @endif
+                    @if(permissions("banks_index"))
+                        <li class="menu-item">
+                            <a class="menu-item-link @if(Request::is("banks") or Request::is("banks/*")) active @endif" href="{{route("admin.banks.index")}}"><span class="menu-item-icon"><i class="fa fa-university fa-2x text-white"></i></span><span class="menu-item-text">قائمة البنوك</span></a>
+                        </li>
+                    @endif
+                    @if(permissions("payments_index"))
+                        <li class="menu-item">
+                            <a class="menu-item-link @if(Request::is("payments/*")) active @endif" href="{{route("admin.payments.index")}}"><span class="menu-item-icon"><i class="fa fa-money-bill-wave fa-2x text-white"></i></span><span class="menu-item-text">قائمة الدفعات</span></a>
+                        </li>
+                    @endif
+                    @if(permissions("tickets_index"))
+                        <li class="menu-item">
+                            <a class="menu-item-link @if(Request::is("tickets/*")) active @endif" href="{{route("admin.tickets.index")}}"><span class="menu-item-icon"><i class="fa fa-ticket-alt fa-2x text-white"></i></span><span class="menu-item-text">التذاكر</span></a>
+                        </li>
+                    @endif
+                    @if(permissions("payment_settings"))
+                        <li class="menu-item">
+                            <a class="menu-item-link @if(Request::is("settings/*")) active @endif" href="{{route("admin.settings.payment_settings")}}"><span class="menu-item-icon"><i class="fa fa-cog fa-2x text-white"></i></span><span class="menu-item-text">إعدادات الدفع</span></a>
+                        </li>
+                    @endif
                     @if(permissions("settings"))
                         <li class="menu-item">
-                            <a class="menu-item-link @if(Request::is("settings/*")) active @endif" href="{{route("admin.settings.index")}}"><span class="menu-item-icon"><i class="fa fa-cogs fa-2x text-white"></i></span><span class="menu-item-text">الإعدادات</span></a>
+                            <a class="menu-item-link @if(Request::is("settings/*") and !Request::is("settings/payment_settings")) active @endif" href="{{route("admin.settings.index")}}"><span class="menu-item-icon"><i class="fa fa-cogs fa-2x text-white"></i></span><span class="menu-item-text">الإعدادات</span></a>
                         </li>
                     @endif
                 </ul>
