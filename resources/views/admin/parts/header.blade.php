@@ -89,6 +89,9 @@
                             <a class="menu-item-link @if(Request::is("tickets/*")) active @endif" href="{{route("admin.tickets.index")}}"><span class="menu-item-icon"><i class="fa fa-ticket-alt fa-2x text-white"></i></span><span class="menu-item-text">التذاكر</span></a>
                         </li>
                     @endif
+                    <li class="menu-item">
+                        <a class="menu-item-link @if(Request::is("messages/*")) active @endif" href="{{route("admin.messages.index")}}"><span class="menu-item-icon"><i class="fa fa-envelope fa-2x text-white"></i></span><span class="menu-item-text">رسائل الزوار</span></a>
+                    </li>
                     @if(permissions("payment_settings"))
                         <li class="menu-item">
                             <a class="menu-item-link @if(Request::is("settings/*")) active @endif" href="{{route("admin.settings.payment_settings")}}"><span class="menu-item-icon"><i class="fa fa-cog fa-2x text-white"></i></span><span class="menu-item-text">إعدادات الدفع</span></a>

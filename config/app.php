@@ -171,6 +171,7 @@ return [
          */
         Gabievi\Promocodes\PromocodesServiceProvider::class,
         Sarfraznawaz2005\VisitLog\VisitLogServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
         /*
          * Application Service Providers...
          */

@@ -188,3 +188,12 @@ Route::group(["prefix" => "tickets", "as" => "tickets."], function () {
     Route::get('status/{id?}/{status?}', 'TicketsController@status')->name('status');
 
 });
+
+
+// Messages
+Route::group(["prefix" => "messages", "as" => "messages."], function () {
+
+    Route::get('index', 'MessagesController@index')->name('index');
+    Route::get('delete/{id?}', 'MessagesController@delete')->name('delete');
+
+});

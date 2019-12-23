@@ -228,7 +228,6 @@
                 e.preventDefault();
                 var id = $(this).data("id")+"";
                 $(".category").css("display", "none");
-                $(".category_"+id).fadeIn("fast");
                 $(".selectpaicker").selectpicker("val", "all");
                 $(".nav-link").removeClass("active");
                 $(this).addClass("active");
@@ -242,6 +241,7 @@
                             $(el).fadeIn("fast");
                     });
                 }
+                $(".category_"+id).fadeIn("fast");
             });
 
             $(document).on("change", "#website_price_filter", function () {

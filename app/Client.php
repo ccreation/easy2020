@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Client extends Model
 {
+    public function templates(){
+        return $this->belongsToMany('App\Website', "client_template", "client_id", "template_id")->withTimestamps()->withPivot(["website_id", "status", "plan_id", "payment_id", "price"]);
+    }
 
     /*public function settings()
     {
@@ -14,10 +17,7 @@ class Client extends Model
 
 
 
-    public function templates()
-    {
-        return $this->belongsToMany('App\Website', "client_template", "client_id", "template_id")->withTimestamps()->withPivot(["website_id", "status", "plan_id", "payment_id", "price"]);
-    }
+
 
     public function plugins()
     {

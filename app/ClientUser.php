@@ -17,7 +17,7 @@ class ClientUser extends Authenticatable
         return $this->belongsTo("App\Client", "client_id");
     }
 
-    /*public function sendPasswordResetNotification($token)
+    public function sendPasswordResetNotification($token)
     {
         $c = Client::find($this->id);
         $this->notify(new CustomPassword($token, $c));
@@ -25,10 +25,9 @@ class ClientUser extends Authenticatable
 
     public function role(){
         return $this->belongsTo("App\ClientRole", "role_id");
-    }*/
+    }
 }
 
-/*
 class CustomPassword extends ResetPassword{
 
     private $client = null;
@@ -46,4 +45,3 @@ class CustomPassword extends ResetPassword{
             ->line('إذا لم تطلب إعادة تعيين كلمة المرور ، فلا يلزم اتخاذ أي إجراء آخر. يرجى الاتصال بنا إذا لم ترسل هذا الطلب.');
     }
 }
-*/

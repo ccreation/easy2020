@@ -122,7 +122,7 @@
                     </div>
 
                     <div class="text-center col-sm-6" style="padding-top: 5px">
-                        <button type="reset" class="btn general-btn-lg-black">فسخ</button>
+                        <button type="reset" class="btn general-btn-sm-black">فسخ</button>
                     </div>
                 </div>
             </div>

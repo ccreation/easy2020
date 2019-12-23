@@ -10,6 +10,10 @@ use App\ClientUser;
 use App\Plan;
 use View;
 use Gabievi\Promocodes\Models\Promocode;
+use App\Page;
+use App\Payment;
+use App\Ticket;
+use App\Website;
 
 class ClientsController extends AdminBaseController
 {
@@ -116,6 +120,14 @@ class ClientsController extends AdminBaseController
         $client           = Client::find($id);
         if($client and $client->image and file_exists(storage_path("app/".$client->image)) and is_file(storage_path("app/".$client->image)))
             unlink(storage_path("app/".$client->image));
+
+        ClientUser::where("client_id", $id)->delete();
+        Page::where("client_id", $id)->delete();
+        Payment::where("client_id", $id)->delete();
+        Subscription::where("client_id", $id)->delete();
+        Ticket::where("client_id", $id)->delete();
+        Website::where("client_id", $id)->delete();
+        
         $client->delete();
 
         return back()->with("success", __("l.success_delete"));
