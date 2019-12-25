@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePluginsTable extends Migration
+class CreateNewslettersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,13 @@ class CreatePluginsTable extends Migration
      */
     public function up()
     {
-        Schema::create('plugins', function (Blueprint $table) {
+        Schema::create('newsletters', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string("name_ar");
-            $table->string("name_en")->nullable();
-            $table->string("price")->default("0");
-            $table->string("image")->nullable();
+            $table->integer('client_id')->nullable();
+            $table->integer('website_id')->nullable();
+            $table->string('name')->nullable();
+            $table->string('email')->nullable();
+            $table->string('phone')->nullable();
             $table->timestamps();
         });
     }
@@ -30,6 +31,6 @@ class CreatePluginsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('plugins');
+        Schema::dropIfExists('newsletters');
     }
 }

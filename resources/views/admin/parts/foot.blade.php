@@ -6,7 +6,6 @@
 <script src="{{asset("public/dashboard/js/bootstrap-select.js")}}"></script>
 <script src="{{asset("public/dashboard/js/wow.min.js")}}"></script>
 <script src="{{asset("public/dashboard/js/owl.carousel.min.js")}}"></script>
-<script src="{{asset("public/dashboard/js/mCustomScrollbar.min.js")}}"></script>
 <script src="{{asset("public/dashboard/js/ion.rangeSlider.min.js")}}"></script>
 <script src="{{asset("public/dashboard/js/Chart.bundle.min.js")}}"></script>
 <script src="{{asset("public/dashboard/js/chartjs-datalabels.js")}}"></script>
@@ -55,7 +54,7 @@
         padding: 15px 20px 0px;
         display: none;
     }
-    .header_menu .header_menu_nav .menu-item{
+    .header_menu .menu-item{
         margin-top: 10px;
     }
     .header_menu .header_menu_nav .menu-item .menu-item-link.active::before{

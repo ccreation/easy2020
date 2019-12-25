@@ -376,10 +376,9 @@ class WebsitesController extends ClientBaseController
         if(!cpermissions("templates_purchase_use"))
             return redirect()->route("client.settings.no_permissions");
 
-
         $client         = $this->client;
-
         $user_id        = Auth::guard("client")->user()->id;
+
 
         $template       = Website::where(["client_id" => 1, "id" => $from_id])->first();
         if(!$template)
@@ -390,6 +389,7 @@ class WebsitesController extends ClientBaseController
         foreach ($c->templates as $t){
             array_push($sold_templates, $t->id);
         }
+
         if(in_array($from_id, $sold_templates)){
             $x = DB::table("client_template")->where(["client_id" => $c->id, "template_id" => $from_id, "status" => 0])->latest("id")->first();
             if($x)
@@ -399,6 +399,7 @@ class WebsitesController extends ClientBaseController
         $website        = Website::where(["client_id" => $client->id, "id" => $to_id])->first();
 
         if(in_array($from_id, $sold_templates) or $template->price==0){
+            
             if(!$c->templates()->where('template_id', $from_id)->where('website_id', $to_id)->exists())
                 $c->templates()->attach($from_id, ["website_id" => $to_id, "price" => $template->price, "status" => 1]);
 
@@ -415,7 +416,7 @@ class WebsitesController extends ClientBaseController
             }
 
             if($website){
-
+                dd($website);
                 // Delete website data
                 foreach ($website->pages as $page){
                     $page->delete();

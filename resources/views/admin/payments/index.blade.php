@@ -2,7 +2,7 @@
 
 @section("content")
 
-    <div class="container pb-5 pt-1">
+    <div class="container-fluid pb-5 pt-1">
 
         <table class="table table-ticket">
             <thead>
@@ -26,7 +26,7 @@
                 @foreach($payments as $payment)
                     <tr class="ticketlistproperties">
                         <td class="text-center" width="30"><strong>{{$loop->iteration}}</strong></td>
-                        <td>{{@$payment->client->name}}</td>
+                        <td><a href="{{route("admin.clients.show", @$payment->client_id)}}">{{@$payment->client->name}}</a></td>
                         <td class="text-center">{{Carbon\Carbon::parse($payment->payment_date)->format("Y-m-d")}}</td>
                         <td>{{__("l.".$payment->payment_method)}}</td>
                         <td>
@@ -63,26 +63,28 @@
                         <td><span>{{$payment->total}}</span> <span>رس</span></td>
                         <td class="text-center">
                             @if($payment->status=="pending")
-                                <span class="btn btn-sm btn-bold btn-block btn-warning">{{__("l.".$payment->status)}}</span>
+                                <span class="status-prj pending">{{__("l.".$payment->status)}}</span>
                             @elseif($payment->status=="rejected")
-                                <span class="btn btn-sm btn-bold btn-block btn-danger">{{__("l.".$payment->status)}}</span>
+                                <span class="status-prj unacceptable">{{__("l.".$payment->status)}}</span>
                             @else
-                                <span class="btn btn-sm btn-bold btn-block btn-success">{{__("l.".$payment->status)}}</span>
+                                <span class="status-prj enabled">{{__("l.".$payment->status)}}</span>
                             @endif
                         </td>
                         <td width="150" class="text-center">
-                            @if(permissions("payments_accept_reject"))
-                                @if($payment->status=="pending")
-                                    <a class="btn btn-success btn-xs" onclick="return confirm('هل أنت متأكد ؟')" href="{{route("admin.payments.accept", $payment->id)}}" data-toggle="tooltip" title="موافقة"><i class="fa fa-check"></i></a>
-                                    <a class="btn btn-danger btn-xs" onclick="return confirm('هل أنت متأكد ؟')" href="{{route("admin.payments.reject", $payment->id)}}" data-toggle="tooltip" title="رفض"><i class="fa fa-times"></i></a>
-                                @else
-                                    <a class="btn btn-success btn-xs disabled" disabled href="#" data-toggle="tooltip" title="موافقة"><i class="fa fa-check"></i></a>
-                                    <a class="btn btn-danger btn-xs disabled" disabled href="#" data-toggle="tooltip" title="رفض"><i class="fa fa-times"></i></a>
+                            <div class="action">
+                                @if(permissions("payments_accept_reject"))
+                                    @if($payment->status=="pending")
+                                        <a onclick="return confirm('هل أنت متأكد ؟')" href="{{route("admin.payments.accept", $payment->id)}}" title="موافقة"><i class="fa fa-check"></i></a>
+                                        <a onclick="return confirm('هل أنت متأكد ؟')" href="{{route("admin.payments.reject", $payment->id)}}" title="رفض"><i class="fa fa-times"></i></a>
+                                    @else
+                                        <a class="disabled" disabled href="#" title="موافقة"><i class="fa fa-check"></i></a>
+                                        <a class="disabled" disabled href="#" title="رفض"><i class="fa fa-times"></i></a>
+                                    @endif
                                 @endif
-                            @endif
-                            @if(permissions("payments_details"))
-                                <a href="{{route("admin.payments.details", $payment->id)}}" class="btn btn-info btn-xs" data-toggle="tooltip" title="التفاصيل"><i class="fa fa-eye"></i></a>
-                            @endif
+                                @if(permissions("payments_details"))
+                                    <a href="{{route("admin.payments.details", $payment->id)}}" title="التفاصيل"><i class="fa fa-eye"></i></a>
+                                @endif
+                            </div>
                         </td>
                     </tr>
                 @endforeach
@@ -95,5 +97,14 @@
         </table>
 
     </div>
+
+    <style>
+        .action a.disabled{
+            cursor: not-allowed !important;
+            pointer-events: none !important;
+            background-color: #7d58ae !important;
+
+        }
+    </style>
 
 @endsection

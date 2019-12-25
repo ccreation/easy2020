@@ -36,7 +36,7 @@
                     @if(cpermissions("users_section_list"))
                         @if(@$my_plan->multiple_users==1)
                             <li class="menu-item">
-                                <a class="menu-item-link @if(Request::is("client/users/*")) active @endif" href="{{route("client.users.index")}}"><span class="menu-item-icon"><i class="fa fa-home fa-2x text-white"></i></span><span class="menu-item-text">{{__("l.users_section")}}</span></a>
+                                <a class="menu-item-link @if(Request::is("client/users/*")) active @endif" href="{{route("client.users.index")}}"><span class="menu-item-icon"><i class="fa fa-user fa-2x text-white"></i></span><span class="menu-item-text">{{__("l.users_section")}}</span></a>
                             </li>
                         @endif
                     @endif
@@ -45,9 +45,50 @@
                             <a class="menu-item-link @if(Request::is("client/websites/*")) active @endif" href="{{route("client.websites.index")}}"><span class="menu-item-icon"><i class="fa fa-globe fa-2x text-white"></i></span><span class="menu-item-text">{{__("l.my_websites")}}</span></a>
                         </li>
                     @endif
+                    @if(cpermissions("templates_list"))
+                        <li class="menu-item">
+                            <a class="menu-item-link @if(Request::is("client/templates")) active @endif" href="{{route("client.websites.choose_template")}}"><span class="menu-item-icon"><i class="fa fa-brush fa-2x text-white"></i></span><span class="menu-item-text">{{__("l.templates")}}</span></a>
+                        </li>
+                    @endif
+                    @if(cpermissions("plans_list"))
+                        <li class="menu-item">
+                            <a class="menu-item-link @if(Request::is("client/plans/*")) active @endif" href="{{route("client.plans.index")}}"><span class="menu-item-icon"><i class="fa fa-columns fa-2x text-white"></i></span><span class="menu-item-text">{{__("l.plans")}}</span></a>
+                        </li>
+                    @endif
+                    @if(cpermissions("my_subscriptions_list"))
+                        <li class="menu-item">
+                            <a class="menu-item-link @if(Request::is("client/subscriptions/*")) active @endif" href="{{route("client.subscriptions.index")}}"><span class="menu-item-icon"><i class="fa fa-credit-card fa-2x text-white"></i></span><span class="menu-item-text">{{__("l.my_subscriptions")}}</span></a>
+                        </li>
+                    @endif
+                    @if(cpermissions("visitor_messages_list"))
+                        <li class="menu-item">
+                            <a class="menu-item-link @if(Request::is("client/messages/*")) active @endif" href="{{route("client.messages.index")}}"><span class="menu-item-icon"><i class="fas fa-envelope fa-2x text-white"></i></span><span class="menu-item-text">{{__("l.visitor_messages")}}</span></a>
+                        </li>
+                    @endif
+                    @if(cpermissions("newsletter_list_list"))
+                        <li class="menu-item">
+                            <a class="menu-item-link @if(Request::is("client/newsletter/*")) active @endif" href="{{route("client.newsletter.index")}}"><span class="menu-item-icon"><i class="far fa-envelope fa-2x text-white"></i></span><span class="menu-item-text">{{__("l.newsletter_list")}}</span></a>
+                        </li>
+                    @endif
+                    <li class="menu-item">
+                        <a class="menu-item-link @if(Request::is("client/tickets/*")) active @endif" href="{{route("client.tickets.index")}}"><span class="menu-item-icon"><i class="far fa-ticket-alt fa-2x text-white"></i></span><span class="menu-item-text">{{__("l.tickets_system")}}</span></a>
+                    </li>
+                    @if(cpermissions("documentations"))
+                        <li class="menu-item">
+                            <a class="menu-item-link @if(Request::is("client/websites/documentations")) active @endif" href="{{route("client.websites.documentations")}}"><span class="menu-item-icon"><i class="fa fa-question-circle fa-2x text-white"></i></span><span class="menu-item-text">{{__("l.documentations_section")}}</span></a>
+                        </li>
+                    @endif
+                    <li class="menu-item">
+                        <a class="menu-item-link @if(Request::url()==route("client.notifications.index")) active @endif" href="{{route("client.notifications.index")}}"><span class="menu-item-icon"><i class="fas fa-bell fa-2x text-white"></i></span><span class="menu-item-text">{{__("l.notifications")}}</span></a>
+                    </li>
                     @if(cpermissions("settings_general"))
                         <li class="menu-item">
                             <a class="menu-item-link @if(Request::url()==route("client.settings.index")) active @endif" href="{{route("client.settings.index")}}"><span class="menu-item-icon"><i class="fa fa-cog fa-2x text-white"></i></span><span class="menu-item-text">{{__("l.general_settings")}}</span></a>
+                        </li>
+                    @endif
+                    @if(cpermissions("settings_permissions"))
+                        <li class="menu-item">
+                            <a class="menu-item-link @if(Request::url()==route("client.settings.permissions")) active @endif" href="{{route("client.settings.permissions")}}"><span class="menu-item-icon"><i class="fa fa-leaf fa-2x text-white"></i></span><span class="menu-item-text">{{__("l.permissions")}}</span></a>
                         </li>
                     @endif
                 </ul>

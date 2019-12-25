@@ -1,4 +1,4 @@
-@extends("admin.parts.app")
+@extends("client.parts.app")
 
 @section("content")
 
@@ -23,7 +23,7 @@
         @if(!empty($files))
             <h5 style="margin-bottom: 10px; margin-top: 15px; color: #543c93;"><b>المرفقات : </b></h5>
             @foreach($files as $file)
-                <a href="{{route("admin.tickets.download_attachement", [$ticket->id, $loop->index])}}" target="_blank" class="mt-1 btn general-btn-sm-blue btn-xs" style="display: block; width: 120px; border-radius: 0px;"><i class="fa fa-download"></i> <span>{{__("l.attachement")}} {{$loop->iteration}}</span></a>
+                <a href="{{route("client.tickets.download_attachement", [$ticket->id, $loop->index])}}" target="_blank" class="mt-1 btn general-btn-sm-blue btn-xs" style="display: block; width: 120px; border-radius: 0px;"><i class="fa fa-download"></i> <span>{{__("l.attachement")}} {{$loop->iteration}}</span></a>
             @endforeach
         @endif
 
@@ -44,7 +44,7 @@
                                     <?php $files = ($reply->files) ? explode(";", $reply->files) : []; ?>
                                     @if(!empty($files))
                                         @foreach($files as $file)
-                                            <a href="{{route("admin.tickets.download_attachement", [$reply->id, $loop->index])}}" target="_blank" class="mt-1 btn general-btn-sm-blue btn-xs" style="display: block; width: 120px; border-radius: 0px;"><i class="fa fa-download"></i> <span>{{__("l.attachement")}} {{$loop->iteration}}</span></a>
+                                            <a href="{{route("client.tickets.download_attachement", [$reply->id, $loop->index])}}" target="_blank" class="mt-1 btn general-btn-sm-blue btn-xs" style="display: block; width: 120px; border-radius: 0px;"><i class="fa fa-download"></i> <span>{{__("l.attachement")}} {{$loop->iteration}}</span></a>
                                         @endforeach
                                     @endif
                                 </p>
@@ -61,7 +61,7 @@
                                     <?php $files = ($reply->files) ? explode(";", $reply->files) : []; ?>
                                     @if(!empty($files))
                                         @foreach($files as $file)
-                                            <a href="{{route("admin.tickets.download_attachement", [$reply->id, $loop->index])}}" target="_blank" class="mt-1 btn general-btn-sm-blue btn-xs" style="display: block; width: 120px; border-radius: 0px;"><i class="fa fa-download"></i> <span>{{__("l.attachement")}} {{$loop->iteration}}</span></a>
+                                            <a href="{{route("client.tickets.download_attachement", [$reply->id, $loop->index])}}" target="_blank" class="mt-1 btn general-btn-sm-blue btn-xs" style="display: block; width: 120px; border-radius: 0px;"><i class="fa fa-download"></i> <span>{{__("l.attachement")}} {{$loop->iteration}}</span></a>
                                         @endforeach
                                     @endif
                                 </p>
@@ -79,7 +79,7 @@
 
             <h5 style="margin-top: 40px; margin-bottom: 20px; color: #543c93;"><b>إرسال رد : </b></h5>
 
-            <form action="{{route("admin.tickets.reply")}}" method="post" id="send_ticket" enctype="multipart/form-data">
+            <form action="{{route("client.tickets.reply")}}" method="post" id="send_ticket" enctype="multipart/form-data">
                 @csrf
                 <input type="hidden" name="id" value="{{$ticket->id}}">
 

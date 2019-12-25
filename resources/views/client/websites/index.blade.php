@@ -111,7 +111,7 @@
                                 <span class="status-prj enabled">{{__("l.open")}}</span>
                             @else
                                 <span class="status-prj unacceptable">{{__("l.blocked")}}</span>
-                                <a href="#" data-toggle="modal" data-target="#block_reason_modal{{$website->id}}" class="btn btn-danger btn-xs btn-block w120 text-center" style="margin: 0px auto;">{{__("l.block_reason")}}</a>
+                                <a href="#" data-toggle="modal" data-target="#block_reason_modal{{$website->id}}" class="btn btn-danger btn-block text-center" style="margin: 0px auto;">{{__("l.block_reason")}}</a>
                             @endif
                         </td>
                         <td class="text-center" width="270" style="padding: 10px;">
@@ -152,8 +152,8 @@
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h4 class="modal-title">{{__("l.block_reason")}}</h4>
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">{{__("l.block_reason")}}</h4>
                             </div>
                             <div class="modal-body text-justify">
                                 {{$website->block_reason}}

@@ -63,6 +63,85 @@ Route::group(["namespace" => "Client", 'prefix' => 'client', "as" => "client."],
 
     });
 
+    // Templates
+    Route::group(["prefix" => "templates", "as" => "websites."], function () {
+        Route::get('choose_template', 'WebsitesController@choose_template')->name('choose_template');
+    });
+
+    // Payments
+    Route::group(["prefix" => "payments", "as" => "payments."], function () {
+        Route::post('plan_payment', 'PaymentsController@plan_payment')->name('plan_payment');
+        Route::post('do_plan_payment', 'PaymentsController@do_plan_payment')->name('do_plan_payment');
+        //Route::get('hyperpay_plan', 'PaymentsController@hyperpay_plan')->name('hyperpay_plan');
+        Route::get('template_payment/{from_id?}/{to_id?}', 'PaymentsController@template_payment')->name('template_payment');
+        Route::post('do_template_payment', 'PaymentsController@do_template_payment')->name('do_template_payment');
+        Route::get('hyperpay_template', 'PaymentsController@hyperpay_template')->name('hyperpay_template');
+        //Route::get('plugin_payment/{id?}', 'PaymentsController@plugin_payment')->name('plugin_payment');
+        //Route::post('do_plugin_payment', 'PaymentsController@do_plugin_payment')->name('do_plugin_payment');
+        //Route::get('hyperpay_plugin', 'PaymentsController@hyperpay_plugin')->name('hyperpay_plugin');
+    });
+
+    // Subscriptions
+    Route::group(["prefix" => "subscriptions", "as" => "subscriptions."], function () {
+        Route::get('index', 'SubscriptionsController@index')->name('index');
+    });
+
+    // Plans
+    Route::group(["prefix" => "plans", "as" => "plans."], function () {
+        Route::get('index', 'PlansController@index')->name('index');
+        Route::get('buy/{id?}', 'PlansController@buy')->name('buy');
+        Route::post('coupon', 'PlansController@coupon')->name('coupon');
+        Route::get('details/{id?}', 'PlansController@details')->name('details');
+    });
+
+    // Messages
+    Route::group(["prefix" => "messages", "as" => "messages."], function () {
+        Route::get('index', 'MessagesController@index')->name('index');
+        Route::get('preview/{id?}', 'MessagesController@preview')->name('preview');
+        Route::get('delete/{id?}', 'MessagesController@delete')->name('delete');
+    });
+
+    // Messages
+    Route::group(["prefix" => "newsletter", "as" => "newsletter."], function () {
+        Route::get('index', 'MessagesController@newsletter_index')->name('index');
+        Route::get('newsletter_export_excel', 'MessagesController@newsletter_export_excel')->name('newsletter_export_excel');
+    });
+
+    // Tickets
+    Route::group(["prefix" => "tickets", "as" => "tickets."], function () {
+
+        Route::get('index', 'TicketsController@index')->name('index');
+        Route::get('add', 'TicketsController@add')->name('add');
+        Route::post('send', 'TicketsController@send')->name('send');
+        Route::get('edit/{id?}', 'TicketsController@edit')->name('edit');
+        Route::get('download_attachement/{id?}/{num?}', 'TicketsController@download_attachement')->name('download_attachement');
+        Route::get('show/{id?}', 'TicketsController@show')->name('show');
+        Route::post('update', 'TicketsController@update')->name('update');
+        Route::get('delete/{id?}', 'TicketsController@delete')->name('delete');
+        Route::post('status', 'TicketsController@status')->name('status');
+        Route::post('reply', 'TicketsController@reply')->name('reply');
+
+    });
+
+    // Notifications
+    Route::group(["prefix" => "notifications", "as" => "notifications."], function () {
+
+        Route::get('index', 'NotificationsController@index')->name('index');
+
+    });
+
+    // Roles and permissions
+    Route::group(['prefix' => 'settings', "as" => "settings."], function () {
+
+        Route::get('permissions', "SettingsController@permissions")->name("permissions");
+        Route::post('save_role', "SettingsController@save_role")->name("save_role");
+        Route::post('update_role', "SettingsController@update_role")->name("update_role");
+        Route::get('delete_role/{id?}', "SettingsController@delete_role")->name("delete_role");
+        Route::post('save_permissions', "SettingsController@save_permissions")->name("save_permissions");
+        Route::get('no_permissions', "SettingsController@no_permissions")->name("no_permissions");
+
+    });
+
     /*Route::get('hyperpay', "ClientBaseController@hyperpay");
     Route::get('hyperpay_redirect', "ClientBaseController@hyperpay_redirect")->name("hyperpay_redirect");
 
@@ -77,38 +156,14 @@ Route::group(["namespace" => "Client", 'prefix' => 'client', "as" => "client."],
 
 
 
-// Templates
-    Route::group(["prefix" => "templates", "as" => "websites."], function () {
-        Route::get('choose_template', 'WebsitesController@choose_template')->name('choose_template');
-    });
 
 
 
-// Plans
-    Route::group(["prefix" => "plans", "as" => "plans."], function () {
-        Route::get('index', 'PlansController@index')->name('index');
-        Route::get('buy/{id?}', 'PlansController@buy')->name('buy');
-        Route::post('coupon', 'PlansController@coupon')->name('coupon');
-        Route::get('details/{id?}', 'PlansController@details')->name('details');
-    });
 
-// Subscriptions
-    Route::group(["prefix" => "subscriptions", "as" => "subscriptions."], function () {
-        Route::get('index', 'SubscriptionsController@index')->name('index');
-    });
 
-// Payments
-    Route::group(["prefix" => "payments", "as" => "payments."], function () {
-        Route::post('plan_payment', 'PaymentsController@plan_payment')->name('plan_payment');
-        Route::post('do_plan_payment', 'PaymentsController@do_plan_payment')->name('do_plan_payment');
-        Route::get('hyperpay_plan', 'PaymentsController@hyperpay_plan')->name('hyperpay_plan');
-        Route::get('template_payment/{from_id?}/{to_id?}', 'PaymentsController@template_payment')->name('template_payment');
-        Route::post('do_template_payment', 'PaymentsController@do_template_payment')->name('do_template_payment');
-        Route::get('hyperpay_template', 'PaymentsController@hyperpay_template')->name('hyperpay_template');
-        Route::get('plugin_payment/{id?}', 'PaymentsController@plugin_payment')->name('plugin_payment');
-        Route::post('do_plugin_payment', 'PaymentsController@do_plugin_payment')->name('do_plugin_payment');
-        Route::get('hyperpay_plugin', 'PaymentsController@hyperpay_plugin')->name('hyperpay_plugin');
-    });
+
+
+
 
 // Members
     Route::group(["prefix" => "members", "as" => "members."], function () {
@@ -151,18 +206,9 @@ Route::group(["namespace" => "Client", 'prefix' => 'client', "as" => "client."],
 
     });
 
-// Messages
-    Route::group(["prefix" => "messages", "as" => "messages."], function () {
-        Route::get('index', 'MessagesController@index')->name('index');
-        Route::get('preview/{id?}', 'MessagesController@preview')->name('preview');
-        Route::get('delete/{id?}', 'MessagesController@delete')->name('delete');
-    });
 
-// Messages
-    Route::group(["prefix" => "newsletter", "as" => "newsletter."], function () {
-        Route::get('index', 'MessagesController@newsletter_index')->name('index');
-        Route::get('newsletter_export_excel', 'MessagesController@newsletter_export_excel')->name('newsletter_export_excel');
-    });
+
+
 
 // Website
     Route::group(["prefix" => "comments", "as" => "comments."], function () {
@@ -176,41 +222,11 @@ Route::group(["namespace" => "Client", 'prefix' => 'client', "as" => "client."],
     Route::get('categories', "WebsitesController@categories")->name("categories");
     Route::get('category/{id?}', "WebsitesController@category")->name("category");
 
-// Roles and permissions
 
-    Route::group(['prefix' => 'settings', "as" => "settings."], function () {
 
-        Route::get('permissions', "SettingsController@permissions")->name("permissions");
-        Route::post('save_role', "SettingsController@save_role")->name("save_role");
-        Route::post('update_role', "SettingsController@update_role")->name("update_role");
-        Route::get('delete_role/{id?}', "SettingsController@delete_role")->name("delete_role");
-        Route::post('save_permissions', "SettingsController@save_permissions")->name("save_permissions");
-        Route::get('no_permissions', "SettingsController@no_permissions")->name("no_permissions");
 
-    });
 
-// Tickets
 
-    Route::group(["prefix" => "tickets", "as" => "tickets."], function () {
-
-        Route::get('index', 'TicketsController@index')->name('index');
-        Route::get('add', 'TicketsController@add')->name('add');
-        Route::post('send', 'TicketsController@send')->name('send');
-        Route::get('edit/{id?}', 'TicketsController@edit')->name('edit');
-        Route::get('download_attachement/{id?}/{num?}', 'TicketsController@download_attachement')->name('download_attachement');
-        Route::get('show/{id?}', 'TicketsController@show')->name('show');
-        Route::post('update', 'TicketsController@update')->name('update');
-        Route::get('delete/{id?}', 'TicketsController@delete')->name('delete');
-        Route::post('status', 'TicketsController@status')->name('status');
-        Route::post('reply', 'TicketsController@reply')->name('reply');
-
-    });
-
-    Route::group(["prefix" => "notifications", "as" => "notifications."], function () {
-
-        Route::get('index', 'NotificationsController@index')->name('index');
-
-    });
     */
 
 });

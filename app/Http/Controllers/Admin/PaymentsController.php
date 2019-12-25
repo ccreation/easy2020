@@ -105,6 +105,7 @@ class PaymentsController extends AdminBaseController
             return redirect()->route("admin.settings.no_permissions");
 
         $payment = Payment::with("client", "client_user", "plan", "template", "website", "promocode", "to_bank", "from_bank")->where("id", $id)->first();
+
         if($payment->promocode)
             if(!is_array(@$payment->promocode->data))
                 @$payment->promocode->data = json_decode(@$payment->promocode->data, true);

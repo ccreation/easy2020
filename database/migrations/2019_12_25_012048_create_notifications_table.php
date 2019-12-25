@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePluginsTable extends Migration
+class CreateNotificationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,13 @@ class CreatePluginsTable extends Migration
      */
     public function up()
     {
-        Schema::create('plugins', function (Blueprint $table) {
+        Schema::create('notifications', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string("name_ar");
-            $table->string("name_en")->nullable();
-            $table->string("price")->default("0");
-            $table->string("image")->nullable();
+            $table->string('type');
+            $table->integer('client_id');
+            $table->integer('website_id')->nullable();
+            $table->text("message")->nullable();
+            $table->tinyInteger('status')->default(0);
             $table->timestamps();
         });
     }
@@ -30,6 +31,6 @@ class CreatePluginsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('plugins');
+        Schema::dropIfExists('notifications');
     }
 }

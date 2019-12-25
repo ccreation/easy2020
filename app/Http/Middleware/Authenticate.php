@@ -33,7 +33,7 @@ class Authenticate extends Middleware
                     break;
                 case 'client':
                     if (!Auth::guard("client")->check()) {
-                        return redirect()->route('client.login', @$request->client);
+                        return redirect()->route('login', @$request->client);
                     }
                     break;
                 /*case 'visitor':

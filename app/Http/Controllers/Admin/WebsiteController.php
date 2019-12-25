@@ -102,7 +102,7 @@ class WebsiteController extends AdminBaseController
             $body = '<h3>لقد تم حظر موقعك "<span>'.$website->name_ar.'</span>" <span>وذلك للأسباب التالية :</span></h3>';
             $body .= '<p>'.$request->block_reason.'</p>';
             mailit($email, "حظر موقع", $body);
-            //notification("block_website", $client->id, $website->id, $body);
+            notification("block_website", $client->id, $website->id, $body);
         }
 
 

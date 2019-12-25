@@ -10,6 +10,14 @@ class Client extends Model
         return $this->belongsToMany('App\Website', "client_template", "client_id", "template_id")->withTimestamps()->withPivot(["website_id", "status", "plan_id", "payment_id", "price"]);
     }
 
+    public function plugins(){
+        return $this->belongsToMany('App\Plugin', "client_plugin", "client_id", "plugin_id")->withTimestamps()->withPivot(["plugin_id", "status", "payment_id", "price"]);
+    }
+
+    public function my_plugins(){
+        return $this->belongsToMany('App\Plugin', "client_plugin", "client_id", "plugin_id")->withTimestamps()->withPivot(["plugin_id", "status", "payment_id", "price"])->where("status", "accepted");
+    }
+
     /*public function settings()
     {
         return $this->hasMany("App\ClientSetting", "client_id");
@@ -19,15 +27,9 @@ class Client extends Model
 
 
 
-    public function plugins()
-    {
-        return $this->belongsToMany('App\Plugin', "client_plugin", "client_id", "plugin_id")->withTimestamps()->withPivot(["plugin_id", "status", "payment_id", "price"]);
-    }
 
-    public function my_plugins()
-    {
-        return $this->belongsToMany('App\Plugin', "client_plugin", "client_id", "plugin_id")->withTimestamps()->withPivot(["plugin_id", "status", "payment_id", "price"])->where("status", "accepted");
-    }*/
+
+    */
 
     public function websites(){
         return $this->hasMany("App\Website");

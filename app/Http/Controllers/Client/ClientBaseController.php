@@ -43,12 +43,10 @@ class ClientBaseController extends Controller{
             View::share("lang", $this->lang);
             $websites           = Website::where("client_id", $c->id)->count();
             View::share("my_websites", $websites);
-            /*$this->my_plugins   = $c->my_plugins->KeyBy("id");
+            $this->my_plugins   = $c->my_plugins->KeyBy("id");
             View::share("my_plugins", $this->my_plugins);
 
-
-
-
+            /*
 
             $new_notifications  = Notification::where(["client_id" => $c->id, "status" => 0])->orderby("created_at", "desc")->get();
             $new_notifications  = ($new_notifications) ? $new_notifications : collect();

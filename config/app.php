@@ -172,6 +172,7 @@ return [
         Gabievi\Promocodes\PromocodesServiceProvider::class,
         Sarfraznawaz2005\VisitLog\VisitLogServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -231,8 +232,9 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-        'Promocodes' => Gabievi\Promocodes\Facades\Promocodes::class,
+        'Promocodes' => App\Helpers\Promocodes::class,
         'VisitLog' => Sarfraznawaz2005\VisitLog\Facades\VisitLog::class,
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
 
     ],
 
