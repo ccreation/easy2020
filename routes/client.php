@@ -76,8 +76,8 @@ Route::group(["namespace" => "Client", 'prefix' => 'client', "as" => "client."],
         Route::get('template_payment/{from_id?}/{to_id?}', 'PaymentsController@template_payment')->name('template_payment');
         Route::post('do_template_payment', 'PaymentsController@do_template_payment')->name('do_template_payment');
         Route::get('hyperpay_template', 'PaymentsController@hyperpay_template')->name('hyperpay_template');
-        //Route::get('plugin_payment/{id?}', 'PaymentsController@plugin_payment')->name('plugin_payment');
-        //Route::post('do_plugin_payment', 'PaymentsController@do_plugin_payment')->name('do_plugin_payment');
+        Route::get('plugin_payment/{id?}', 'PaymentsController@plugin_payment')->name('plugin_payment');
+        Route::post('do_plugin_payment', 'PaymentsController@do_plugin_payment')->name('do_plugin_payment');
         //Route::get('hyperpay_plugin', 'PaymentsController@hyperpay_plugin')->name('hyperpay_plugin');
     });
 
@@ -142,42 +142,7 @@ Route::group(["namespace" => "Client", 'prefix' => 'client', "as" => "client."],
 
     });
 
-    /*Route::get('hyperpay', "ClientBaseController@hyperpay");
-    Route::get('hyperpay_redirect', "ClientBaseController@hyperpay_redirect")->name("hyperpay_redirect");
-
-    Route::get('locale/{locale}', "ClientBaseController@locale");
-
-
-    Route::get('statistics', "ClientBaseController@statistics")->name("statistics");
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Members
-    Route::group(["prefix" => "members", "as" => "members."], function () {
-        Route::get('index', 'MembersController@index')->name('index');
-        Route::get('add', 'MembersController@add')->name('add');
-        Route::post('store', 'MembersController@store')->name('store');
-        Route::get('deactivate/{id?}', 'MembersController@deactivate')->name('deactivate');
-        Route::get('activate/{id?}', 'MembersController@activate')->name('activate');
-        Route::get('edit/{id?}', 'MembersController@edit')->name('edit');
-        Route::post('update', 'MembersController@update')->name('update');
-        Route::get('delete/{id?}', 'MembersController@delete')->name('delete');
-    });
-
-// Plugin
+    // Plugin
     Route::group(["prefix" => "plugins", "as" => "plugins."], function () {
         Route::get('index', 'PluginsController@index')->name('index');
         Route::get('settings/{id?}', 'PluginsController@settings')->name('settings');
@@ -206,17 +171,60 @@ Route::group(["namespace" => "Client", 'prefix' => 'client', "as" => "client."],
 
     });
 
-
-
-
-
-// Website
+    // Comments
     Route::group(["prefix" => "comments", "as" => "comments."], function () {
+
         Route::get('comments', 'WebsitesController@comments')->name('comments');
         Route::get('change_comment_status/{id?}/{status?}', 'WebsitesController@change_comment_status')->name('change_comment_status');
         Route::get('delete_comment/{id?}', 'WebsitesController@delete_comment')->name('delete_comment');
         Route::post('update_comment', 'WebsitesController@update_comment')->name('update_comment');
+
     });
+
+    // Members
+    Route::group(["prefix" => "members", "as" => "members."], function () {
+        Route::get('index', 'MembersController@index')->name('index');
+        Route::get('add', 'MembersController@add')->name('add');
+        Route::post('store', 'MembersController@store')->name('store');
+        Route::get('deactivate/{id?}', 'MembersController@deactivate')->name('deactivate');
+        Route::get('activate/{id?}', 'MembersController@activate')->name('activate');
+        Route::get('edit/{id?}', 'MembersController@edit')->name('edit');
+        Route::post('update', 'MembersController@update')->name('update');
+        Route::get('delete/{id?}', 'MembersController@delete')->name('delete');
+    });
+
+    /*Route::get('hyperpay', "ClientBaseController@hyperpay");
+    Route::get('hyperpay_redirect', "ClientBaseController@hyperpay_redirect")->name("hyperpay_redirect");
+
+    Route::get('locale/{locale}', "ClientBaseController@locale");
+
+
+    Route::get('statistics', "ClientBaseController@statistics")->name("statistics");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // First time add website
     Route::get('categories', "WebsitesController@categories")->name("categories");

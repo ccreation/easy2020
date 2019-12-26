@@ -347,6 +347,8 @@ class SettingsController extends AdminBaseController
 
         $plugin->name_ar    = $request->name_ar;
         $plugin->name_en    = $request->name_en;
+        $plugin->description_ar    = $request->description_ar;
+        $plugin->description_en    = $request->description_en;
         $plugin->price      = $request->price;
         if($request->hasFile("image")){
             if($plugin->image and file_exists(storage_path("app/".$plugin->image)) and is_file(storage_path("app/".$plugin->image)))

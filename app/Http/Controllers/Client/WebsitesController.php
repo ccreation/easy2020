@@ -399,7 +399,7 @@ class WebsitesController extends ClientBaseController
         $website        = Website::where(["client_id" => $client->id, "id" => $to_id])->first();
 
         if(in_array($from_id, $sold_templates) or $template->price==0){
-            
+
             if(!$c->templates()->where('template_id', $from_id)->where('website_id', $to_id)->exists())
                 $c->templates()->attach($from_id, ["website_id" => $to_id, "price" => $template->price, "status" => 1]);
 
@@ -550,7 +550,7 @@ class WebsitesController extends ClientBaseController
             return redirect()->route("client.settings.no_permissions");
 
         $client         = $this->client;
-        $comments       = Comment::with("author", "page", "post", "website")->where("client_id", $client->id)->orderby("created_at", "desc")->get();
+        $comments       = Comment::with("author", "page", "website")->where("client_id", $client->id)->orderby("created_at", "desc")->get();
 
         return view("client.comments.comments", compact("comments"));
     }

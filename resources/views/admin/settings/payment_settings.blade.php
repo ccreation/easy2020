@@ -137,6 +137,16 @@
                                             </div>
 
                                             <div class="form-group">
+                                                <label><span>الوصف</span> <small>(عربي)</small></label>
+                                                <textarea class="form-control" name="description_ar">{{$plugin->description_ar}}</textarea>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label><span>الوصف</span> <small>(إنجليزي)</small></label>
+                                                <textarea class="form-control" name="description_en">{{$plugin->description_en}}</textarea>
+                                            </div>
+
+                                            <div class="form-group">
                                                 <button type="submit" class="btn general-btn-sm-blue"><i class="fa fa-save"></i> <span>حفظ</span></button>
                                             </div>
 

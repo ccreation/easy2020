@@ -55,6 +55,11 @@
                             <a class="menu-item-link @if(Request::is("client/plans/*")) active @endif" href="{{route("client.plans.index")}}"><span class="menu-item-icon"><i class="fa fa-columns fa-2x text-white"></i></span><span class="menu-item-text">{{__("l.plans")}}</span></a>
                         </li>
                     @endif
+                    @if(cpermissions("plugins_list"))
+                        <li class="menu-item">
+                            <a class="menu-item-link @if(Request::is("client/plugins/*")) active @endif" href="{{route("client.plugins.index")}}"><span class="menu-item-icon"><i class="fa fa-plug fa-2x text-white"></i></span><span class="menu-item-text">{{__("l.plugins")}}</span></a>
+                        </li>
+                    @endif
                     @if(cpermissions("my_subscriptions_list"))
                         <li class="menu-item">
                             <a class="menu-item-link @if(Request::is("client/subscriptions/*")) active @endif" href="{{route("client.subscriptions.index")}}"><span class="menu-item-icon"><i class="fa fa-credit-card fa-2x text-white"></i></span><span class="menu-item-text">{{__("l.my_subscriptions")}}</span></a>
@@ -68,6 +73,16 @@
                     @if(cpermissions("newsletter_list_list"))
                         <li class="menu-item">
                             <a class="menu-item-link @if(Request::is("client/newsletter/*")) active @endif" href="{{route("client.newsletter.index")}}"><span class="menu-item-icon"><i class="far fa-envelope fa-2x text-white"></i></span><span class="menu-item-text">{{__("l.newsletter_list")}}</span></a>
+                        </li>
+                    @endif
+                    @if(cpermissions("comments_list"))
+                        <li class="menu-item">
+                            <a class="menu-item-link @if(Request::is("client/comments/*")) active @endif" href="{{route("client.comments.comments")}}"><span class="menu-item-icon"><i class="far fa-comments fa-2x text-white"></i></span><span class="menu-item-text">{{__("l.comments")}}</span></a>
+                        </li>
+                    @endif
+                    @if(cpermissions("members_management_list"))
+                        <li class="menu-item">
+                            <a class="menu-item-link @if(Request::is("client/members/*")) active @endif" href="{{route("client.members.index")}}"><span class="menu-item-icon"><i class="fa fa-users fa-2x text-white"></i></span><span class="menu-item-text">{{__("l.members_management")}}</span></a>
                         </li>
                     @endif
                     <li class="menu-item">
