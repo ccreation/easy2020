@@ -121,6 +121,7 @@
 
 
 @section("scripts")
+
 <script>
     $(function () {
 

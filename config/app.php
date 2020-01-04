@@ -4,6 +4,8 @@ return [
 
     "session_domain" => ".easysite.me",
 
+    "client_domain" => "easysite.me",
+
     "admin_sub_domain" => "a.easysite.me",
 
     /*
@@ -173,6 +175,8 @@ return [
         Sarfraznawaz2005\VisitLog\VisitLogServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
+        Barryvdh\TranslationManager\ManagerServiceProvider::class,
+
         /*
          * Application Service Providers...
          */

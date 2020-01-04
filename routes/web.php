@@ -13,4 +13,15 @@ Route::get("/register", "HomeController@register")->name("register")->middleware
 Route::get("/policy", "HomeController@policy")->name("policy");
 Route::post('sluggable', 'HomeController@sluggable')->name('sluggable');
 
+// Client Dashboard
 require ("client.php");
+
+// Editor
+require ("editor.php");
+
+// WebsiteController
+Route::group(['prefix' => '{slug}/'], function () {
+    Route::group(["namespace" => "Common", 'prefix' => '{frontLang?}/', "as" => "website."], function () {
+        require("website.php");
+    });
+});

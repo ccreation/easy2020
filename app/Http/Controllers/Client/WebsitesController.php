@@ -124,9 +124,10 @@ class WebsitesController extends ClientBaseController
         }
         $website->save();
 
-        return redirect()->route("client.websites.step2", $website->id)->with("success", __("l.success_save"));
-    }
+        create_homepage($website->id, $website->client_id, $website->user_id);
 
+        return redirect()->route("editor.edit", $website->id)->with("success", __("l.success_save"));
+    }
 
     /**
      * Display the specified website step2.

@@ -1,0 +1,239 @@
+
+/*
+ * Droid Arabic Kufi (Arabic) 
+ */
+
+@font-face {
+  font-family: 'Droid Arabic Kufi';
+  font-style: normal;
+  font-weight: 400;
+  src: url(../fonts/droidarabickufi/DroidKufi-Regular.eot);
+  src: url(../fonts/droidarabickufi/DroidKufi-Regular.eot?#iefix) format('embedded-opentype'),
+       url(../fonts/droidarabickufi/DroidKufi-Regular.woff2) format('woff2'),
+       url(../fonts/droidarabickufi/DroidKufi-Regular.woff) format('woff'),
+       url(../fonts/droidarabickufi/DroidKufi-Regular.ttf) format('truetype');
+}
+/*@font-face {
+  font-family: 'Droid Arabic Kufi';
+  font-style: normal;
+  font-weight: 700;
+  src: url(../fonts/droidarabickufi/DroidKufi-Bold.eot);
+  src: url(../fonts/droidarabickufi/DroidKufi-Bold.eot?#iefix) format('embedded-opentype'),
+       url(../fonts/droidarabickufi/DroidKufi-Bold.woff2) format('woff2'),
+       url(../fonts/droidarabickufi/DroidKufi-Bold.woff) format('woff'),
+       url(../fonts/droidarabickufi/DroidKufi-Bold.ttf) format('truetype');
+}*/
+@font-face {
+  font-family: 'JF Flat Regular';
+  font-style: normal;
+  font-weight: 700;
+  src: url(../fonts/JF-Flat/JF-Flat-regular.eot);
+  src: url(../fonts/JF-Flat/JF-Flat-regular.eot?#iefix) format('embedded-opentype'),
+       url(../fonts/JF-Flat/JF-Flat-regular.woff2) format('woff2'),
+       url(../fonts/JF-Flat/JF-Flat-regular.woff) format('woff'),
+       url(../fonts/JF-Flat/JF-Flat-regular.ttf) format('truetype');
+}
+
+
+
+/* ----------------------------------------------------------------
+	Fonts
+-----------------------------------------------------------------*/
+
+
+
+body,
+small,
+#primary-menu ul ul li > a,
+.wp-caption,
+.feature-box.fbox-center.fbox-italic p,
+.skills li .progress-percent .counter,
+.nav-tree ul ul a { font-family: 'JF Flat Regular'; } /*'Cairo', sans-serif*/ /*'Droid Arabic Kufi', serif;*/
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+#logo,
+#primary-menu ul li > a,
+#primary-menu ul li .mega-menu-content.style-2 ul.mega-menu-column > li.mega-menu-title > a,
+#top-search form input,
+.entry-link,
+.entry.entry-date-section span,
+.button.button-desc,
+.counter,
+label,
+.nav-tree li a,
+.wedding-head .first-name,
+.wedding-head .last-name { font-family: 'JF Flat Regular'; } /*'Cairo', sans-serif*/ 
+
+.entry-meta li,
+.entry-link span,
+.entry blockquote p,
+.more-link,
+.comment-content .comment-author span,
+.button.button-desc span,
+.testi-content p,
+.team-title span,
+.before-heading,
+.wedding-head .first-name span,
+.wedding-head .last-name span { font-family: 'JF Flat Regular'; } /*'Cairo', sans-serif*/ 
+
+.font-body { font-family: 'JF Flat Regular' !important; } /*'Cairo', sans-serif*/ 
+
+.font-primary { font-family: 'JF Flat Regular' !important; } /*'Cairo', sans-serif*/ 
+
+.font-secondary { font-family: 'JF Flat Regular' !important; } /*'Cairo', sans-serif*/ 
+
+
+/* ----------------------------------------------------------------
+	You can change your Font Specific Settings here
+-----------------------------------------------------------------*/
+
+
+body { line-height: 1.5; }
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-weight: 600;
+	line-height: 1.5;
+}
+
+#logo {
+	font-size: 36px;
+	line-height: 100%;
+}
+
+#primary-menu ul li > a {
+	font-weight: bold;
+	font-size: 13px;
+	/*letter-spacing: 1px;*/
+	text-transform: uppercase;
+}
+
+#primary-menu ul ul li > a {
+	font-size: 12px;
+	font-weight: 700;
+	letter-spacing: 0;
+}
+
+#primary-menu ul li .mega-menu-content.style-2 ul.mega-menu-column > li.mega-menu-title > a {
+	font-size: 13px;
+	font-weight: bold;
+	letter-spacing: 1px;
+	text-transform: uppercase !important;
+	line-height: 1.3 !important;
+}
+
+#top-search form input {
+	font-size: 24px; /*32px*/
+	font-weight: 700;
+	letter-spacing: 0;
+}
+
+.entry-meta li {
+	font-size: 13px;
+	line-height: 14px;
+	font-style: normal; /*italic*/
+}
+
+.entry-link {
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	font-size: 24px;
+	font-weight: 700;
+}
+
+.entry-link span {
+	font-style: normal; /*italic*/
+	font-weight: normal;
+	text-transform: none;
+	letter-spacing: 0;
+	font-size: 14px;
+}
+
+.entry blockquote p {
+	font-weight: 400;
+	font-style: normal; /*italic*/
+}
+
+.entry.entry-date-section span {
+	font-size: 18px;
+	font-weight: bold;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+}
+
+.more-link { font-style: normal; /*italic*/ }
+
+.comment-content .comment-author span {
+	font-size: 12px;
+	font-weight: normal;
+	font-style: normal; /*italic*/
+}
+
+.wp-caption { font-style: normal; /*italic*/ }
+
+.button.button-desc {
+	font-size: 22px;
+	line-height: 1;
+}
+
+.button.button-desc span {
+	font-size: 14px;
+	font-weight: 400;
+	letter-spacing: 1px;
+	font-style: normal; /*italic*/
+	text-transform: none;
+}
+
+.feature-box.fbox-center.fbox-italic p { font-style: normal; /*italic*/ }
+
+.testi-content p { font-style: normal; /*italic*/ }
+
+.team-title span {
+	font-weight: 400;
+	font-style: normal; /*italic*/
+	font-size: 14px;
+}
+
+.counter {
+	font-size: 42px;
+	font-weight: 600;
+}
+
+.skills li .progress-percent .counter { font-weight: 400; }
+
+label {
+	font-size: 13px;
+	font-weight: 700;
+	text-transform: uppercase;
+	/*letter-spacing: 1px;*/
+}
+
+.before-heading {
+	font-size: 16px;
+	font-style: normal; /*italic*/
+	font-weight: 400;
+}
+
+.wedding-head .first-name,
+.wedding-head .last-name {
+	font-weight: bold;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+}
+
+.wedding-head .first-name span,
+.wedding-head .last-name span {
+	font-size: 56px;
+	font-weight: 400;
+	font-style: normal; /*italic*/
+	text-transform: none;
+}

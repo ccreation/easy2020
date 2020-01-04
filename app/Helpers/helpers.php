@@ -9,6 +9,8 @@ use App\Notif;
 use App\Client;
 use App\Notification;
 use App\ClientSetting;
+use App\Website;
+use App\Page;
 
 if (!function_exists('permissions')) {
     function permissions($permission)
@@ -21,175 +23,6 @@ if (!function_exists('permissions')) {
     }
 }
 
-if (!function_exists('submeta')) {
-    function submeta($meta, $page, $lang)
-    {
-        if($meta->type=="url"):
-            $client_id  = $page->client_id;
-            $client     = App\Client::where("id", $client_id)->first();
-            $blocks     = App\PageBlock::where(["page_id" => $page->id, "client_id" => $client_id])->orderby("order", "desc")->get();
-            $pages      = App\Page::where("client_id", $client_id)->orderby("id", "desc")->get();
-        endif;
-        /*$website    = App\Website::where("id", $page->website_id)->orderby("id", "desc")->first();
-        $default_font = @$website->font;*/
-        ?>
-        <div class="custom_collapse" id="collapse<?=$meta->id;?>">
-            <div class="card card-body" style="background: #f5f5f5">
-                <button type="button" class="close" aria-label="Close"><span aria-hidden="true">×</span></button>
-                <div>
-                    <!-- text or textarea -->
-                    <?php if($meta->type=="text" or $meta->type=="textarea"): ?>
-                        <?php if(count($meta->metas)>0): ?>
-                            <?php foreach($meta->metas as $mtaa): ?>
-                                <div class="input-group">
-                                    <label class="w100 db"><?=__("l.".$mtaa->type); ?></label>
-                                    <?php if($mtaa->type=="color"): ?>
-                                        <input type="text" name="<?=$meta->id;?>-submeta-<?=$mtaa->key;?>" value="<?=$mtaa->value?>" class="form-control colorpicker mb-10">
-                                    <?php elseif($mtaa->type=="font_size"): ?>
-                                        <select name="<?=$meta->id;?>-submeta-<?=$mtaa->key;?>" class="form-control mb-10">
-                                            <?php for($i=8; $i<=100; $i++): ?>
-                                                <option value="<?=$i;?>" <?= ($mtaa->value==$i)?"selected":""; ?>><?=$i;?></option>
-                                            <?php endfor; ?>
-                                        </select>
-                                    <?php elseif($mtaa->type=="font_weight"): ?>
-                                        <select class="form-control mb-10" name="<?=$meta->id;?>-submeta-<?=$mtaa->key;?>">
-                                            <option value="normal" <?= ($mtaa->value=="normal")?"selected":""; ?>><?=__("l.normal");?></option>
-                                            <option value="bold" <?= ($mtaa->value=="bold")?"selected":""; ?>><?=__("l.bold");?></option>
-                                        </select>
-                                    <?php elseif($mtaa->type=="text_align"): ?>
-                                        <select class="form-control mb-10" name="<?=$meta->id;?>-submeta-<?=$mtaa->key;?>">
-                                            <option value="right" <?= ($mtaa->value=="right")?"selected":""; ?>><?=__("l.right");?></option>
-                                            <option value="center" <?= ($mtaa->value=="center")?"selected":""; ?>><?=__("l.center");?></option>
-                                            <option value="left" <?= ($mtaa->value=="left")?"selected":""; ?>><?=__("l.left");?></option>
-                                            <option value="justify" <?= ($mtaa->value=="justify")?"selected":""; ?>><?=__("l.justify");?></option>
-                                        </select>
-                                    <?php elseif($mtaa->type=="font_family"): ?>
-                                        <select class="form-control mb-10" name="<?=$meta->id;?>-submeta-<?=$mtaa->key;?>">
-                                            <option value="" <?= ($mtaa->value == "")?"selected":""; ?>><?= __("l.no_font");?></option>
-                                            <option value="Droid Arabic Kufi" <?= ($mtaa->value=="Droid Arabic Kufi")?"selected":""; ?>>Droid Arabic Kufi</option>
-                                            <option value="Amiri" <?= ($mtaa->value=="Amiri")?"selected":""; ?>>Amiri</option>
-                                            <option value="Cairo" <?= ($mtaa->value=="Cairo")?"selected":""; ?>>Cairo</option>
-                                            <option value="Tajawal" <?= ($mtaa->value=="Tajawal")?"selected":""; ?>>Tajawal</option>
-                                            <option value="Changa" <?= ($mtaa->value=="Changa")?"selected":""; ?>>Changa</option>
-                                            <option value="Lalezar" <?= ($mtaa->value=="Lalezar")?"selected":""; ?>>Lalezar</option>
-                                            <option value="El Messiri" <?= ($mtaa->value=="El Messiri")?"selected":""; ?>>El Messiri</option>
-                                            <option value="Reem Kufi" <?= ($mtaa->value=="Reem Kufi")?"selected":""; ?>>Reem Kufi</option>
-                                            <option value="Lateef" <?= ($mtaa->value=="Lateef")?"selected":""; ?>>Lateef</option>
-                                            <option value="Scheherazade" <?= ($mtaa->value=="Scheherazade")?"selected":""; ?>>Scheherazade</option>
-                                            <option value="Lemonada" <?= ($mtaa->value=="Lemonada")?"selected":""; ?>>Lemonada</option>
-                                            <option value="Markazi Text" <?= ($mtaa->value=="Markazi Text")?"selected":""; ?>>Markazi Text</option>
-                                            <option value="Mada" <?= ($mtaa->value=="Mada")?"selected":""; ?>>Mada</option>
-                                            <option value="Baloo Bhaijaan" <?= ($mtaa->value=="Baloo Bhaijaan")?"selected":""; ?>>Baloo Bhaijaan</option>
-                                            <option value="Mirza" <?= ($mtaa->value=="Mirza")?"selected":""; ?>>Mirza</option>
-                                            <option value="Aref Ruqaa" <?= ($mtaa->value=="Aref Ruqaa")?"selected":""; ?>>Aref Ruqaa</option>
-                                            <option value="Harmattan" <?= ($mtaa->value=="Harmattan")?"selected":""; ?>>Harmattan</option>
-                                            <option value="Katibeh" <?= ($mtaa->value=="Katibeh")?"selected":""; ?>>Katibeh</option>
-                                            <option value="Rakkas" <?= ($mtaa->value=="Rakkas")?"selected":""; ?>>Rakkas</option>
-                                            <option value="Jomhuria" <?= ($mtaa->value=="Jomhuria")?"selected":""; ?>>Jomhuria</option>
-                                        </select>
-                                    <?php endif; ?>
-                                </div>
-                            <?php endforeach; ?>
-                        <?php endif; ?>
-                    <?php elseif($meta->type=="url"): ?>
-                        <div class="form-group">
-                            <label><?=__("l.url_to_block_from_this_page");?></label>
-                            <select class="form-control choose_button_link">
-                                <option value=""><?=__("l.choose");?></option>
-                                <?php foreach ($blocks as $b): ?>
-                                    <option value="<?=$b->id;?>"
-                                            data-url="#block<?=$b->id;?>"><?=__("l.a.".$b->type)." ".$b->block;?></option>
-                                <?php endforeach; ?>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label><?=__("l.url_to_other_pages");?></label>
-                            <select class="form-control choose_button_link">
-                                <option value=""><?=__("l.choose");?></option>
-                                <?php foreach ($pages as $p): ?>
-                                    <option value="<?=$p->id;?>"
-                                            data-url="<?=route("website.page", ["slug" => @$page->website->slug, "frontLang" => $lang, "id" => $page->id]);?>"><?=(app()->getLocale()=="ar")?$p->name:$p->name_en;?></option>
-                                <?php endforeach; ?>
-                            </select>
-                        </div>
-                    <?php endif; ?>
-                </div>
-            </div>
-        </div>
-        <?php
-    }
-}
-
-if (!function_exists('submeta2')) {
-    function submeta2($text)
-    {
-        ?>
-        <div class="custom_collapse" id="collapse<?=$text->id?>">
-            <div class="card card-body" style="background: #f5f5f5">
-                <button type="button" class="close" aria-label="Close"><span aria-hidden="true">×</span></button>
-                <div>
-                    <div class="form-group">
-                        <label class="w100 db"><?=__("l.font_size"); ?></label>
-                        <select name="font_size<?=$text->id;?>" class="form-control mb-10">
-                            <?php for($i=8; $i<=100; $i++): ?>
-                                <option value="<?=$i;?>" <?= ($text->font_size==$i)?"selected":""; ?>><?=$i;?></option>
-                            <?php endfor; ?>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label class="w100 db"><?=__("l.font_weight"); ?></label>
-                        <select name="font_weight<?=$text->id;?>" class="form-control mb-10">
-                            <option value="normal" <?= ($text->font_weight=="normal")?"selected":""; ?>><?=__("l.normal");?></option>
-                            <option value="bold" <?= ($text->font_weight=="bold")?"selected":""; ?>><?=__("l.bold");?></option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label class="w100 db"><?=__("l.color"); ?></label>
-                        <input type="text" name="color<?=$text->id;?>" value="<?=$text->color?>" class="form-control colorpicker mb-10">
-                    </div>
-                    <div class="form-group">
-                        <label class="w100 db"><?=__("l.text_align"); ?></label>
-                        <select name="text_align<?=$text->id;?>" class="form-control mb-10">
-                            <option value="right" <?= ($text->text_align=="right")?"selected":""; ?>><?=__("l.right");?></option>
-                            <option value="center" <?= ($text->text_align=="center")?"selected":""; ?>><?=__("l.center");?></option>
-                            <option value="left" <?= ($text->text_align=="left")?"selected":""; ?>><?=__("l.left");?></option>
-                            <option value="justify" <?= ($text->text_align=="justify")?"selected":""; ?>><?=__("l.justify");?></option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label class="w100 db"><?=__("l.font_family"); ?></label>
-                        <select name="font_family<?=$text->id;?>" class="form-control mb-10">
-                            <option value="" <?= ($text->font_family=="")?"selected":""; ?>><?= __("l.default_font");?></option>
-                            <option value="Droid Arabic Kufi" <?= ($text->font_family=="Droid Arabic Kufi")?"selected":""; ?>>Droid Arabic Kufi</option>
-                            <option value="Amiri" <?= ($text->font_family=="Amiri")?"selected":""; ?>>Amiri</option>
-                            <option value="Cairo" <?= ($text->font_family=="Cairo")?"selected":""; ?>>Cairo</option>
-                            <option value="Tajawal" <?= ($text->font_family=="Tajawal")?"selected":""; ?>>Tajawal</option>
-                            <option value="Changa" <?= ($text->font_family=="Changa")?"selected":""; ?>>Changa</option>
-                            <option value="Lalezar" <?= ($text->font_family=="Lalezar")?"selected":""; ?>>Lalezar</option>
-                            <option value="El Messiri" <?= ($text->font_family=="El Messiri")?"selected":""; ?>>El Messiri</option>
-                            <option value="Reem Kufi" <?= ($text->font_family=="Reem Kufi")?"selected":""; ?>>Reem Kufi</option>
-                            <option value="Lateef" <?= ($text->font_family=="Lateef")?"selected":""; ?>>Lateef</option>
-                            <option value="Scheherazade" <?= ($text->font_family=="Scheherazade")?"selected":""; ?>>Scheherazade</option>
-                            <option value="Lemonada" <?= ($text->font_family=="Lemonada")?"selected":""; ?>>Lemonada</option>
-                            <option value="Markazi Text" <?= ($text->font_family=="Markazi Text")?"selected":""; ?>>Markazi Text</option>
-                            <option value="Mada" <?= ($text->font_family=="Mada")?"selected":""; ?>>Mada</option>
-                            <option value="Baloo Bhaijaan" <?= ($text->font_family=="Baloo Bhaijaan")?"selected":""; ?>>Baloo Bhaijaan</option>
-                            <option value="Mirza" <?= ($text->font_family=="Mirza")?"selected":""; ?>>Mirza</option>
-                            <option value="Aref Ruqaa" <?= ($text->font_family=="Aref Ruqaa")?"selected":""; ?>>Aref Ruqaa</option>
-                            <option value="Harmattan" <?= ($text->font_family=="Harmattan")?"selected":""; ?>>Harmattan</option>
-                            <option value="Katibeh" <?= ($text->font_family=="Katibeh")?"selected":""; ?>>Katibeh</option>
-                            <option value="Rakkas" <?= ($text->font_family=="Rakkas")?"selected":""; ?>>Rakkas</option>
-                            <option value="Jomhuria" <?= ($text->font_family=="Jomhuria")?"selected":""; ?>>Jomhuria</option>
-                        </select>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-        <?php
-    }
-}
-
 if (!function_exists('getExcerpt')) {
     function getExcerpt($text, $textb=200){
         $text = strip_tags($text);
@@ -199,73 +32,6 @@ if (!function_exists('getExcerpt')) {
             $text = $text . '...';
         }
         return $text;
-    }
-}
-
-if (!function_exists('submetax')) {
-    function submetax($meta)
-    {
-        ?>
-        <div class="custom_collapse" id="collapse<?=$meta->name;?>">
-            <div class="card card-body" style="background: #f5f5f5">
-                <button type="button" class="close" aria-label="Close"><span aria-hidden="true">×</span></button>
-                <div>
-                    <?php if($meta->submetas): ?>
-                        <?php foreach($meta->submetas->children() as $mtaa): ?>
-                            <div class="input-group">
-                                <label class="w100 db"><?=__("l.".$mtaa->name); ?></label>
-                                <?php if($mtaa->type=="color"): ?>
-                                    <input type="text" name="<?=$meta->name;?>-submeta-<?=$mtaa->name;?>" value="<?=$mtaa->value?>" class="form-control colorpicker mb-10">
-                                <?php elseif($mtaa->type=="font_size"): ?>
-                                    <select name="<?=$meta->name;?>-submeta-<?=$mtaa->name;?>" class="form-control mb-10">
-                                        <?php for($i=8; $i<=100; $i++): ?>
-                                            <option value="<?=$i;?>" <?= ($mtaa->value==$i)?"selected":""; ?>><?=$i;?></option>
-                                        <?php endfor; ?>
-                                    </select>
-                                <?php elseif($mtaa->type=="font_weight"): ?>
-                                    <select class="form-control mb-10" name="<?=$meta->name;?>-submeta-<?=$mtaa->name;?>">
-                                        <option value="normal" <?= ($mtaa->value=="normal")?"selected":""; ?>><?=__("l.normal");?></option>
-                                        <option value="bold" <?= ($mtaa->value=="bold")?"selected":""; ?>><?=__("l.bold");?></option>
-                                    </select>
-                                <?php elseif($mtaa->type=="text_align"): ?>
-                                    <select class="form-control mb-10" name="<?=$meta->name;?>-submeta-<?=$mtaa->name;?>">
-                                        <option value="right" <?= ($mtaa->value=="right")?"selected":""; ?>><?=__("l.right");?></option>
-                                        <option value="center" <?= ($mtaa->value=="center")?"selected":""; ?>><?=__("l.center");?></option>
-                                        <option value="left" <?= ($mtaa->value=="left")?"selected":""; ?>><?=__("l.left");?></option>
-                                        <option value="justify" <?= ($mtaa->value=="justify")?"selected":""; ?>><?=__("l.justify");?></option>
-                                    </select>
-                                <?php elseif($mtaa->type=="font_family"): ?>
-                                    <select class="form-control mb-10" name="<?=$meta->name;?>-submeta-<?=$mtaa->name;?>">
-                                        <option value="" <?= ($mtaa->value=="")?"selected":""; ?>><?= __("l.default_font");?></option>
-                                        <option value="Droid Arabic Kufi" <?= ($mtaa->value=="Droid Arabic Kufi")?"selected":""; ?>>Droid Arabic Kufi</option>
-                                        <option value="Amiri" <?= ($mtaa->value=="Amiri")?"selected":""; ?>>Amiri</option>
-                                        <option value="Cairo" <?= ($mtaa->value=="Cairo")?"selected":""; ?>>Cairo</option>
-                                        <option value="Tajawal" <?= ($mtaa->value=="Tajawal")?"selected":""; ?>>Tajawal</option>
-                                        <option value="Changa" <?= ($mtaa->value=="Changa")?"selected":""; ?>>Changa</option>
-                                        <option value="Lalezar" <?= ($mtaa->value=="Lalezar")?"selected":""; ?>>Lalezar</option>
-                                        <option value="El Messiri" <?= ($mtaa->value=="El Messiri")?"selected":""; ?>>El Messiri</option>
-                                        <option value="Reem Kufi" <?= ($mtaa->value=="Reem Kufi")?"selected":""; ?>>Reem Kufi</option>
-                                        <option value="Lateef" <?= ($mtaa->value=="Lateef")?"selected":""; ?>>Lateef</option>
-                                        <option value="Scheherazade" <?= ($mtaa->value=="Scheherazade")?"selected":""; ?>>Scheherazade</option>
-                                        <option value="Lemonada" <?= ($mtaa->value=="Lemonada")?"selected":""; ?>>Lemonada</option>
-                                        <option value="Markazi Text" <?= ($mtaa->value=="Markazi Text")?"selected":""; ?>>Markazi Text</option>
-                                        <option value="Mada" <?= ($mtaa->value=="Mada")?"selected":""; ?>>Mada</option>
-                                        <option value="Baloo Bhaijaan" <?= ($mtaa->value=="Baloo Bhaijaan")?"selected":""; ?>>Baloo Bhaijaan</option>
-                                        <option value="Mirza" <?= ($mtaa->value=="Mirza")?"selected":""; ?>>Mirza</option>
-                                        <option value="Aref Ruqaa" <?= ($mtaa->value=="Aref Ruqaa")?"selected":""; ?>>Aref Ruqaa</option>
-                                        <option value="Harmattan" <?= ($mtaa->value=="Harmattan")?"selected":""; ?>>Harmattan</option>
-                                        <option value="Katibeh" <?= ($mtaa->value=="Katibeh")?"selected":""; ?>>Katibeh</option>
-                                        <option value="Rakkas" <?= ($mtaa->value=="Rakkas")?"selected":""; ?>>Rakkas</option>
-                                        <option value="Jomhuria" <?= ($mtaa->value=="Jomhuria")?"selected":""; ?>>Jomhuria</option>
-                                    </select>
-                                <?php endif; ?>
-                            </div>
-                        <?php endforeach; ?>
-                    <?php endif; ?>
-                </div>
-            </div>
-        </div>
-        <?php
     }
 }
 
@@ -547,5 +313,50 @@ if (!function_exists('video_popup')) {
             }
         }
         return view("common.pages.videos_api.video_popup", compact("data", "my_videos"));
+    }
+}
+
+if (!function_exists('create_homepage')) {
+    function create_homepage($website_id, $client_id, $user_id){
+
+        $page               = new Page;
+        $page->client_id    = $client_id;
+        $page->user_id      = $user_id;
+        $page->name         = "الرئيسية";
+        $page->name_en      = "Homepage";
+        $page->status       = 1;
+        $page->website_id   = $website_id;
+        $page->slug         = create_slug_helper($client_id);
+        $page->save();
+
+        if(@$page->website){
+            $page->website->homepage = $page->id;
+            $page->website->save();
+        }
+    }
+}
+
+if (!function_exists('create_slug_helper')) {
+    function create_slug_helper($client_id, $id=null, $name = null){
+        if($name)
+            $slug0  = str_replace(" ", "_", trim($name));
+        else
+            $slug0  = rand(11111, 99999);
+        $slug       = $slug0;
+        $search     = true;
+        $repeated   = 1;
+        while($search){
+            if($id)
+                $pagex = Page::where("id", "!=", $id)->where("client_id", $client_id)->where("slug", $slug)->first();
+            else
+                $pagex = Page::where("client_id", $client_id)->where("slug", $slug)->first();
+            if(!$pagex){
+                $search = false;
+            }else{
+                $slug = $slug0."(".$repeated.")";
+                $repeated ++;
+            }
+        }
+        return $slug;
     }
 }

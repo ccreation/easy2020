@@ -19,6 +19,9 @@
         </li>
         @auth("client")
             <li class="nav_item">
+                <a class="nav_link login_link" href="{{route("client.home")}}">لوحة التحكم</a>
+            </li>
+            <li class="nav_item">
                 <a class="nav_link login_link" href="{{route("logout")}}">تسجيل الخروج</a>
             </li>
         @else
@@ -59,6 +62,9 @@
                         <a class="nav_link @if(@$page_num == 5) active @endif" href="{{route("contact_us")}}"> تواصل معنا</a>
                     </li>
                     @auth("client")
+                        <li class="nav_item">
+                            <a class="nav_link login_link" href="{{route("client.home")}}">لوحة التحكم</a>
+                        </li>
                         <li class="nav_item">
                             <a class="nav_link login_link" href="{{route("logout")}}">تسجيل الخروج</a>
                         </li>

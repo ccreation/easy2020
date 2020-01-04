@@ -25,7 +25,10 @@
     <meta name="keywords" content="" />
     <meta name="author" content="" />
     <meta name="copyright" content=" " />
-    <link rel="stylesheet" href="{{asset("public/dashboard/css/animate.min.css")}}" />
+    <link rel="stylesheet" href="{{asset("public/dashboard/css/ion.rangeSlider.min.css")}}">
+    <link rel="stylesheet" href="{{asset("public/dashboard/css/owl.carousel.min.css")}}" />
+    <link rel="stylesheet" href="{{asset("public/dashboard/css/owl.theme.default.min.css")}}" />
+    <link rel="stylesheet" href="{{asset("public/dashboard/css/perfect-scrollbar.css")}}" />
     <link rel="stylesheet" href="{{asset("public/dashboard/css/fontawesome.css")}}" />
     <link rel="stylesheet" href="{{asset("public/dashboard/css/bootstrap-select.css")}}" />
     <link rel="stylesheet" href="{{asset("public/dashboard/css/animate.min.css")}}" />

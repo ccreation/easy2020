@@ -1,6 +1,8 @@
 <div id="loading-wrapper">
     <div id="loading"><i class="fa fa-spinner fa-spin fa-5x"></i></div>
 </div>
+
+<script src="{{asset("public/dashboard/js/perfect-scrollbar.min.js")}}"> </script>
 <script src="{{asset("public/dashboard/js/popper.js")}}"></script>
 <script src="{{asset("public/dashboard/js/bootstrap.min.js")}}"></script>
 <script src="{{asset("public/dashboard/js/bootstrap-select.js")}}"></script>
@@ -54,7 +56,7 @@
         padding: 15px 20px 0px;
         display: none;
     }
-    .header_menu .menu-item{
+    .header_menu{
         margin-top: 10px;
     }
     .header_menu .header_menu_nav .menu-item .menu-item-link.active::before{
@@ -99,6 +101,18 @@
             radioClass: 'iradio_square-purple',
             increaseArea: '20%'
         });
+
+        $('.div-horizon-next').click(function() {
+            $('.header_menu_scroll ').animate({
+                scrollLeft: "+=125px"
+            }, "slow");
+        });
+        $('.div-horizon-prev').click(function() {
+            $('.header_menu_scroll ').animate({
+                scrollLeft: "-=125px"
+            }, "slow");
+        });
+        const ps = new PerfectScrollbar('.header_menu_scroll');
 
     });
 

@@ -9,6 +9,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.2",
+        "barryvdh/laravel-translation-manager": "^0.5.7",
         "fideloper/proxy": "^4.0",
         "intervention/image": "^2.5",
         "laravel/framework": "^6.2",
@@ -38,7 +39,9 @@
     "autoload": {
         "files": [
             "app/Helpers/helpers.php",
-            "app/Helpers/Promocodes.php"
+            "app/Helpers/Promocodes.php",
+            "app/Helpers/VisitLog.php",
+            "app/Helpers/Models/VisitLog.php"
         ],
         "psr-4": {
             "App\\": "app/"

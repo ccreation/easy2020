@@ -1,0 +1,46 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+@media (max-width: 991.98px) {
+
+	#primary-menu > ul, #primary-menu > div > ul {
+		 display: block; 
+	}
+	#primary-menu ul li {
+		float: right; 
+		border-top: 0; 
+		width: auto; /*50%*/
+    	margin: 0 5px !important;
+		text-align: center !important;
+	}
+	
+	
+	#top-search a, #top-cart > a, #top-fav > a, #side-panel-trigger a {
+		width: 14px;
+		height: 14px;
+		font-size: 14px;
+	}
+	#top-cart > a > span {
+		top: -7px;
+		left: -10px;
+		font-size: 10px;
+		width: 16px;
+		height: 16px;
+		line-height: 16px;
+	}
+	
+	
+	.slider-element .owl-carousel .owl-item img {
+		height: 350px;
+		width: 100%;
+	}
+
+}
+
+
+
+
+
+
+

@@ -27,7 +27,9 @@
     <div class="main-header-bottom">
         <div class="container">
             <div class="header_menu">
-                <ul class="header_menu_nav">
+                <button class="div-horizon-next"><i class="fa fa-chevron-right"></i></button>
+                <button class="div-horizon-prev"><i class="fa fa-chevron-left"></i></button>
+                <ul class="header_menu_nav header_menu_scroll">
                     @if(permissions("statistics"))
                         <li class="menu-item">
                             <a class="menu-item-link @if(Request::url() == route("admin.home")) active @endif" href="{{route("admin.home")}}"><span class="menu-item-icon"><i class="fa fa-home fa-2x text-white"></i></span><span class="menu-item-text">الرئيسية</span></a>

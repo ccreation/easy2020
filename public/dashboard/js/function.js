@@ -3,7 +3,7 @@
   'use-strict'
 
 
-  
+
 
   /*=========================================================================
 			1.toggle menu mobile
@@ -28,7 +28,7 @@
     $('.mobile-menu-overlay').toggleClass('mobile-menu-overlay-active');
     $('.menu-mobile li').toggleClass('active');
   })
-  // 
+  //
 
   $('.selectpaicker').selectpicker();
 
@@ -73,7 +73,7 @@
     animateOut: 'fadeOut',
     animateIn: 'fadeIn',
     smartSpeed: 450,
-    loop: true,
+    loop: false,
     autoplay: true,
     autoplayTimeout: 5000,
     slideTransition: 'linear',
@@ -110,7 +110,7 @@
     animateOut: 'fadeOut',
     animateIn: 'fadeIn',
     smartSpeed: 450,
-    loop: true,
+    loop: false,
     autoplay: false,
     autoplayTimeout: 5000,
     slideTransition: 'linear',
@@ -252,7 +252,7 @@
     }
   });
 
-  
+
 
 
   $('.form-register .steps li a').click(function (e) {
@@ -304,11 +304,7 @@
 
 
 
-  
 
-  // if($(window).innerWidth() <= 992) {
-  //   $('.owl-carousel-mobile').addClass('carouselNavTabs owl-carousel owl-theme')
-  // }
 
   var carouselNavTabs = $('.carouselNavTabs');
   carouselNavTabs.owlCarousel({
@@ -338,31 +334,8 @@
     }
   });
 
-
-  $('.main_header_option .widget__item-option.list-nav .widget__item-option-item > .nav-item').click(function(){
-    $(this).closest('.widget__item-option-item').siblings().find('.dropdown_widget').removeClass('active_dropdown_widget')
-    $(this).closest('.widget__item-option-item').siblings().find('.nav-item').removeClass('active')
-    $('.dropdown_widget.dropdown_widget_second').removeClass('active_dropdown_widget')
-    $(this).closest('.widget__item-option-item').find('.dropdown_widget').toggleClass('active_dropdown_widget')
-    $(this).closest('.widget__item-option-item').find('.nav-item').toggleClass('active')
-  })
-
-
-  // $('.add_new_page,.add_new_color,.add_new_section').click(function(){
-  //   $('.dropdown_widget.dropdown_widget_first').removeClass('active_dropdown_widget')
-  //   $(this).closest('.widget__item-option-item').find('.dropdown_widget.dropdown_widget_second').toggleClass('active_dropdown_widget')
-  // })
-
   
 
-  $('.main_header_option .widget__item-option .widget__item-option-item > .nav-item').click(function(){
-    if($('.dropdown_widget').hasClass('active_dropdown_widget')){
-      $('.main--container-website').addClass('active-dropdown')
-    }else{
-      $('.main--container-website').removeClass('active-dropdown')
-    }
-  })
-  
 }(jQuery));
 
 
@@ -372,10 +345,10 @@ function uploadFile(target) {
 }
 
 wow = new WOW(
-  {
-    boxClass: 'wow',      // default
-    mobile: true,       // default
-    live: true,       // default
-  }
+    {
+      boxClass: 'wow',      // default
+      mobile: true,       // default
+      live: true,       // default
+    }
 )
 wow.init();

@@ -1,0 +1,9 @@
+[27-Dec-2019 14:29:39 UTC] PHP Warning:  Uncaught ErrorException: require(/home/easysite/public_html/vendor/composer/../../app/Helpers/VisitLog.php): failed to open stream: No such file or directory in /home/easysite/public_html/vendor/composer/autoload_real.php:66
+Stack trace:
+#0 /home/easysite/public_html/vendor/composer/autoload_real.php(66): Composer\Util\ErrorHandler::handle(2, 'require(/home/e...', '/home/easysite/...', 66, Array)
+#1 /home/easysite/public_html/vendor/composer/autoload_real.php(66): require()
+#2 /home/easysite/public_html/vendor/composer/autoload_real.php(56): composerRequire9650b0848d695ee8344fa901224beb3c('f0ff295d25df1ef...', '/home/easysite/...')
+#3 /home/easysite/public_html/vendor/autoload.php(7): ComposerAutoloaderInit9650b0848d695ee8344fa901224beb3c::getLoader()
+#4 /home/easysite/public_html/vendor/laravel/framework/src/Illuminate/Foundation/ComposerScripts.php(43): require_once('/home/easysite/...')
+#5 phar:///opt/cpanel/composer/bin/composer/src/Composer/EventDispatcher/EventDispatcher.php(297): Illuminate\Foundation\ in /home/easysite/public_html/vendor/composer/autoload_real.php on line 66
+[27-Dec-2019 14:29:39 UTC] PHP Fatal error:  composerRequire9650b0848d695ee8344fa901224beb3c(): Failed opening required '/home/easysite/public_html/vendor/composer/../../app/Helpers/VisitLog.php' (include_path='.:/opt/cpanel/ea-php72/root/usr/share/pear') in /home/easysite/public_html/vendor/composer/autoload_real.php on line 66
