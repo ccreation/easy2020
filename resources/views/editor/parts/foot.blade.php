@@ -20,6 +20,9 @@
         font-size: 1.2em;
         font-weight: bold;
     }
+    .widget__item_dropdown_inner_content{
+        height: 260px;
+    }
 </style>
 
 <script>

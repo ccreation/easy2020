@@ -254,24 +254,29 @@
                             <div class="dropdown_widget">
                                 <div class="container">
                                     <div class="dropdown_widget-grid">
+                                        {{--
                                         <div class="dropdown_widget-sidebar p-4">
                                             <h5>{{__("l.blocks")}}</h5>
                                             <h6>{{__("l.blocks_note")}}</h6>
                                         </div>
-                                        <div class="dropdown_widget-content p-0">
+                                        --}}
+                                        <div class="dropdown_widget-content p-0" style="max-width: 100%; flex: auto;">
                                             <div class="row">
                                                 @php
                                                     $dirs_path = base_path("public/easy/blocks/");
                                                     $dirs = new \DirectoryIterator($dirs_path);
                                                 @endphp
                                                 <div class="col-lg-12">
-                                                    <ul class="nav nav-pills mb-3 tab_dropdown_section" id="pills-tab" role="tablist">
+                                                    <ul class="nav nav-pills mb-3 tab_dropdown_section scroll p-0 pt-2 pb-2" id="pills-tab" role="tablist">
+                                                        <li class="nav-item" style="margin: 0px 5px;">
+                                                            <a class="nav-link active" data-toggle="pill" href="#tabSection-all" role="tab">{{__("l.all")}}</a>
+                                                        </li>
                                                         <?php $x = 0;?>
                                                         @foreach ($dirs as $dir)
                                                             @if($dir->isDir() and !$dir->isDot())
                                                                 <?php $type = $dir->getBasename(); ?>
-                                                                <li class="nav-item">
-                                                                    <a class="nav-link @if($x == 0) active @endif" data-toggle="pill" href="#tabSection-{{$type}}" role="tab">{{__("l.a.".$type)}}</a>
+                                                                <li class="nav-item" style="margin: 0px 5px;">
+                                                                    <a class="nav-link" data-toggle="pill" href="#tabSection-{{$type}}" role="tab">{{__("l.a.".$type)}}</a>
                                                                 </li>
                                                             @endif
                                                             <?php $x++; ?>
@@ -283,7 +288,34 @@
                                                 <div class="col-lg-12">
                                                     <div class="widget__item_dropdown_inner_content scroll">
                                                         <div class="tab-content " id="pills-tabContent">
-                                                            <?php $x = 0;?>
+                                                            <div class="tab-pane fade show active" id="tabSection-all" role="tabpanel"
+                                                                 aria-labelledby="pills-home-tab">
+                                                                <div class="row">
+                                                                    @foreach ($dirs as $dir)
+                                                                        @if($dir->isDir() and !$dir->isDot())
+                                                                            @php
+                                                                                $type = $dir->getBasename();
+                                                                                $files_path = base_path("public/easy/blocks/".$type."/");
+                                                                                $files = new \DirectoryIterator($files_path);
+                                                                            @endphp
+                                                                            @foreach ($files as $file)
+                                                                                @if(!$file->isDir() and !$file->isDot())
+                                                                                    @if($file->getExtension() == "png")
+                                                                                        <?php $image = $file->getBasename(); ?>
+                                                                                        <div class="col-lg-2">
+                                                                                            <div class="block widget__item widget__item-price" data-url="{{asset("public/easy/blocks/".$type."/".str_replace(".png", "", $image).".html")}}">
+                                                                                                <div class="widget__item-price-body p-1" style="display: block;">
+                                                                                                    <img src="{{asset("public/easy/blocks/".$type."/".$image)}}" alt="" class="image-price" style="height: 110px; width: 100%; max-width: inherit; border: 1px solid #eee;">
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    @endif
+                                                                                @endif
+                                                                            @endforeach
+                                                                        @endif
+                                                                    @endforeach
+                                                                </div>
+                                                            </div>
                                                             @foreach ($dirs as $dir)
                                                                 @if($dir->isDir() and !$dir->isDot())
                                                                     @php
@@ -291,18 +323,17 @@
                                                                         $files_path = base_path("public/easy/blocks/".$type."/");
                                                                         $files = new \DirectoryIterator($files_path);
                                                                     @endphp
-                                                                    <div class="tab-pane fade show @if($x == 0) active @endif" id="tabSection-{{$type}}" role="tabpanel"
+                                                                    <div class="tab-pane fade show" id="tabSection-{{$type}}" role="tabpanel"
                                                                          aria-labelledby="pills-home-tab">
                                                                         <div class="row">
                                                                             @foreach ($files as $file)
                                                                                 @if(!$file->isDir() and !$file->isDot())
                                                                                     @if($file->getExtension() == "png")
                                                                                         <?php $image = $file->getBasename(); ?>
-                                                                                        <div class="col-lg-3">
+                                                                                        <div class="col-lg-2">
                                                                                             <div class="block widget__item widget__item-price" data-url="{{asset("public/easy/blocks/".$type."/".str_replace(".png", "", $image).".html")}}">
-                                                                                                <div class="widget__item-price-header">{{__("l.a.".$type)}}</div>
-                                                                                                <div class="widget__item-price-body p-1">
-                                                                                                    <img src="{{asset("public/easy/blocks/".$type."/".$image)}}" alt="" class="image-price" style="height: 80px;">
+                                                                                                <div class="widget__item-price-body p-1" style="display: block;">
+                                                                                                    <img src="{{asset("public/easy/blocks/".$type."/".$image)}}" alt="" class="image-price" style="height: 110px; width: 100%; max-width: inherit; border: 1px solid #eee;">
                                                                                                 </div>
                                                                                             </div>
                                                                                         </div>
@@ -312,7 +343,6 @@
                                                                         </div>
                                                                     </div>
                                                                 @endif
-                                                                <?php $x++; ?>
                                                             @endforeach
                                                         </div>
                                                     </div>
@@ -457,12 +487,484 @@
                                 <div class="container">
                                     <div class="dropdown_widget-grid">
                                         <div class="dropdown_widget-sidebar">
-                                            <a href="#" class="close_block_settings px-3 px-lg-2"><span class="widget__item-option-icon"><i class="fa fa-chevron-right fa-2x"></i></span></a>
+                                            <a href="#" class="close_icons_settings px-3 px-lg-2"><span class="widget__item-option-icon"><i class="fa fa-chevron-right fa-2x"></i></span></a>
                                             <h4 class="text-white mt-3"><b>{{__("l.icons")}}</b></h4>
                                         </div>
                                         <div class="dropdown_widget-content">
                                             <input class='iconpicker_element form-control' id="iconpicker_element" style=" height: 1px; opacity: 0; margin-top: -20px;" autocomplete="off"/>
                                             <div class="iconpicker_container" style="width: 874px; height: 340px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <!-- buttons -->
+                        <li class="widget__item-option-item m-0">
+                            <a class="nav-item nav-link settings_btn_btn_nav_link hidden"><span class="widget__item-option-text">fghjk</span></a>
+                            <div class="dropdown_widget ">
+                                <div class="container">
+                                    <div class="dropdown_widget-grid">
+                                        <div class="dropdown_widget-sidebar">
+                                            <a href="#" class="close_btn_settings px-3 px-lg-2"><span class="widget__item-option-icon"><i class="fa fa-chevron-right fa-2x"></i></span></a>
+                                            <h4 class="text-white mt-3"><b>{{__("l.buttons")}}</b></h4>
+                                        </div>
+                                        <div class="dropdown_widget-content ModalPannel">
+                                            <ul class="nav nav-pills tab-setting" id="pills-tab" style="border-bottom: 1px solid #af96d3;" role="tablist">
+                                                <li class="nav-item">
+                                                    <a class="nav-link active"  data-toggle="pill" href="#pills-tab-1" role="tab" >{{__("l.text")}}</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link"  data-toggle="pill" href="#pills-tab-2" role="tab" >{{__("l.link")}}</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" data-toggle="pill" href="#pills-tab-3" role="tab" >{{__("l.button_type")}}</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link"  data-toggle="pill" href="#pills-tab-4" role="tab" >{{__("l.color")}}</a>
+                                                </li>
+                                            </ul>
+                                            <div class="tab-content" id="pills-tabContent" style="min-height: 250px;">
+                                                <div class="tab-pane fade show active" id="pills-tab-1" role="tabpanel" >
+                                                    <div class="input-group container-group-option">
+                                                        <div class="input-group-prepend">
+                                                            <div class="input-group-text">{{__("l.button_text")}}</div>
+                                                        </div>
+                                                        <input placeholder="{{__("l.button_text")}}" id="button_text" type="text" class="form-control" />
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-6">
+                                                            <div class="input-group flex-nowrap container-group-option container-group-select">
+                                                                <div class="input-group-prepend">
+                                                                    <div class="input-group-text">{{__("l.font_family")}}</div>
+                                                                </div>
+                                                                <select id="font_family" class="form-control selectpaicker">
+                                                                    <option value="">{{__("l.no_font")}}</option>
+                                                                    <option value="Droid Arabic Kufi">درويد كوفي</option>
+                                                                    <option value="Amiri">أميري</option>
+                                                                    <option value="Cairo">كايرو</option>
+                                                                    <option value="Tajawal">Tajawal</option>
+                                                                    <option value="Changa">Changa</option>
+                                                                    <option value="Lalezar">Lalezar</option>
+                                                                    <option value="El Messiri">المصيري</option>
+                                                                    <option value="Reem Kufi">ريم كوفي</option>
+                                                                    <option value="Lateef">لطيف</option>
+                                                                    <option value="Scheherazade">Scheherazade</option>
+                                                                    <option value="Lemonada">ليموناضة</option>
+                                                                    <option value="Markazi Text">مركزي تكست</option>
+                                                                    <option value="Mada">Mada</option>
+                                                                    <option value="Baloo Bhaijaan">Baloo Bhaijaan</option>
+                                                                    <option value="Mirza">Mirza</option>
+                                                                    <option value="Aref Ruqaa">رافع الرقعة</option>
+                                                                    <option value="Harmattan">Harmattan</option>
+                                                                    <option value="Katibeh">كتيبة</option>
+                                                                    <option value="Rakkas">Rakkas</option>
+                                                                    <option value="Jomhuria">Jomhuria</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-6">
+                                                            <div class="input-group flex-nowrap container-group-option container-group-select">
+                                                                <div class="input-group-prepend">
+                                                                    <div class="input-group-text">{{__("l.font_size")}}</div>
+                                                                </div>
+                                                                <select id="font_size" class="form-control selectpaicker selectNunmber">
+                                                                    @for($i=8; $i<=100; $i++)
+                                                                        <option value="{{$i}}">{{$i}}</option>
+                                                                    @endfor
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-6">
+                                                            <div class="input-group container-group-option container-group-select">
+                                                                <div class="input-group-prepend">
+                                                                    <div class="input-group-text">{{__("l.font_weight")}}</div>
+                                                                </div>
+                                                                <select id="font_weight" class="form-control selectpaicker">
+                                                                    <option value="normal">{{__("l.normal")}}</option>
+                                                                    <option value="bold">{{__("l.bold")}}</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-6">
+                                                            <div class="input-group container-group-option container-group-select">
+                                                                <div class="input-group-prepend">
+                                                                    <div class="input-group-text">{{__("l.color")}}</div>
+                                                                </div>
+                                                                <input class="form-control colorpicker" id="colorpicker2">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="list-option-text">
+                                                        <div class="widgth-item-option-text text_align text_align_justify" data-align="justify" title="{{__("l.justify")}}">
+                                                            <div class="widgth-item-image">
+                                                                <img src="{{asset("public/dashboard/images/cpanel/option-text-1.png")}}" alt="">
+                                                            </div>
+                                                        </div>
+                                                        <div class="widgth-item-option-text text_align text_align_right" data-align="right" title="{{__("l.right")}}">
+                                                            <div class="widgth-item-image">
+                                                                <img src="{{asset("public/dashboard/images/cpanel/option-text-2.png")}}" alt="">
+                                                            </div>
+                                                        </div>
+                                                        <div class="widgth-item-option-text text_align text_align_center" data-align="center" title="{{__("l.center")}}">
+                                                            <div class="widgth-item-image">
+                                                                <img src="{{asset("public/dashboard/images/cpanel/option-text-3.png")}}" alt="">
+                                                            </div>
+                                                        </div>
+                                                        <div class="widgth-item-option-text text_align text_align_left" data-align="left" title="{{__("l.left")}}">
+                                                            <div class="widgth-item-image">
+                                                                <img src="{{asset("public/dashboard/images/cpanel/option-text-4.png")}}" alt="">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="tab-pane fade" id="pills-tab-2" role="tabpanel">
+                                                    <div class="form-group container-group-option container-group-select">
+                                                        <select id="url_type" class="form-control selectpaicker" title="{{__("l.url_type")}}">
+                                                            <option value="0" selected>{{__("l.external_link")}}</option>
+                                                            <option value="1">{{__("l.url_to_other_pages")}}</option>
+                                                            <option value="2">{{__("l.an_email")}}</option>
+                                                            <option value="3">{{__("l.mobile_phone")}}</option>
+                                                            <option value="4">{{__("l.video_url_youtube_or_vimeo")}}</option>
+                                                        </select>
+                                                    </div>
+                                                    <div id="url_type_0">
+                                                        <div class="input-group container-group-option">
+                                                            <div class="input-group-prepend">
+                                                                <div class="input-group-text">{{__("l.external_link")}}</div>
+                                                            </div>
+                                                            <input type="text" id="external_link" class="form-control" placeholder="{{__("l.external_link")}}" autocomplete="off">
+                                                        </div>
+                                                    </div>
+                                                    <div id="url_type_1" style="display: none">
+                                                        <div class="input-group container-group-option">
+                                                            <div class="input-group-prepend">
+                                                                <div class="input-group-text">{{__("l.url_to_other_pages")}}</div>
+                                                            </div>
+                                                            <select id="url_to_other_pages" class="form-control">
+                                                                <option value="#" selected>{{__("l.choose")}} {{__("l.link")}}</option>
+                                                                @foreach ($pages as $p)
+                                                                    <option value="{{route("website.page", [@$p->website->slug, $lang, $p->id])}}">{{(app()->getLocale()=="ar")?$p->name:$p->name_en}}</option>
+                                                                @endforeach;
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div id="url_type_2" style="display: none">
+                                                        <div class="input-group container-group-option">
+                                                            <div class="input-group-prepend">
+                                                                <div class="input-group-text">{{__("l.an_email")}}</div>
+                                                            </div>
+                                                            <input type="email" id="an_email" class="form-control" placeholder="{{__("l.an_email")}}" autocomplete="off">
+                                                        </div>
+                                                    </div>
+                                                    <div id="url_type_3" style="display: none">
+                                                        <div class="input-group container-group-option">
+                                                            <div class="input-group-prepend">
+                                                                <div class="input-group-text">{{__("l.mobile_phone")}}</div>
+                                                            </div>
+                                                            <input type="text" id="mobile_phone" class="form-control" placeholder="{{__("l.mobile_phone")}}" autocomplete="off">
+                                                        </div>
+                                                    </div>
+                                                    <div id="url_type_4" style="display: none">
+                                                        <div class="input-group container-group-option">
+                                                            <div class="input-group-prepend">
+                                                                <div class="input-group-text">{{__("l.video_url_youtube_or_vimeo")}}</div>
+                                                            </div>
+                                                            <input type="text" id="video_url_youtube_or_vimeo" class="form-control" placeholder="{{__("l.video_url_youtube_or_vimeo")}}" autocomplete="off">
+                                                        </div>
+                                                    </div>
+                                                    <label style="margin-top: 5px;">
+                                                        <input type="checkbox" id="open_in_other_window">
+                                                        <b style="color: #543c93">{{__("l.open_in_other_window")}}</b>
+                                                    </label>
+                                                    <div class="form-group mb-0 text-center">
+                                                        <button class="button_shape" id="save_button_link">{{__("l.save")}}</button>
+                                                    </div>
+                                                </div>
+                                                <div class="tab-pane fade" id="pills-tab-3" role="tabpanel">
+                                                    <div class="input-group container-group-option">
+                                                        <div class="input-group-prepend">
+                                                            <div class="input-group-text">{{__("l.button_type")}}</div>
+                                                        </div>
+                                                        <select class="form-control" id="button_type">
+                                                            <optgroup label="{{__("l.colored")}}">
+                                                                <option value="btn-1">{{__("l.sharp_edges")}}</option>
+                                                                <option value="btn-2">{{__("l.semi_sharp_edges")}}</option>
+                                                                <option value="btn-3">{{__("l.polished_edges")}}</option>
+                                                                <option value="btn-4">{{__("l.rounded_edges")}}</option>
+                                                                <option value="btn-5">{{__("l.trapezoid")}}</option>
+                                                            </optgroup>
+                                                            <optgroup label="{{__("l.transperacy")}}">
+                                                                <option value="btn-6">{{__("l.sharp_edges")}}</option>
+                                                                <option value="btn-7">{{__("l.semi_sharp_edges")}}</option>
+                                                                <option value="btn-8">{{__("l.polished_edges")}}</option>
+                                                                <option value="btn-9">{{__("l.rounded_edges")}}</option>
+                                                                <option value="btn-10">{{__("l.trapezoid")}}</option>
+                                                            </optgroup>
+                                                            <optgroup label="{{__("l.atext")}}">
+                                                                <option value="btn-11">{{__("l.only_text")}}</option>
+                                                            </optgroup>
+                                                        </select>
+                                                    </div>
+                                                    <div class="input-group container-group-option">
+                                                        <div class="input-group-prepend">
+                                                            <div class="input-group-text">{{__("l.border_width")}}</div>
+                                                        </div>
+                                                        <select id="border_width" class="form-control">
+                                                            @for($i=0; $i<=100; $i++)
+                                                                <option value="{{$i}}">{{$i}}</option>
+                                                            @endfor
+                                                        </select>
+                                                    </div>
+                                                    <label style="margin-top: 5px;">
+                                                        <input type="checkbox" id="dispay_block">
+                                                        <b style="color: #543c93;">زر كامل العرض</b>
+                                                    </label>
+                                                </div>
+                                                <div class="tab-pane fade" id="pills-tab-4" role="tabpanel">
+                                                    <div class="input-group container-group-option container-group-select">
+                                                        <div class="input-group-prepend">
+                                                            <div class="input-group-text">{{__("l.button_bg_color")}}</div>
+                                                        </div>
+                                                        <input type="text" id="colorpicker3" class="form-control colorpicker" placeholder="{{__("l.button_bg_color")}}">
+                                                    </div>
+                                                    <div class="input-group container-group-option container-group-select">
+                                                        <div class="input-group-prepend">
+                                                            <div class="input-group-text">{{__("l.border_color")}}</div>
+                                                        </div>
+                                                        <input type="text" id="colorpicker4" class="form-control colorpicker" placeholder="{{__("l.button_bg_color")}}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <!-- links -->
+                        <li class="widget__item-option-item m-0">
+                            <a class="nav-item nav-link settings_link_btn_nav_link hidden"><span class="widget__item-option-text">fghjk</span></a>
+                            <div class="dropdown_widget ">
+                                <div class="container">
+                                    <div class="dropdown_widget-grid">
+                                        <div class="dropdown_widget-sidebar">
+                                            <a href="#" class="close_link_settings px-3 px-lg-2"><span class="widget__item-option-icon"><i class="fa fa-chevron-right fa-2x"></i></span></a>
+                                            <h4 class="text-white mt-3"><b>{{__("l.links")}}</b></h4>
+                                        </div>
+                                        <div class="dropdown_widget-content ModalPannel">
+                                            <ul class="nav nav-pills tab-setting" id="pills-tab" style="border-bottom: 1px solid #af96d3;" role="tablist">
+                                                <li class="nav-item">
+                                                    <a class="nav-link active"  data-toggle="pill" href="#pills-tab-10" role="tab" >{{__("l.text")}}</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link"  data-toggle="pill" href="#pills-tab-20" role="tab" >{{__("l.link")}}</a>
+                                                </li>
+                                            </ul>
+                                            <div class="tab-content" id="pills-tabContent" style="min-height: 250px;">
+                                                <div class="tab-pane fade show active" id="pills-tab-10" role="tabpanel" >
+                                                    <div class="input-group container-group-option">
+                                                        <div class="input-group-prepend">
+                                                            <div class="input-group-text">{{__("l.button_text")}}</div>
+                                                        </div>
+                                                        <input placeholder="{{__("l.link_text")}}" id="link_text" type="text" class="form-control" />
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-6">
+                                                            <div class="input-group flex-nowrap container-group-option container-group-select">
+                                                                <div class="input-group-prepend">
+                                                                    <div class="input-group-text">{{__("l.font_family")}}</div>
+                                                                </div>
+                                                                <select id="font_family2" class="form-control selectpaicker">
+                                                                    <option value="">{{__("l.no_font")}}</option>
+                                                                    <option value="Droid Arabic Kufi">درويد كوفي</option>
+                                                                    <option value="Amiri">أميري</option>
+                                                                    <option value="Cairo">كايرو</option>
+                                                                    <option value="Tajawal">Tajawal</option>
+                                                                    <option value="Changa">Changa</option>
+                                                                    <option value="Lalezar">Lalezar</option>
+                                                                    <option value="El Messiri">المصيري</option>
+                                                                    <option value="Reem Kufi">ريم كوفي</option>
+                                                                    <option value="Lateef">لطيف</option>
+                                                                    <option value="Scheherazade">Scheherazade</option>
+                                                                    <option value="Lemonada">ليموناضة</option>
+                                                                    <option value="Markazi Text">مركزي تكست</option>
+                                                                    <option value="Mada">Mada</option>
+                                                                    <option value="Baloo Bhaijaan">Baloo Bhaijaan</option>
+                                                                    <option value="Mirza">Mirza</option>
+                                                                    <option value="Aref Ruqaa">رافع الرقعة</option>
+                                                                    <option value="Harmattan">Harmattan</option>
+                                                                    <option value="Katibeh">كتيبة</option>
+                                                                    <option value="Rakkas">Rakkas</option>
+                                                                    <option value="Jomhuria">Jomhuria</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-6">
+                                                            <div class="input-group flex-nowrap container-group-option container-group-select">
+                                                                <div class="input-group-prepend">
+                                                                    <div class="input-group-text">{{__("l.font_size")}}</div>
+                                                                </div>
+                                                                <select id="font_size2" class="form-control selectpaicker selectNunmber">
+                                                                    @for($i=8; $i<=100; $i++)
+                                                                        <option value="{{$i}}">{{$i}}</option>
+                                                                    @endfor
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-6">
+                                                            <div class="input-group container-group-option container-group-select">
+                                                                <div class="input-group-prepend">
+                                                                    <div class="input-group-text">{{__("l.font_weight")}}</div>
+                                                                </div>
+                                                                <select id="font_weight2" class="form-control selectpaicker">
+                                                                    <option value="normal">{{__("l.normal")}}</option>
+                                                                    <option value="bold">{{__("l.bold")}}</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-6">
+                                                            <div class="input-group container-group-option container-group-select">
+                                                                <div class="input-group-prepend">
+                                                                    <div class="input-group-text">{{__("l.color")}}</div>
+                                                                </div>
+                                                                <input class="form-control colorpicker" id="colorpicker3">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="list-option-text">
+                                                        <div class="widgth-item-option-text text_align2 text_align2_justify" data-align="justify" title="{{__("l.justify")}}">
+                                                            <div class="widgth-item-image">
+                                                                <img src="{{asset("public/dashboard/images/cpanel/option-text-1.png")}}" alt="">
+                                                            </div>
+                                                        </div>
+                                                        <div class="widgth-item-option-text text_align2 text_align2_right" data-align="right" title="{{__("l.right")}}">
+                                                            <div class="widgth-item-image">
+                                                                <img src="{{asset("public/dashboard/images/cpanel/option-text-2.png")}}" alt="">
+                                                            </div>
+                                                        </div>
+                                                        <div class="widgth-item-option-text text_align2 text_align2_center" data-align="center" title="{{__("l.center")}}">
+                                                            <div class="widgth-item-image">
+                                                                <img src="{{asset("public/dashboard/images/cpanel/option-text-3.png")}}" alt="">
+                                                            </div>
+                                                        </div>
+                                                        <div class="widgth-item-option-text text_align2 text_align2_left" data-align="left" title="{{__("l.left")}}">
+                                                            <div class="widgth-item-image">
+                                                                <img src="{{asset("public/dashboard/images/cpanel/option-text-4.png")}}" alt="">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="tab-pane fade" id="pills-tab-20" role="tabpanel">
+                                                    <div class="form-group container-group-option container-group-select">
+                                                        <select id="url_type2" class="form-control selectpaicker" title="{{__("l.url_type")}}">
+                                                            <option value="0" selected>{{__("l.external_link")}}</option>
+                                                            <option value="1">{{__("l.url_to_other_pages")}}</option>
+                                                            <option value="2">{{__("l.an_email")}}</option>
+                                                            <option value="3">{{__("l.mobile_phone")}}</option>
+                                                            <option value="4">{{__("l.video_url_youtube_or_vimeo")}}</option>
+                                                        </select>
+                                                    </div>
+                                                    <div id="url_type_02">
+                                                        <div class="input-group container-group-option">
+                                                            <div class="input-group-prepend">
+                                                                <div class="input-group-text">{{__("l.external_link")}}</div>
+                                                            </div>
+                                                            <input type="text" id="external_link2" class="form-control" placeholder="{{__("l.external_link")}}" autocomplete="off">
+                                                        </div>
+                                                    </div>
+                                                    <div id="url_type_12" style="display: none">
+                                                        <div class="input-group container-group-option">
+                                                            <div class="input-group-prepend">
+                                                                <div class="input-group-text">{{__("l.url_to_other_pages")}}</div>
+                                                            </div>
+                                                            <select id="url_to_other_pages2" class="form-control">
+                                                                <option value="#" selected>{{__("l.choose")}} {{__("l.link")}}</option>
+                                                                @foreach ($pages as $p)
+                                                                    <option value="{{route("website.page", [@$p->website->slug, $lang, $p->id])}}">{{(app()->getLocale()=="ar")?$p->name:$p->name_en}}</option>
+                                                                @endforeach;
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div id="url_type_22" style="display: none">
+                                                        <div class="input-group container-group-option">
+                                                            <div class="input-group-prepend">
+                                                                <div class="input-group-text">{{__("l.an_email")}}</div>
+                                                            </div>
+                                                            <input type="email" id="an_email2" class="form-control" placeholder="{{__("l.an_email")}}" autocomplete="off">
+                                                        </div>
+                                                    </div>
+                                                    <div id="url_type_32" style="display: none">
+                                                        <div class="input-group container-group-option">
+                                                            <div class="input-group-prepend">
+                                                                <div class="input-group-text">{{__("l.mobile_phone")}}</div>
+                                                            </div>
+                                                            <input type="text" id="mobile_phone2" class="form-control" placeholder="{{__("l.mobile_phone")}}" autocomplete="off">
+                                                        </div>
+                                                    </div>
+                                                    <div id="url_type_42" style="display: none">
+                                                        <div class="input-group container-group-option">
+                                                            <div class="input-group-prepend">
+                                                                <div class="input-group-text">{{__("l.video_url_youtube_or_vimeo")}}</div>
+                                                            </div>
+                                                            <input type="text" id="video_url_youtube_or_vimeo2" class="form-control" placeholder="{{__("l.video_url_youtube_or_vimeo")}}" autocomplete="off">
+                                                        </div>
+                                                    </div>
+                                                    <label style="margin-top: 5px;">
+                                                        <input type="checkbox" id="open_in_other_window2">
+                                                        <b style="color: #543c93">{{__("l.open_in_other_window")}}</b>
+                                                    </label>
+                                                    <div class="form-group mb-0 text-center">
+                                                        <button class="button_shape" id="save_button_link2">{{__("l.save")}}</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <!-- link icons -->
+                        <li class="widget__item-option-item m-0">
+                            <a class="nav-item nav-link settings_linkicon_btn_nav_link hidden"><span class="widget__item-option-text">fghjk</span></a>
+                            <div class="dropdown_widget ">
+                                <div class="container">
+                                    <div class="dropdown_widget-grid">
+                                        <div class="dropdown_widget-sidebar">
+                                            <a href="#" class="close_linkicons_settings px-3 px-lg-2"><span class="widget__item-option-icon"><i class="fa fa-chevron-right fa-2x"></i></span></a>
+                                            <h4 class="text-white mt-3"><b>{{__("l.icons")}}</b></h4>
+                                        </div>
+                                        <div class="dropdown_widget-content">
+                                            <input class='iconpicker_element2 form-control' id="iconpicker_element2" style=" height: 1px; opacity: 0; margin-top: -20px;" autocomplete="off"/>
+                                            <div class="iconpicker_container2" style="width: 874px; height: 340px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <!-- forms -->
+                        <li class="widget__item-option-item m-0">
+                            <a class="nav-item nav-link settings_form_btn_nav_link hidden"><span class="widget__item-option-text">fghjk</span></a>
+                            <div class="dropdown_widget ">
+                                <div class="container">
+                                    <div class="dropdown_widget-grid">
+                                        <div class="dropdown_widget-sidebar">
+                                            <a href="#" class="close_form_settings px-3 px-lg-2"><span class="widget__item-option-icon"><i class="fa fa-chevron-right fa-2x"></i></span></a>
+                                            <h4 class="text-white mt-3"><b>{{__("l.form")}}</b></h4>
+                                        </div>
+                                        <div class="dropdown_widget-content ModalPannel" style="min-height: 180px;">
+                                            <div class="input-group container-group-option">
+                                                <div class="input-group-prepend">
+                                                    <div class="input-group-text">{{__("l.choose_form")}}</div>
+                                                </div>
+                                                <select id="custom_form" class="form-control">
+                                                    <option value="0">{{__("l.default_form")}}</option>
+                                                    @foreach($forms as $form)
+                                                        <option value="{{$form->id}}">{{$form->name}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="form-group mb-0 text-center">
+                                                <button class="button_shape" id="save_button_form">{{__("l.save")}}</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

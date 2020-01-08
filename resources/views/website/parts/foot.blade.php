@@ -52,6 +52,21 @@
             $(".main-editor-tools-icon").css("display", "none");
         }
         $(document).on("click", handler_icon);
+        var handler_btn = function(event){
+            if($(event.target).is(".main-editor-tools-btn, .main-editor-tools-btn *")) return;
+            $(".main-editor-tools-btn").css("display", "none");
+        }
+        $(document).on("click", handler_btn);
+        var handler_link = function(event){
+            if($(event.target).is(".main-editor-tools-link, .main-editor-tools-link *")) return;
+            $(".main-editor-tools-link").css("display", "none");
+        }
+        $(document).on("click", handler_link);
+        var handler_form = function(event){
+            if($(event.target).is(".main-editor-tools-form, .main-editor-tools-form *")) return;
+            $(".main-editor-tools-form").css("display", "none");
+        }
+        $(document).on("click", handler_form);
 
     });
 
@@ -1163,7 +1178,7 @@
         background-color: #512293;
         border: 1px solid #AF96D3;
         border-radius: 5px;
-        padding: 15px;
+        padding: 5px;
         display: inline-block;
         position: absolute;
         width: fit-content;
@@ -1252,7 +1267,7 @@
         background-color: #512293;
         border: 1px solid #AF96D3;
         border-radius: 5px;
-        padding: 15px;
+        padding: 5px;
         display: inline-block;
         position: absolute;
         width: fit-content;
@@ -1316,6 +1331,233 @@
         color: #fff;
         font-size: 1.2em;
     }
+    .main-editor-tools-btn{
+        background-color: #512293;
+        border: 1px solid #AF96D3;
+        border-radius: 5px;
+        padding: 5px;
+        display: inline-block;
+        position: absolute;
+        width: fit-content;
+        margin-bottom: 5px;
+        z-index: 1000
+    }
+    .main-editor-tools-btn:before {
+        position: absolute;
+        content: "";
+        -moz-transition: all 0.2s ease-in-out;
+        -o-transition: all 0.2s ease-in-out;
+        -ms-transition: all 0.2s ease-in-out;
+        transition: all 0.2s ease-in-out;
+        width: 0px;
+        height: 0px;
+        border-left: 6px solid transparent;
+        border-right: 6px solid transparent;
+        border-top: 6px solid #7D58AE;
+        bottom: -6px;
+        right: 50%;
+        transform: translateX(50%);
+    }
+    .main-editor-tools-btn .side-tool-buttons .group-list-btn{
+        display: flex;
+        align-items: center;
+        margin: 0px 5px;
+        flex-wrap: wrap;
+    }
+    .main-editor-tools-btn .side-tool-buttons .btn-switch-mode{
+        background: transparent;
+        display: inline-block;
+        margin: 3px 3px;
+        transition: .2s ease-in-out;
+        -webkit-transition: .2s ease-in-out;
+        -moz-transition: .2s ease-in-out;
+        -ms-transition: .2s ease-in-out;
+        -o-transition: .2s ease-in-out;
+        border: none;
+        padding: 0px;
+    }
+    .main-editor-tools-btn .side-tool-buttons .btn-switch-mode .pbicon-wrapper:hover{
+        background-color: transparent;
+    }
+    .main-editor-tools-btn .side-tool-buttons .btn-switch-mode .pbicon-wrapper.active-btn{
+        background-color: #7D58AE;
+    }
+    .main-editor-tools-btn .side-tool-buttons .btn-switch-mode .pbicon-wrapper{
+        border: 1px solid #AF96D3;
+        background-color: #673EA1;
+        width: 30px;
+        display: inline-block;
+        height: 35px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 3px;
+        overflow: hidden;
+        cursor: pointer;
+    }
+    .main-editor-tools-btn .pbicon-wrapper .fa{
+        color: #fff;
+        font-size: 1.2em;
+    }
+    .main-editor-tools-link{
+        background-color: #512293;
+        border: 1px solid #AF96D3;
+        border-radius: 5px;
+        padding: 5px;
+        display: inline-block;
+        position: absolute;
+        width: max-content;
+        margin-bottom: 5px;
+        z-index: 1000
+    }
+    .main-editor-tools-link:before {
+        position: absolute;
+        content: "";
+        -moz-transition: all 0.2s ease-in-out;
+        -o-transition: all 0.2s ease-in-out;
+        -ms-transition: all 0.2s ease-in-out;
+        transition: all 0.2s ease-in-out;
+        width: 0px;
+        height: 0px;
+        border-left: 6px solid transparent;
+        border-right: 6px solid transparent;
+        border-top: 6px solid #7D58AE;
+        bottom: -6px;
+        right: 50%;
+        transform: translateX(50%);
+    }
+    .main-editor-tools-link .side-tool-buttons .group-list-btn{
+        display: flex;
+        align-items: center;
+        margin: 0px 5px;
+        flex-wrap: wrap;
+    }
+    .main-editor-tools-link .side-tool-buttons .btn-switch-mode{
+        background: transparent;
+        display: inline-block;
+        margin: 3px 3px;
+        transition: .2s ease-in-out;
+        -webkit-transition: .2s ease-in-out;
+        -moz-transition: .2s ease-in-out;
+        -ms-transition: .2s ease-in-out;
+        -o-transition: .2s ease-in-out;
+        border: none;
+        padding: 0px;
+    }
+    .main-editor-tools-link .side-tool-buttons .btn-switch-mode .pbicon-wrapper:hover{
+        background-color: transparent;
+    }
+    .main-editor-tools-link .side-tool-buttons .btn-switch-mode .pbicon-wrapper.active-btn{
+        background-color: #7D58AE;
+    }
+    .main-editor-tools-link .side-tool-buttons .btn-switch-mode .pbicon-wrapper{
+        border: 1px solid #AF96D3;
+        background-color: #673EA1;
+        width: 30px;
+        display: inline-block;
+        height: 35px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 3px;
+        overflow: hidden;
+        cursor: pointer;
+    }
+    .main-editor-tools-link .pbicon-wrapper .fa{
+        color: #fff;
+        font-size: 1.2em;
+    }
+    .main-editor-tools-link .fa-angle-right, .main-editor-tools-link .fa-angle-left, .main-editor-tools-link .fa-angle-up, .main-editor-tools-link .fa-angle-down{
+        font-size: 1.5em !important;
+    }
+    .easy_link:first-of-type + .main-editor-tools-link .right_link_btn, .easy_link.last-of-type + .main-editor-tools-link .left_link_btn{
+        pointer-events: none;
+        cursor: not-allowed;
+        background: gray !important;
+        border-radius: 3px;
+    }
+    .easy_link:first-of-type + .main-editor-tools-link .right_link_btn span, .easy_link.last-of-type + .main-editor-tools-link .left_link_btn span{
+        background: gray !important;
+    }
+    .main-editor-tools-link .easy_link_icon{
+        display: none !important;
+    }
+    .main-editor-tools-link.add_link_icon .easy_link_icon{
+        display: inline-block !important;
+    }
+    .main-editor-tools-form{
+        background-color: #512293;
+        border: 1px solid #AF96D3;
+        border-radius: 5px;
+        padding: 5px;
+        display: inline-block;
+        position: absolute;
+        width: fit-content;
+        margin-bottom: 5px;
+        z-index: 1000
+    }
+    .main-editor-tools-form:before {
+        position: absolute;
+        content: "";
+        -moz-transition: all 0.2s ease-in-out;
+        -o-transition: all 0.2s ease-in-out;
+        -ms-transition: all 0.2s ease-in-out;
+        transition: all 0.2s ease-in-out;
+        width: 0px;
+        height: 0px;
+        border-left: 6px solid transparent;
+        border-right: 6px solid transparent;
+        border-top: 6px solid #7D58AE;
+        bottom: -6px;
+        right: 50%;
+        transform: translateX(50%);
+    }
+    .main-editor-tools-form .side-tool-buttons .group-list-btn{
+        display: flex;
+        align-items: center;
+        margin: 0px 5px;
+        flex-wrap: wrap;
+    }
+    .main-editor-tools-form .side-tool-buttons .btn-switch-mode{
+        background: transparent;
+        display: inline-block;
+        margin: 3px 3px;
+        transition: .2s ease-in-out;
+        -webkit-transition: .2s ease-in-out;
+        -moz-transition: .2s ease-in-out;
+        -ms-transition: .2s ease-in-out;
+        -o-transition: .2s ease-in-out;
+        border: none;
+        padding: 0px;
+    }
+    .main-editor-tools-form .side-tool-buttons .btn-switch-mode .pbicon-wrapper:hover{
+        background-color: transparent;
+    }
+    .main-editor-tools-form .side-tool-buttons .btn-switch-mode .pbicon-wrapper.active-btn{
+        background-color: #7D58AE;
+    }
+    .main-editor-tools-form .side-tool-buttons .btn-switch-mode .pbicon-wrapper{
+        border: 1px solid #AF96D3;
+        background-color: #673EA1;
+        width: auto;
+        padding: 0px 5px;
+        display: inline-block;
+        height: 35px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 3px;
+        overflow: hidden;
+        cursor: pointer;
+    }
+    .main-editor-tools-form .pbicon-wrapper .fab{
+        margin-left: 5px;
+    }
+    .main-editor-tools-form .pbicon-wrapper .fab, .main-editor-tools-form .pbicon-wrapper b{
+        color: #fff;
+        font-size: 1.2em;
+    }
+
 </style>
 
 @if(@$my_plugins["3"])

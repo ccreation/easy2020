@@ -9,5 +9,6 @@ Route::group(["namespace" => "Common", 'prefix' => 'editor/', "as"=>"editor."], 
     Route::post('update_page', 'EditorController@update_page')->name('update_page');
     Route::post('update_slug', 'EditorController@update_slug')->name('update_slug');
     Route::post('save_page_html_content', 'EditorController@save_page_html_content')->name('save_page_html_content');
+    Route::post('get_custom_form', 'EditorController@get_custom_form')->name('get_custom_form');
 
 });

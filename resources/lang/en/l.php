@@ -93,6 +93,7 @@ return array (
     'coming_soon' => 'Coming soon',
     'faq' => 'FAQ',
     'section' => 'Normal section',
+    'section2' => 'Normal section',
   ),
   'hidden_block' => 'Show block',
   'shown_block' => 'Hide block',
@@ -660,4 +661,5 @@ return array (
   'confirmation_message_note' => 'Are you sure of this operation ?',
   'up' => 'Up',
   'down' => 'Down',
+  'buttons' => 'Buttons',
 );

@@ -12,6 +12,7 @@ use App\Page;
 use App\Website;
 use App\Client;
 use App\Plan;
+use App\Form;
 
 class EditorController extends Controller{
 
@@ -122,8 +123,10 @@ class EditorController extends Controller{
             $page_url       = route("admin.templates.get_page")."?url=".urlencode($real_page_url);
         endif;
 
+        $forms              = Form::where(["client_id" => $client_id])->orderby("created_at", "desc")->get();
+
         return  view("editor.edit", compact("website", "page", "websites", "pages",
-            "website_lang", "real_page_url", "page_url"));
+            "website_lang", "real_page_url", "page_url", "forms"));
     }
 
     /**
@@ -226,6 +229,20 @@ class EditorController extends Controller{
         $page->save();
 
         return back()->with("success", __("l.success_save"));
+    }
+
+    public function get_custom_form(Request $request){
+        $client_id  = @$this->client->id;
+        $form = Form::where(["client_id" => $client_id, "id" => $request->id])->first();
+        if(!$form)
+            return;
+
+        $website = Website::where(["id" => $request->website_id, "client_id" => $client_id])->first();
+        if(!$website)
+            return back();
+        $lang = $request->lang;
+
+        return view('editor.custom_form', compact("form", "website", "lang"));
     }
 
 }

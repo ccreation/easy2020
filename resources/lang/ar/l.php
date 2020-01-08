@@ -93,6 +93,7 @@ return array (
     'coming_soon' => 'سننطلق قريبا',
     'faq' => 'الاسئلة الشائعة',
     'section' => 'بلوك عادي',
+    'section2' => 'بلوك عادي 2',
   ),
   'hidden_block' => 'إظهار القسم',
   'website_default_lang' => 'اللغة الإفتراضية للموقع',
@@ -659,4 +660,5 @@ return array (
   'confirmation_message_note' => 'هل أنت متأكد من هذه العملية ؟',
   'up' => 'الأعلى',
   'down' => 'الأسفل',
+  'buttons' => 'الأزرار',
 );

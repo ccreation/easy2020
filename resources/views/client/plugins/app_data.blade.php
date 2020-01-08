@@ -58,8 +58,10 @@
                         @endforeach
                         <td>{{$data->created_at}}</td>
                         <td class="text-center">
-                            <a href="#" data-toggle="modal" data-target="#dataModal{{$data->id}}" title="{{__("l.preview")}}" class="btn btn-xs btn-success"><i class="fa fa-eye"></i></a>
-                            <a href="{{route("client.plugins.remove_app_data", $data->id)}}" onclick="return confirm('{{__("l.are_you_sure")}}');" title="{{__("l.delete")}}" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i></a>
+                            <div class="action">
+                                <a href="#" data-toggle="modal" data-target="#dataModal{{$data->id}}" title="{{__("l.preview")}}"><i class="fa fa-eye"></i></a>
+                                <a href="{{route("client.plugins.remove_app_data", $data->id)}}" onclick="return confirm('{{__("l.are_you_sure")}}');" title="{{__("l.delete")}}"><i class="fa fa-trash"></i></a>
+                            </div>
                         </td>
                     </tr>
                 @endforeach
@@ -76,10 +78,10 @@
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">{{__("l.messages")}}</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
+                            <h5 class="modal-title" id="exampleModalLabel">{{__("l.messages")}}</h5>
                         </div>
                         <div class="modal-body">
                             @php
