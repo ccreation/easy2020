@@ -53,3 +53,174 @@ body{
 .form-control{
     border-radius: 0px !important;
 }
+/* Amiri */
+@font-face {
+    font-family: 'Amiri';  font-style: normal;  font-weight: 400;
+    src: url(../google_fonts/Amiri/Amiri-Regular.ttf) format('truetype');
+}
+@font-face {
+    font-family: 'Amiri';  font-style: normal;  font-weight: 700;
+    src: url(../google_fonts/Amiri/Amiri-Bold.ttf) format('truetype');
+}
+/* Cairo */
+@font-face {
+    font-family: 'Cairo';  font-style: normal;  font-weight: 400;
+    src: url(../google_fonts/Cairo/Cairo-Regular.ttf) format('truetype');
+}
+@font-face {
+    font-family: 'Cairo';  font-style: normal;  font-weight: 700;
+    src: url(../google_fonts/Cairo/Cairo-Bold.ttf) format('truetype');
+}
+/* Tajawal */
+@font-face {
+    font-family: 'Tajawal';  font-style: normal;  font-weight: 400;
+    src: url(../google_fonts/Tajawal/Tajawal-Regular.ttf) format('truetype');
+}
+@font-face {
+    font-family: 'Tajawal';  font-style: normal;  font-weight: 700;
+    src: url(../google_fonts/Tajawal/Tajawal-Bold.ttf) format('truetype');
+}
+/* Changa */
+@font-face {
+    font-family: 'Changa';  font-style: normal;  font-weight: 400;
+    src: url(../google_fonts/Changa/Changa-Regular.ttf) format('truetype');
+}
+@font-face {
+    font-family: 'Changa';  font-style: normal;  font-weight: 700;
+    src: url(../google_fonts/Changa/Changa-Bold.ttf) format('truetype');
+}
+/* Lalezar */
+@font-face {
+    font-family: 'Lalezar';  font-style: normal;  font-weight: 400;
+    src: url(../google_fonts/Lalezar/Lalezar-Regular.ttf) format('truetype');
+}
+@font-face {
+    font-family: 'Lalezar';  font-style: normal;  font-weight: 700;
+    src: url(../google_fonts/Lalezar/Lalezar-Regular.ttf) format('truetype');
+}
+/* El Messiri */
+@font-face {
+    font-family: 'El Messiri';  font-style: normal;  font-weight: 400;
+    src: url(../google_fonts/El_Messiri/ElMessiri-Regular.ttf) format('truetype');
+}
+@font-face {
+    font-family: 'El Messiri';  font-style: normal;  font-weight: 700;
+    src: url(../google_fonts/El_Messiri/ElMessiri-Bold.ttf) format('truetype');
+}
+/* Reem Kufi */
+@font-face {
+    font-family: 'Reem Kufi';  font-style: normal;  font-weight: 400;
+    src: url(../google_fonts/Reem_Kufi/ReemKufi-Regular.ttf) format('truetype');
+}
+@font-face {
+    font-family: 'Reem Kufi';  font-style: normal;  font-weight: 700;
+    src: url(../google_fonts/Reem_Kufi/ReemKufi-Regular.ttf) format('truetype');
+}
+/* Lateef */
+@font-face {
+    font-family: 'Lateef';  font-style: normal;  font-weight: 400;
+    src: url(../google_fonts/Lateef/Lateef-Regular.ttf) format('truetype');
+}
+@font-face {
+    font-family: 'Lateef';  font-style: normal;  font-weight: 700;
+    src: url(../google_fonts/Lateef/Lateef-Regular.ttf) format('truetype');
+}
+/* Scheherazade */
+@font-face {
+    font-family: 'Scheherazade';  font-style: normal;  font-weight: 400;
+    src: url(../google_fonts/Scheherazade/Scheherazade-Regular.ttf) format('truetype');
+}
+@font-face {
+    font-family: 'Scheherazade';  font-style: normal;  font-weight: 700;
+    src: url(../google_fonts/Scheherazade/Scheherazade-Bold.ttf) format('truetype');
+}
+/* Lemonada */
+@font-face {
+    font-family: 'Lemonada';  font-style: normal;  font-weight: 400;
+    src: url(../google_fonts/Lemonada/Lemonada-Regular.ttf) format('truetype');
+}
+@font-face {
+    font-family: 'Lemonada';  font-style: normal;  font-weight: 700;
+    src: url(../google_fonts/Lemonada/Lemonada-Bold.ttf) format('truetype');
+}
+/* Markazi Text */
+@font-face {
+    font-family: 'Markazi Text';  font-style: normal;  font-weight: 400;
+    src: url(../google_fonts/Markazi_Text/MarkaziText-Regular.ttf) format('truetype');
+}
+@font-face {
+    font-family: 'Markazi Text';  font-style: normal;  font-weight: 700;
+    src: url(../google_fonts/Markazi_Text/MarkaziText-Bold.ttf) format('truetype');
+}
+/* Mada */
+@font-face {
+    font-family: 'Mada';  font-style: normal;  font-weight: 400;
+    src: url(../google_fonts/Mada/Mada-Regular.ttf) format('truetype');
+}
+@font-face {
+    font-family: 'Mada';  font-style: normal;  font-weight: 700;
+    src: url(../google_fonts/Mada/Mada-Bold.ttf) format('truetype');
+}
+/* Baloo Bhaijaan */
+@font-face {
+    font-family: 'Baloo Bhaijaan';  font-style: normal;  font-weight: 400;
+    src: url(../google_fonts/Baloo_Bhaijaan/BalooBhaijaan-Regular.ttf) format('truetype');
+}
+@font-face {
+    font-family: 'Baloo Bhaijaan';  font-style: normal;  font-weight: 700;
+    src: url(../google_fonts/Baloo_Bhaijaan/BalooBhaijaan-Regular.ttf) format('truetype');
+}
+/* Mirza */
+@font-face {
+    font-family: 'Mirza';  font-style: normal;  font-weight: 400;
+    src: url(../google_fonts/Mirza/Mirza-Regular.ttf) format('truetype');
+}
+@font-face {
+    font-family: 'Mirza';  font-style: normal;  font-weight: 700;
+    src: url(../google_fonts/Mirza/Mirza-Bold.ttf) format('truetype');
+}
+/* Aref Ruqaa */
+@font-face {
+    font-family: 'Aref Ruqaa';  font-style: normal;  font-weight: 400;
+    src: url(../google_fonts/Aref_Ruqaa/ArefRuqaa-Regular.ttf) format('truetype');
+}
+@font-face {
+    font-family: 'Aref Ruqaa';  font-style: normal;  font-weight: 700;
+    src: url(../google_fonts/Aref_Ruqaa/ArefRuqaa-Bold.ttf) format('truetype');
+}
+/* Harmattan */
+@font-face {
+    font-family: 'Harmattan';  font-style: normal;  font-weight: 400;
+    src: url(../google_fonts/Harmattan/Harmattan-Regular.ttf) format('truetype');
+}
+@font-face {
+    font-family: 'Harmattan';  font-style: normal;  font-weight: 700;
+    src: url(../google_fonts/Harmattan/Harmattan-Regular.ttf) format('truetype');
+}
+/* Katibeh */
+@font-face {
+    font-family: 'Katibeh';  font-style: normal;  font-weight: 400;
+    src: url(../google_fonts/Katibeh/Katibeh-Regular.ttf) format('truetype');
+}
+@font-face {
+    font-family: 'Katibeh';  font-style: normal;  font-weight: 700;
+    src: url(../google_fonts/Katibeh/Katibeh-Regular.ttf) format('truetype');
+}
+/* Rakkas */
+@font-face {
+    font-family: 'Rakkas';  font-style: normal;  font-weight: 400;
+    src: url(../google_fonts/Rakkas/Rakkas-Regular.ttf) format('truetype');
+}
+@font-face {
+    font-family: 'Rakkas';  font-style: normal;  font-weight: 700;
+    src: url(../google_fonts/Rakkas/Rakkas-Regular.ttf) format('truetype');
+}
+/* Jomhuria */
+@font-face {
+    font-family: 'Jomhuria';  font-style: normal;  font-weight: 400;
+    src: url(../google_fonts/Jomhuria/Jomhuria-Regular.ttf) format('truetype');
+}
+@font-face {
+    font-family: 'Jomhuria';  font-style: normal;  font-weight: 700;
+    src: url(../google_fonts/Jomhuria/Jomhuria-Regular.ttf) format('truetype');
+}

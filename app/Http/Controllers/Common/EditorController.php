@@ -13,6 +13,7 @@ use App\Website;
 use App\Client;
 use App\Plan;
 use App\Form;
+use App\ClientVideo;
 
 class EditorController extends Controller{
 
@@ -110,6 +111,7 @@ class EditorController extends Controller{
             $page           = Page::where(["id"=>$website->homepage, "website_id" => $id, "client_id" => $client_id])->first();
             if(!$page){
                 create_homepage($website->id, $client_id, 0);
+                $website    = Website::where(["id" => $id, "client_id" => $client_id])->first();
                 $page       = Page::where(["id"=>$website->homepage, "website_id" => $id, "client_id" => $client_id])->first();
             }
         }
@@ -117,6 +119,7 @@ class EditorController extends Controller{
 
         $website_lang       = $website->default_lang;
         $real_page_url      = route("website.page", [$website->slug, $website_lang, $page->slug]);
+
         if(Auth::guard("client")->check()):
             $page_url       = route("client.websites.get_page")."?url=".urlencode($real_page_url);
         else:
@@ -125,8 +128,29 @@ class EditorController extends Controller{
 
         $forms              = Form::where(["client_id" => $client_id])->orderby("created_at", "desc")->get();
 
+        $dir_path = base_path("storage/app/uploads/clients/".$client_id);
+        $dirs = new \DirectoryIterator($dir_path);
+        $my_images = [];
+        foreach ($dirs as $dir) {
+            if(!$dir->isDir() and !$dir->isDot()){
+                $name = $dir->getBasename();
+                if(@is_array(getimagesize($dir_path."/".$name))){
+                    $image = new \stdClass();
+                    $image->url = asset("storage/app/uploads/clients/".$client_id."/".$name);
+                    $image->name_ar = $image->name_en = "";
+                    //array_push($my_images, $image);
+                    $my_images[$dir->getMTime()] = $image;
+                }
+            }
+        }
+        krsort($my_images);
+        $my_videos = ClientVideo::where("client_id", $client_id)->orderby("created_at", "desc")->get();
+        foreach ($my_videos as $my_video){
+            $my_video->url = createVideo($my_video->url);
+        }
+
         return  view("editor.edit", compact("website", "page", "websites", "pages",
-            "website_lang", "real_page_url", "page_url", "forms"));
+            "website_lang", "real_page_url", "page_url", "forms", "my_images", "my_videos"));
     }
 
     /**
@@ -243,6 +267,61 @@ class EditorController extends Controller{
         $lang = $request->lang;
 
         return view('editor.custom_form', compact("form", "website", "lang"));
+    }
+
+    /**
+     * upload image from computer
+     * @param  Request $request
+     * @return  void
+     */
+    public function images_upload_save(Request $request){
+        $client_id      = @$this->client->id;
+
+        $path           = $request->file->store("uploads/clients/".$client_id);
+        $value          = asset("storage/app/".$path);
+        return $value;
+    }
+
+    public function images_upload_delete(Request $request){
+        $client_id      = @$this->client->id;
+
+        try{
+            $path           = "uploads/clients/".$client_id;
+            $path2          = asset("storage/app/".$path);
+            if (strpos($request->image, $path2) !== false) {
+                $file = str_replace(asset(""), "", $request->image);
+                $file = base_path($file);
+                if($file and file_exists($file) and is_file($file))
+                    unlink($file);
+            }
+        }catch (\Exception $e){
+            dd($e->getMessage());
+        }
+    }
+
+    public function videos_upload_save(Request $request){
+        $client_id          = @$this->client->id;
+        $video              = new ClientVideo;
+        $video->client_id   = $client_id;
+        $video->url         = $request->video_url_youtube_or_vimeo;
+        $video->save();
+    }
+
+    public function videos_upload_delete(Request $request){
+        $client_id      = @$this->client->id;
+        $video          = ClientVideo::where("client_id", $client_id)->where("id", $request->id)->delete();
+    }
+
+    public function change_font(Request $request){
+        $client_id      = @$this->client->id;
+        $website        = Website::where(["client_id" => $client_id, "id" => $request->id])->first();
+        if($website){
+            if($request->font and $request->font != "")
+                $website->font = $request->font;
+            else
+                $website->font = null;
+            $website->save();
+        }
     }
 
 }

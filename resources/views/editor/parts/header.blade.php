@@ -250,9 +250,9 @@
                         </li>
                         <!-- blocks -->
                         <li class="widget__item-option-item">
-                            <a class="nav-item nav-link"><span class="widget__item-option-icon"><img src="{{asset("public/dashboard/images/cpanel/pc.png")}}" alt="" /></span><span class="widget__item-option-text">{{__("l.blocks")}}</span></a>
+                            <a class="nav-item nav-link blocks_list"><span class="widget__item-option-icon"><img src="{{asset("public/dashboard/images/cpanel/pc.png")}}" alt="" /></span><span class="widget__item-option-text">{{__("l.blocks")}}</span></a>
                             <div class="dropdown_widget">
-                                <div class="container">
+                                <div class="container-fluid p-0">
                                     <div class="dropdown_widget-grid">
                                         {{--
                                         <div class="dropdown_widget-sidebar p-4">
@@ -286,7 +286,7 @@
                                             </div>
                                             <div class="row py-3 px-4">
                                                 <div class="col-lg-12">
-                                                    <div class="widget__item_dropdown_inner_content scroll">
+                                                    <div class="widget__item_dropdown_inner_content scroll" style="height: 260px;">
                                                         <div class="tab-content " id="pills-tabContent">
                                                             <div class="tab-pane fade show active" id="tabSection-all" role="tabpanel"
                                                                  aria-labelledby="pills-home-tab">
@@ -355,15 +355,14 @@
                         </li>
                         <!-- fonts -->
                         <li class="widget__item-option-item">
-                            <a class="nav-item nav-link"><span class="widget__item-option-icon">
-                        <img src="../images/cpanel/type.png" alt=""></span><span class="widget__item-option-text">الخطوط
-                      </span></a>
+                            <a class="nav-item nav-link fonts_link"><span class="widget__item-option-icon">
+                        <img src="{{asset("public/dashboard/images/cpanel/type.png")}}" alt=""></span><span class="widget__item-option-text">{{__("l.fonts")}}</span></a>
                             <div class="dropdown_widget ">
                                 <div class="container">
                                     <div class="dropdown_widget-grid">
                                         <div class="dropdown_widget-sidebar">
-                                            <h5>الخطوط</h5>
-                                            <h6>يمكنك اختيار الخط الذي سيظهر في كامل الموقع </h6>
+                                            <h5>{{__("l.fonts")}}</h5>
+                                            <h6>{{__("l.fonts_note")}} </h6>
                                         </div>
                                         <div class="dropdown_widget-content">
                                             <div class="row">
@@ -371,53 +370,123 @@
                                                     <div class="widget__item_dropdown_inner_content scroll">
                                                         <div class="row">
                                                             <div class="col-lg-3">
-                                                                <div class="widget__item--text">
-                                                                    <div class="widget__item--text-header">
-                                                                        Droid Sans Arabic
-                                                                    </div>
-                                                                    <div class="widget__item--text-body">
-                                                                        كلام مرسل بنمط أخر يعبر عن استخدامات متعددة
-                                                                    </div>
+                                                                <div class="widget__item--text change_font @if(!$website->font) active @endif" data-font="">
+                                                                    <div class="widget__item--text-header preview_font_title">الخط الإفتراضي</div>
+                                                                    <div class="widget__item--text-body preview_font"></div>
                                                                 </div>
                                                             </div>
                                                             <div class="col-lg-3">
-                                                                <div class="widget__item--text">
-                                                                    <div class="widget__item--text-header">
-                                                                        Droid Sans Arabic
-                                                                    </div>
-                                                                    <div class="widget__item--text-body">
-                                                                        كلام مرسل بنمط أخر يعبر عن استخدامات متعددة
-                                                                    </div>
+                                                                <div class="widget__item--text change_font @if($website->font == "Amiri") active @endif" data-font="Amiri">
+                                                                    <div class="widget__item--text-header preview_font_title" style="font-family: 'Amiri' !important;">أميري</div>
+                                                                    <div class="widget__item--text-body preview_font" style="font-family: 'Amiri' !important;">كلام مرسل بنمط أخر يعبر عن استخدامات متعددة</div>
                                                                 </div>
                                                             </div>
                                                             <div class="col-lg-3">
-                                                                <div class="widget__item--text">
-                                                                    <div class="widget__item--text-header">
-                                                                        Droid Sans Arabic
-                                                                    </div>
-                                                                    <div class="widget__item--text-body">
-                                                                        كلام مرسل بنمط أخر يعبر عن استخدامات متعددة
-                                                                    </div>
+                                                                <div class="widget__item--text change_font @if($website->font == "Cairo") active @endif" data-font="Cairo">
+                                                                    <div class="widget__item--text-header preview_font_title" style="font-family: 'Cairo' !important;">كايرو</div>
+                                                                    <div class="widget__item--text-body preview_font" style="font-family: 'Cairo' !important;">كلام مرسل بنمط أخر يعبر عن استخدامات متعددة</div>
                                                                 </div>
                                                             </div>
                                                             <div class="col-lg-3">
-                                                                <div class="widget__item--text">
-                                                                    <div class="widget__item--text-header">
-                                                                        Droid Sans Arabic
-                                                                    </div>
-                                                                    <div class="widget__item--text-body">
-                                                                        كلام مرسل بنمط أخر يعبر عن استخدامات متعددة
-                                                                    </div>
+                                                                <div class="widget__item--text change_font @if($website->font == "Tajawal") active @endif" data-font="Tajawal">
+                                                                    <div class="widget__item--text-header preview_font_title" style="font-family: 'Tajawal' !important;">Tajawal</div>
+                                                                    <div class="widget__item--text-body preview_font" style="font-family: 'Tajawal' !important;">كلام مرسل بنمط أخر يعبر عن استخدامات متعددة</div>
                                                                 </div>
                                                             </div>
                                                             <div class="col-lg-3">
-                                                                <div class="widget__item--text">
-                                                                    <div class="widget__item--text-header">
-                                                                        Droid Sans Arabic
-                                                                    </div>
-                                                                    <div class="widget__item--text-body">
-                                                                        كلام مرسل بنمط أخر يعبر عن استخدامات متعددة
-                                                                    </div>
+                                                                <div class="widget__item--text change_font @if($website->font == "Changa") active @endif" data-font="Changa">
+                                                                    <div class="widget__item--text-header preview_font_title" style="font-family: 'Changa' !important;">Changa</div>
+                                                                    <div class="widget__item--text-body preview_font" style="font-family: 'Changa' !important;">كلام مرسل بنمط أخر يعبر عن استخدامات متعددة</div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-3">
+                                                                <div class="widget__item--text change_font @if($website->font == "Lalezar") active @endif" data-font="Lalezar">
+                                                                    <div class="widget__item--text-header preview_font_title" style="font-family: 'Lalezar' !important;">Lalezar</div>
+                                                                    <div class="widget__item--text-body preview_font" style="font-family: 'Lalezar' !important;">كلام مرسل بنمط أخر يعبر عن استخدامات متعددة</div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-3">
+                                                                <div class="widget__item--text change_font @if($website->font == "El Messiri") active @endif" data-font="El Messiri">
+                                                                    <div class="widget__item--text-header preview_font_title" style="font-family: 'El Messiri' !important;">المصيري</div>
+                                                                    <div class="widget__item--text-body preview_font" style="font-family: 'El Messiri' !important;">كلام مرسل بنمط أخر يعبر عن استخدامات متعددة</div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-3">
+                                                                <div class="widget__item--text change_font @if($website->font == "Reem Kufi") active @endif" data-font="Reem Kufi">
+                                                                    <div class="widget__item--text-header preview_font_title" style="font-family: 'Reem Kufi' !important;">ريم كوفي</div>
+                                                                    <div class="widget__item--text-body preview_font" style="font-family: 'Reem Kufi' !important;">كلام مرسل بنمط أخر يعبر عن استخدامات متعددة</div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-3">
+                                                                <div class="widget__item--text change_font @if($website->font == "Lateef") active @endif" data-font="Lateef">
+                                                                    <div class="widget__item--text-header preview_font_title" style="font-family: 'Lateef' !important;">لطيف</div>
+                                                                    <div class="widget__item--text-body preview_font" style="font-family: 'Lateef' !important;">كلام مرسل بنمط أخر يعبر عن استخدامات متعددة</div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-3">
+                                                                <div class="widget__item--text change_font @if($website->font == "Scheherazade") active @endif" data-font="Scheherazade">
+                                                                    <div class="widget__item--text-header preview_font_title" style="font-family: 'Scheherazade' !important;">Scheherazade</div>
+                                                                    <div class="widget__item--text-body preview_font" style="font-family: 'Scheherazade' !important;">كلام مرسل بنمط أخر يعبر عن استخدامات متعددة</div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-3">
+                                                                <div class="widget__item--text change_font @if($website->font == "Lemonada") active @endif" data-font="Lemonada">
+                                                                    <div class="widget__item--text-header preview_font_title" style="font-family: 'Lemonada' !important;">ليموناضة</div>
+                                                                    <div class="widget__item--text-body preview_font" style="font-family: 'Lemonada' !important;">كلام مرسل بنمط أخر يعبر عن استخدامات متعددة</div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-3">
+                                                                <div class="widget__item--text change_font @if($website->font == "Markazi Text") active @endif" data-font="Markazi Text">
+                                                                    <div class="widget__item--text-header preview_font_title" style="font-family: 'Markazi Text' !important;">مركزي تكست</div>
+                                                                    <div class="widget__item--text-body preview_font" style="font-family: 'Markazi Text' !important;">كلام مرسل بنمط أخر يعبر عن استخدامات متعددة</div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-3">
+                                                                <div class="widget__item--text change_font @if($website->font == "Mada") active @endif" data-font="Mada">
+                                                                    <div class="widget__item--text-header preview_font_title" style="font-family: 'Mada' !important;">Mada</div>
+                                                                    <div class="widget__item--text-body preview_font" style="font-family: 'Mada' !important;">كلام مرسل بنمط أخر يعبر عن استخدامات متعددة</div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-3">
+                                                                <div class="widget__item--text change_font @if($website->font == "Baloo Bhaijaan") active @endif" data-font="Baloo Bhaijaan">
+                                                                    <div class="widget__item--text-header preview_font_title" style="font-family: 'Baloo Bhaijaan' !important;">Baloo Bhaijaan</div>
+                                                                    <div class="widget__item--text-body preview_font" style="font-family: 'Baloo Bhaijaan' !important;">كلام مرسل بنمط أخر يعبر عن استخدامات متعددة</div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-3">
+                                                                <div class="widget__item--text change_font @if($website->font == "Mirza") active @endif" data-font="Mirza">
+                                                                    <div class="widget__item--text-header preview_font_title" style="font-family: 'Mirza' !important;">Mirza</div>
+                                                                    <div class="widget__item--text-body preview_font" style="font-family: 'Mirza' !important;">كلام مرسل بنمط أخر يعبر عن استخدامات متعددة</div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-3">
+                                                                <div class="widget__item--text change_font @if($website->font == "Aref Ruqaa") active @endif" data-font="Aref Ruqaa">
+                                                                    <div class="widget__item--text-header preview_font_title" style="font-family: 'Aref Ruqaa' !important;">رافع الرقعة</div>
+                                                                    <div class="widget__item--text-body preview_font" style="font-family: 'Aref Ruqaa' !important;">كلام مرسل بنمط أخر يعبر عن استخدامات متعددة</div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-3">
+                                                                <div class="widget__item--text change_font @if($website->font == "Harmattan") active @endif" data-font="Harmattan">
+                                                                    <div class="widget__item--text-header preview_font_title" style="font-family: 'Harmattan' !important;">Harmattan</div>
+                                                                    <div class="widget__item--text-body preview_font" style="font-family: 'Harmattan' !important;">كلام مرسل بنمط أخر يعبر عن استخدامات متعددة</div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-3">
+                                                                <div class="widget__item--text change_font @if($website->font == "Katibeh") active @endif" data-font="Katibeh">
+                                                                    <div class="widget__item--text-header preview_font_title" style="font-family: 'Katibeh' !important;">كتيبة</div>
+                                                                    <div class="widget__item--text-body preview_font" style="font-family: 'Katibeh' !important;">كلام مرسل بنمط أخر يعبر عن استخدامات متعددة</div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-3">
+                                                                <div class="widget__item--text change_font @if($website->font == "Rakkas") active @endif" data-font="Rakkas">
+                                                                    <div class="widget__item--text-header preview_font_title" style="font-family: 'Rakkas' !important;">Rakkas</div>
+                                                                    <div class="widget__item--text-body preview_font" style="font-family: 'Rakkas' !important;">كلام مرسل بنمط أخر يعبر عن استخدامات متعددة</div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-3">
+                                                                <div class="widget__item--text change_font @if($website->font == "Jomhuria") active @endif" data-font="Jomhuria">
+                                                                    <div class="widget__item--text-header preview_font_title" style="font-family: 'Jomhuria' !important;">Jomhuria</div>
+                                                                    <div class="widget__item--text-body preview_font" style="font-family: 'Jomhuria' !important;">كلام مرسل بنمط أخر يعبر عن استخدامات متعددة</div>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -431,7 +500,7 @@
                         </li>
                         <!-- block settings -->
                         <li class="widget__item-option-item m-0">
-                            <a class="nav-item nav-link settings_block_btn_nav_link hidden"><span class="widget__item-option-text">fghjk</span></a>
+                            <a class="nav-item nav-link settings_block_btn_nav_link hidden"><span class="widget__item-option-text"></span></a>
                             <div class="dropdown_widget ">
                                 <div class="container">
                                     <div class="dropdown_widget-grid">
@@ -443,13 +512,10 @@
                                             <div class="settings ModalPannel">
                                                 <ul class="nav nav-pills tab-setting" id="pills-tab" role="tablist" style="border-bottom: 1px solid #af96d3;">
                                                     <li class="nav-item">
-                                                        <a class="nav-link active"  data-toggle="pill" href="#pills-tab-color" role="tab" >لون الخلفية</a>
+                                                        <a class="nav-link active"  data-toggle="pill" href="#pills-tab-color" role="tab" >{{__("l.background_color")}}</a>
                                                     </li>
                                                     <li class="nav-item">
-                                                        <a class="nav-link"  data-toggle="pill" href="#pills-tab-image" role="tab" >صورة الخلفية</a>
-                                                    </li>
-                                                    <li class="nav-item">
-                                                        <a class="nav-link" data-toggle="pill" href="#pills-tab-margin" role="tab" >الهوامش</a>
+                                                        <a class="nav-link" data-toggle="pill" href="#pills-tab-margin" role="tab" >{{__("l.paddings")}}</a>
                                                     </li>
                                                 </ul>
                                                 <div class="tab-content" id="pills-tabContent" style="min-height: 200px;">
@@ -458,12 +524,6 @@
                                                             <div class="col-lg-12">
                                                                 <input type="text" class="form-control colorpicker colorpicker1">
                                                             </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="tab-pane fade" id="pills-tab-image" role="tabpanel">
-                                                        <div class="backgroundImageSetting">
-                                                            <h4 class="text-center text-white">Coming soon...</h4>
-                                                            <img src="" alt="">
                                                         </div>
                                                     </div>
                                                     <div class="tab-pane fade" id="pills-tab-margin" role="tabpanel">
@@ -482,7 +542,7 @@
                         </li>
                         <!-- icons -->
                         <li class="widget__item-option-item m-0">
-                            <a class="nav-item nav-link settings_icon_btn_nav_link hidden"><span class="widget__item-option-text">fghjk</span></a>
+                            <a class="nav-item nav-link settings_icon_btn_nav_link hidden"><span class="widget__item-option-text"></span></a>
                             <div class="dropdown_widget ">
                                 <div class="container">
                                     <div class="dropdown_widget-grid">
@@ -500,7 +560,7 @@
                         </li>
                         <!-- buttons -->
                         <li class="widget__item-option-item m-0">
-                            <a class="nav-item nav-link settings_btn_btn_nav_link hidden"><span class="widget__item-option-text">fghjk</span></a>
+                            <a class="nav-item nav-link settings_btn_btn_nav_link hidden"><span class="widget__item-option-text"></span></a>
                             <div class="dropdown_widget ">
                                 <div class="container">
                                     <div class="dropdown_widget-grid">
@@ -742,7 +802,7 @@
                         </li>
                         <!-- links -->
                         <li class="widget__item-option-item m-0">
-                            <a class="nav-item nav-link settings_link_btn_nav_link hidden"><span class="widget__item-option-text">fghjk</span></a>
+                            <a class="nav-item nav-link settings_link_btn_nav_link hidden"><span class="widget__item-option-text"></span></a>
                             <div class="dropdown_widget ">
                                 <div class="container">
                                     <div class="dropdown_widget-grid">
@@ -924,7 +984,7 @@
                         </li>
                         <!-- link icons -->
                         <li class="widget__item-option-item m-0">
-                            <a class="nav-item nav-link settings_linkicon_btn_nav_link hidden"><span class="widget__item-option-text">fghjk</span></a>
+                            <a class="nav-item nav-link settings_linkicon_btn_nav_link hidden"><span class="widget__item-option-text"></span></a>
                             <div class="dropdown_widget ">
                                 <div class="container">
                                     <div class="dropdown_widget-grid">
@@ -942,7 +1002,7 @@
                         </li>
                         <!-- forms -->
                         <li class="widget__item-option-item m-0">
-                            <a class="nav-item nav-link settings_form_btn_nav_link hidden"><span class="widget__item-option-text">fghjk</span></a>
+                            <a class="nav-item nav-link settings_form_btn_nav_link hidden"><span class="widget__item-option-text"></span></a>
                             <div class="dropdown_widget ">
                                 <div class="container">
                                     <div class="dropdown_widget-grid">
@@ -964,6 +1024,184 @@
                                             </div>
                                             <div class="form-group mb-0 text-center">
                                                 <button class="button_shape" id="save_button_form">{{__("l.save")}}</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <!-- image -->
+                        <li class="widget__item-option-item m-0">
+                            <a class="nav-item nav-link settings_image_btn_nav_link hidden"><span class="widget__item-option-text"></span></a>
+                            <div class="dropdown_widget ">
+                                <div class="container">
+                                    <div class="dropdown_widget-grid">
+                                        <div class="dropdown_widget-sidebar">
+                                            <a href="#" class="close_image_settings px-3 px-lg-2"><span class="widget__item-option-icon"><i class="fa fa-chevron-right fa-2x"></i></span></a>
+                                            <h4 class="text-white mt-3"><b>{{__("l.images")}}</b></h4>
+                                        </div>
+                                        <div class="dropdown_widget-content ModalLiberia ModalPannel">
+                                            <div class="main-gallery-image">
+                                                <div class="aside-gallery-image">
+                                                    <h4 class="title-aside-gallery-image">{{__("l.images")}}</h4>
+                                                    <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                                                        <a class="nav-link active" data-toggle="pill" href="#tab-gallery-1" role="tab"><i class="fas fa-sort-up"></i>{{__("l.image_popup")}}</a>
+                                                        <a class="nav-link" data-toggle="pill" href="#tab-gallery-2" role="tab"><i class="fas fa-sort-up"></i>{{__("l.upload_file_from_computer")}}</a>
+                                                    </div>
+                                                </div>
+                                                <div class="content-gallery-image">
+                                                    <div class="body-gallery-image">
+                                                        <div class="wrapper-gallery-image">
+                                                            <div class="tab-content" id="v-pills-tabContent">
+
+                                                                <div class="tab-pane fade show active" id="tab-gallery-1" role="tabpanel">
+                                                                    <div class="header-gallery-image">
+                                                                        <div class="row">
+                                                                            <div class="col-lg-4"></div>
+                                                                            <div class="col-lg-4">
+                                                                                <div class="form-group mb-0 container-group-option">
+                                                                                    <select class="form-control" id="image_categories"></select>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-4">
+                                                                                <div class="form-group mb-0 container-group-option">
+                                                                                    <input type="text" class="form-control" id="image_search" placeholder="{{__("l.search")}}">
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="list-gallery-image" id="list-gallery-image1"></div>
+                                                                    <div class="form-group mb-2 mt-5 text-center">
+                                                                        <button class="button_shape save_button disabled" id="image_popup_save">{{__("l.confirmation")}}</button>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="tab-pane fade" id="tab-gallery-2" role="tabpanel">
+
+                                                                    <form action="{{route("editor.images_upload_save")}}" method="post" id="images_upload_form">
+                                                                        <div class="input-group mb-3 mt-2">
+                                                                            <input type="file" accept="image/*" class="form-control file" required style="color: #543c93;">
+                                                                            <div class="input-group-append">
+                                                                                <button class="general-btn-md btn rounded" type="submit" style="background: #543c93;"><i class="fa fa-upload"></i> <span>{{__("l.upload")}}</span></button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </form>
+
+                                                                    <div id="my_images_wrapper">
+                                                                        <div id="my_images_div">
+                                                                            <div class="list-gallery-image">
+                                                                                @foreach($my_images as $my_image)
+                                                                                    <div class="col-single-image">
+                                                                                        <div class="widght-single-image widght-single-image1">
+                                                                                            <a title="{{__("l.delete")}}" href="#" class="remove_image" data-image="{{$my_image->url}}"><i class="fa fa-trash"></i></a>
+                                                                                            <img src="{{$my_image->url}}" alt="" >
+                                                                                        </div>
+                                                                                    </div>
+                                                                                @endforeach
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="form-group mb-2 mt-5 text-center">
+                                                                        <button class="button_shape save_button disabled" id="image_popup_save2">{{__("l.confirmation")}}</button>
+                                                                    </div>
+
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <!-- video -->
+                        <li class="widget__item-option-item m-0">
+                            <a class="nav-item nav-link settings_video_btn_nav_link hidden"><span class="widget__item-option-text"></span></a>
+                            <div class="dropdown_widget ">
+                                <div class="container">
+                                    <div class="dropdown_widget-grid">
+                                        <div class="dropdown_widget-sidebar">
+                                            <a href="#" class="close_video_settings px-3 px-lg-2"><span class="widget__item-option-icon"><i class="fa fa-chevron-right fa-2x"></i></span></a>
+                                            <h4 class="text-white mt-3"><b>{{__("l.videos")}}</b></h4>
+                                        </div>
+                                        <div class="dropdown_widget-content ModalLiberia ModalPannel">
+                                            <div class="main-gallery-image">
+                                                <div class="aside-gallery-image">
+                                                    <h4 class="title-aside-gallery-image">{{__("l.videos")}}</h4>
+                                                    <div class="nav flex-column nav-pills" id="v-pills-tab2" role="tablist" aria-orientation="vertical">
+                                                        <a class="nav-link active" data-toggle="pill" href="#tab-gallery-3" role="tab"><i class="fas fa-sort-up"></i>{{__("l.video_popup")}}</a>
+                                                        <a class="nav-link" data-toggle="pill" href="#tab-gallery-4" role="tab"><i class="fas fa-sort-up"></i>{{__("l.my_videos")}}</a>
+                                                    </div>
+                                                </div>
+                                                <div class="content-gallery-image">
+                                                    <div class="body-gallery-image">
+                                                        <div class="wrapper-gallery-image">
+                                                            <div class="tab-content" id="v-pills-tabContent2">
+
+                                                                <div class="tab-pane fade show active" id="tab-gallery-3" role="tabpanel">
+                                                                    <div class="header-gallery-image">
+                                                                        <div class="row">
+                                                                            <div class="col-lg-4"></div>
+                                                                            <div class="col-lg-4">
+                                                                                <div class="form-group mb-0 container-group-option">
+                                                                                    <select class="form-control" id="video_categories"></select>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-4">
+                                                                                <div class="form-group mb-0 container-group-option">
+                                                                                    <input type="text" class="form-control" id="video_search" placeholder="{{__("l.search")}}">
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="list-gallery-image" id="list-gallery-video1"></div>
+                                                                    <div class="form-group mb-2 mt-5 text-center">
+                                                                        <button class="button_shape save_button disabled" id="video_popup_save">{{__("l.confirmation")}}</button>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="tab-pane fade" id="tab-gallery-4" role="tabpanel">
+
+                                                                    <form action="{{route("editor.videos_upload_save")}}" method="post" id="videos_upload_form">
+                                                                        <div class="input-group mb-3 mt-2">
+                                                                            <input type="url" placeholder="{{__("l.video_url_youtube_or_vimeo")}}" class="form-control" id="video_url_youtube_or_vimeo" required style="color: #543c93;">
+                                                                            <div class="input-group-append">
+                                                                                <button class="general-btn-md btn rounded" type="submit" style="background: #543c93;"><i class="fa fa-save"></i> <span>{{__("l.save")}}</span></button>
+                                                                            </div>
+                                                                            <div id="video_preview" style="width: 100%;"></div>
+                                                                        </div>
+                                                                    </form>
+
+                                                                    <div id="my_videos_wrapper">
+                                                                        <div id="my_videos_div">
+                                                                            <div class="list-gallery-image">
+                                                                                @foreach($my_videos as $my_video)
+                                                                                    <div class="col-single-image" style="flex: 0 0 25%;max-width: 25%; height: 160px;">
+                                                                                        <div class="widght-single-image widght-single-video1" style="height: 100%; width: 100%;">
+                                                                                            <iframe style="width: 100%; height: 100%; background: #000;" src="{{$my_video->url}}" allow=""></iframe>
+                                                                                            <div style="position: absolute; top:0px; bottom: 0px; left: 0px; right: 0px; background: transparent;"></div>
+                                                                                            <a title="{{__("l.delete")}}" href="#" class="remove_video" data-id="{{$my_video->id}}"><i class="fa fa-trash"></i></a>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                @endforeach
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="form-group mb-2 mt-5 text-center">
+                                                                        <button class="button_shape save_button disabled" id="video_popup_save2">{{__("l.confirmation")}}</button>
+                                                                    </div>
+
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

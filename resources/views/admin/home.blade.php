@@ -125,7 +125,7 @@
                         <ul class="p-0 m-0" style="list-style: none">
                             @foreach($templatess as $w)
                                 <li class="mb-8">
-                                    <div class="float-left"><a target="_blank" href="{{route("template.website.index2", $w->slug)}}">{{$w->name_ar}}</a></div>
+                                    <div class="float-left"><a target="_blank" href="{{route("website.index", $w->slug)}}">{{$w->name_ar}}</a></div>
                                     <div class="float-right">{{$w->used}} موقع</div>
                                     <div class="clearfix"></div>
                                 </li>

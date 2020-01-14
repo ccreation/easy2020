@@ -26,15 +26,22 @@
                     <a title="{{__("l.duplicate")}}"><i class="fas fa-copy"></i></a>
                 </li>
                 <li class="settings_block_btn">
-                    <a><i class="fas fa-cog"></i></a>
+                    <a title="{{__("l.settings")}}"><i class="fas fa-cog"></i></a>
+                </li>
+                <li class="settings_block_image_btn">
+                    <a title="{{__("l.background_image")}}"><i class="fas fa-image"></i></a>
                 </li>
                 <li class="up_block_btn">
-                    <a><i class="fas fa-chevron-up"></i></a>
+                    <a title="{{__("l.up")}}"><i class="fas fa-chevron-up"></i></a>
                 </li>
                 <li class="down_block_btn">
-                    <a><i class="fas fa-chevron-down"></i></a>
+                    <a title="{{__("l.down")}}"><i class="fas fa-chevron-down"></i></a>
                 </li>
             </ul>
+        </div>
+
+        <div class="main-sticky-toolbar3">
+            <button class="toggle-sticky-toolbar3"><i class="fas fa-plus"></i></button>
         </div>
 
         <div class="main-editor-tools">
@@ -107,6 +114,45 @@
                     <button class="btn-switch-mode add_form_btn" title="{{__("l.form")}}">
                         <span class="pbicon-wrapper"><i class="fab fa-wpforms"></i> <b>{{__("l.form")}}</b></span>
                     </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-editor-tools-image">
+            <div class="side-tool-buttons">
+                <div class="group-list-btn">
+                    <button class="btn-switch-mode add_image_btn" title="{{__("l.image_popup")}}">
+                        <span class="pbicon-wrapper"><i class="fa fa-image"></i></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-editor-tools-video">
+            <div class="side-tool-buttons">
+                <div class="group-list-btn">
+                    <button class="btn-switch-mode add_video_btn" title="{{__("l.video_popup")}}">
+                        <span class="pbicon-wrapper"><i class="fa fa-video"></i></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="col-single-image-wrapper">
+            <div class="col-single-image">
+                <div class="widght-single-image widght-single-image0">
+                    <img src="{{asset("public/no-image2.png")}}" alt="">
+                    <div class="image_name"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="col-single-video-wrapper">
+            <div class="col-single-image" style="flex: 0 0 25%;max-width: 25%; height: 160px;">
+                <div class="widght-single-image widght-single-video0" style="height: 100%; width: 100%;">
+                    <iframe style="width: 100%; height: 100%; background: #000;" src=""></iframe>
+                    <div class="image_name"></div>
+                    <div style="position: absolute; top:0px; bottom: 0px; left: 0px; right: 0px; background: transparent;"></div>
                 </div>
             </div>
         </div>
@@ -273,7 +319,8 @@
         .show_pages, .show_pages:hover, .close_block_settings, .close_block_settings:hover
         , .close_btn_settings, .close_btn_settings:hover, .close_link_settings, .close_link_settings:hover
         , .close_icons_settings, .close_icons_settings:hover, .close_linkicons_settings, .close_linkicons_settings:hover
-        , .close_form_settings, .close_form_settings:hover{
+        , .close_form_settings, .close_form_settings:hover, .close_image_settings, .close_image_settings:hover
+        , .close_video_settings, .close_video_settings:hover{
             background-color: #673EA1;
             padding: 10px 21px;
             border-radius: 5px;
@@ -284,9 +331,126 @@
         .main--container-website.active-dropdown{
             padding: 0px !important;
         }
+        .wrapper-gallery-image .tab-pane{
+            min-height: 300px;
+        }
+        .list-gallery-image{
+            height: 240px;
+            overflow-y: scroll;
+            overflow-x: hidden;
+            padding-top: 1px;
+        }
+        .aside-gallery-image{
+            padding : 0px !important;
+        }
+        .ModalLiberia{
+            padding-top: 15px !important;
+        }
+        .ModalLiberia .main-gallery-image .content-gallery-image .header-gallery-image{
+            padding: 10px 0px !important;
+        }
+        .save_button.disabled{
+            background-color: #AF96D3;
+            color: #512293;
+            cursor: not-allowed;
+            pointer-events:none;
+        }
+        .col-single-image{
+            margin-bottom: 15px;
+        }
+        .widght-single-image{
+            margin-bottom: 0px !important;
+        }
+        .widght-single-image.active{
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            box-shadow: 0px 0px 0px 2px #fff;
+        }
+        .widght-single-image1 {
+            position: relative;
+        }
+        .widght-single-image1 .remove_image{
+            display: none;
+            color: red;
+            background: #fff;
+            border: 1px solid red;
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 20px;
+            height: 20px;
+            text-align: center;
+            padding-top: 3.3px;
+            border-radius: 1px;
+        }
+        .widght-single-image1:hover .remove_image{
+            display: block;
+        }
+        .widght-single-image1 .remove_image:hover{
+            color: #fff;
+            background: red;
+            border: 1px solid #fff;
+        }
+        .widght-single-video1 {
+            position: relative;
+        }
+        .widght-single-video1 .remove_video{
+            display: none;
+            color: red;
+            background: #fff;
+            border: 1px solid red;
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 20px;
+            height: 20px;
+            text-align: center;
+            padding-top: 3.3px;
+            border-radius: 1px;
+        }
+        .widght-single-video1:hover .remove_video{
+            display: block;
+        }
+        .widght-single-video1 .remove_video:hover{
+            color: #fff;
+            background: red;
+            border: 1px solid #fff;
+        }
+        .preview_font{
+            color: white !important;
+            font-size: 1.4em !important;
+            text-align: justify !important;
+        }
+        .preview_font_title{
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+        .change_font.active{
+            border: 2px solid #543c93 !important;
+            box-sizing: border-box;
+        }
     </style>
 
     <script>
+
+        var app_lang            = "{{app()->getLocale()}}";
+        var images              = [];
+        var images_categories   = [];
+        var videos              = [];
+        var videos_categories   = [];
+        var iframe              = $('#frame_wrap').contents();
+        var lang                = "{{$website_lang}}";
+        var current_section     = null;
+        var current_section_add = null;
+        var current_icon        = null;
+        var current_btn         = null;
+        var current_link        = null;
+        var form_wrapper        = null;
+        var current_image       = null;
+        var chosen_image1       = null;
+        var current_video       = null;
+        var chosen_video1       = null;
 
         $(function () {
 
@@ -306,16 +470,6 @@
                 }
                 $('.scroll').each(function(){ const ps = new PerfectScrollbar($(this)[0]); });
             });
-
-
-
-            var iframe              = $('#frame_wrap').contents();
-            var lang                = "{{$website_lang}}";
-            var current_section     = null;
-            var current_icon        = null;
-            var current_btn         = null;
-            var current_link        = null;
-            var form_wrapper        = null;
 
             function relaoding(){
                 var window_height   = $(window.top).outerHeight();
@@ -366,25 +520,34 @@
                 relaoding();
                 iframe              = $('#frame_wrap').contents();
                 iframe.contents().find(".main-sticky-toolbar2").remove();
+                iframe.contents().find(".main-sticky-toolbar3").remove();
                 iframe.contents().find(".main-editor-tools").remove();
                 iframe.contents().find(".main-editor-tools-icon").remove();
                 iframe.contents().find(".main-editor-tools-btn").remove();
                 iframe.contents().find(".main-editor-tools-link").remove();
                 iframe.contents().find(".main-editor-tools-form").remove();
+                iframe.contents().find(".main-editor-tools-image").remove();
+                iframe.contents().find(".main-editor-tools-video").remove();
                 var settings_block  = $(".main-sticky-toolbar2").clone();
+                var settings_block_add  = $(".main-sticky-toolbar3").clone();
                 var settings_col    = $(".main-editor-tools").clone();
                 var settings_icon   = $(".main-editor-tools-icon").clone();
                 var settings_btn    = $(".main-editor-tools-btn").clone();
                 var settings_link   = $(".main-editor-tools-link").clone();
                 var settings_form   = $(".main-editor-tools-form").clone();
+                var settings_image  = $(".main-editor-tools-image").clone();
+                var settings_video  = $(".main-editor-tools-video").clone();
 
                 // Section Hover
                 iframe.contents().find("section.section").hover(function(e) {
                    $(this).addClass("highlighted");
                     var section = $(this);
                     current_section = section;
+                    current_section_add = null;
                     iframe.contents().find(".main-sticky-toolbar2").remove();
+                    iframe.contents().find(".main-sticky-toolbar3").remove();
                     $(this).append($(settings_block));
+                    $(this).append($(settings_block_add));
 
                     // Delete Block
                     $(settings_block).find(".delete_block_btn a").click(function(e) {
@@ -422,20 +585,29 @@
                         var color           = $(".background_color_div", current_section).css("background-color");
                         if(color)
                             $(".colorpicker1").spectrum("set", color);
-                        var background_image = $(current_section).css("background-image");
+                        /*var background_image = $(current_section).css("background-image");
                         var easy_image_settings = $(".backgroundImageSetting img");
                         if(background_image && background_image !="none"){
                             var background_image = background_image.match(/url\(["']?([^"']*)["']?\)/)[1];
                             $(easy_image_settings).attr("src", background_image)
                         }else{
                             $(easy_image_settings).attr("src", "{{asset("public/no-image2.png")}}")
-                        }
+                        }*/
                         var padding_top     = $(section).css("padding-top");
                         if(padding_top){
                             padding_top     = parseInt(padding_top.replace("px", ""));
                             var rangepicker = $(".sliderInput_2");
                             $(rangepicker).val(padding_top);
                         }
+                    });
+
+                    // Block Settings
+                    $(settings_block).find(".settings_block_image_btn a").click(function(e) {
+                        e.preventDefault();
+                        current_image = section;
+                        $(".settings_image_btn_nav_link").trigger("click");
+                        $("#image_popup_save, #image_popup_save2").addClass("disabled");
+                        $(".widght-single-image").removeClass("active");
                     });
 
                     // Move Block Up
@@ -464,6 +636,13 @@
                                 myHandler();
                             }
                         });
+                    });
+
+                    // Add Block
+                    $(settings_block_add).find(".toggle-sticky-toolbar3").click(function(e) {
+                        e.preventDefault();
+                        current_section_add = section;
+                        $(".blocks_list").trigger("click");
                     });
 
                 }, function () {
@@ -596,10 +775,12 @@
                     var width = $(this).outerWidth(true);
                     var height = $(this).outerHeight(true);
                     var width2 = $(settings_icon).outerWidth(true);
+                    var height2 = $(settings_icon).outerHeight(true);
                     if($(section).attr("id") == "header"){
                         $(settings_icon).css({top: position.top+(height), left: position.left + (width/2) - (width2/2) - 8 });
                     }else{
-                        $(settings_icon).css({top: position.top-(height - 30), left: position.left + (width/2) - (width2/2) - 8 });
+                        //$(settings_icon).css({top: position.top-(height - 30), left: position.left + (width/2) - (width2/2) - 8 });
+                        $(settings_icon).css({top: position.top - height2 , left: position.left + (width/2) - (width2/2) - 8 });
                     }
 
                     // Settings Link
@@ -948,6 +1129,40 @@
 
                 }, function(){});
 
+                // Image Settings
+                iframe.contents().find(".easy_image").hover(function(e) {
+                    e.preventDefault();
+                    current_image = $(this);
+                    iframe.contents().find(".main-editor-tools-image").remove();
+                    $(settings_image).show();
+                    $(settings_image).insertBefore(iframe.contents().find("#content"));
+                    var position = $(this).offset();
+                    $(settings_image).css({top: position.top + 5, left: position.left + 5 });
+                    $(settings_image).find(".add_image_btn").click(function(e) {
+                        e.preventDefault();
+                        $(".settings_image_btn_nav_link").trigger("click");
+                        $("#image_popup_save , #image_popup_save2").addClass("disabled");
+                        $(".widght-single-image").removeClass("active");
+                    });
+                });
+
+                // Video Settings
+                iframe.contents().find(".easy_video").hover(function(e) {
+                    e.preventDefault();
+                    current_video = $(this);
+                    iframe.contents().find(".main-editor-tools-video").remove();
+                    $(settings_video).show();
+                    $(settings_video).insertBefore(iframe.contents().find("#content"));
+                    var position = $(this).offset();
+                    $(settings_video).css({top: position.top + 5, left: position.left + 5 });
+                    $(settings_video).find(".add_video_btn").click(function(e) {
+                        e.preventDefault();
+                        $(".settings_video_btn_nav_link").trigger("click");
+                        $("#video_popup_save , #video_popup_save2").addClass("disabled");
+                        $(".widght-single-image").removeClass("active");
+                    });
+                });
+
             }
 
             $(document).on('iframeready', myHandler);
@@ -999,7 +1214,11 @@
                 $(this).closest(".dropdown_widget").removeClass("active_dropdown_widget");
                 $(this).closest(".dropdown_widget").prev(".nav-link").removeClass("active");
                 $.get(url, function (html) {
-                    iframe.find(".content-wrap").append(html);
+                    if(current_section_add){
+                        $(html).insertAfter($(current_section_add));
+                    }else{
+                        iframe.find(".content-wrap").append(html);
+                    }
                     iframe.find("#default_section").remove();
                     setTimeout(function () {
                         myHandler();
@@ -1038,34 +1257,15 @@
             $(document).on("click", ".save_page", function (e) {
                 e.preventDefault();
                 $(this).removeClass("active");
+                $(".widget__item-option-icon", this).html('<i class="fas fa-spinner fa-spin"></i>');
                 savepage($(this)) ;
             });
 
-            function savepage(s) {
-                var iframe = $('#frame_wrap').contents();
-                var html = window.frames[0].document.body;
-                var status = ($(s).hasClass("public")) ? 1 : 0;
-                iframe.contents().find(".main-sticky-toolbar2, .main-editor-tools, .main-editor-tools-icon, .main-editor-tools-btn, .main-editor-tools-link").remove();
-                html = $(html).find("#wrapper #content .content-wrap");
-                $('#frame_wrap').hide();
-                // destroy
-                //window.frame_wrap.front_destroying();
-                setTimeout(function () {
-                    // save now
-                    html = $(html).html();
-                    var url = "{{route("editor.save_page_html_content")}}";
-                    $.post(url, { "_token" : "{{csrf_token()}}", "id" : "{{$page->id}}", "lang": lang, "html" : html, "status" : status}, function(){
-                        goNotif("success", "{{__("l.Page Saved")}}");
-                        $("#header1").load(window.location + " #header2", function () {
-                            myHandler();
-                        });
-                    });
-                }, 1000);
-            }
-
             $(document).on("change", ".colorpicker1", function () {
                 var color = $(this).val();
-                $(".background_color_div", current_section).css("background-color", color);
+                $(".background_color_div", current_section).remove();
+                var background_color_div = '<div class="background_color_div" style="background: '+color+'; position: absolute; width: 100%; height: 100%; top: 0px; left: 0px; bottom: 0px; right: 0px"></div>';
+                $(current_section).prepend(background_color_div);
             });
 
             $(document).on("change", ".sliderInput_2", function () {
@@ -1364,6 +1564,7 @@
                 }
                 setTimeout(function () {
                     $("#save_button_link2").css("background-color", "#512293").css("color", "#AF96D3");
+                    $(".settings_link_btn_nav_link").trigger("click");
                 }, 1000);
             });
 
@@ -1413,7 +1614,460 @@
                 }
             });
 
+            $(document).on("click", ".close_image_settings", function (e) {
+                e.preventDefault();
+                $(".settings_image_btn_nav_link").trigger("click");
+            });
 
+            $(document).on("click", ".close_video_settings", function (e) {
+                e.preventDefault();
+                $(".settings_video_btn_nav_link").trigger("click");
+            });
+
+            function get_images(){
+                images              = [];
+                images_categories   = [];
+                $("#list-gallery-image1").html("");
+                $("#image_categories").html('<option value="0">{{__("l.all")}}</option>');
+                var url = "{{route("image_api")}}";
+                $.get(url, function (data) {
+
+                    if(data.images && data.images.length > 0) {
+
+                        $.each(data.images, function (i, img) {
+                            images.push({
+                                "name": img.name_{{app()->getLocale()}},
+                                "url": img.url,
+                                "category_id": img.category_id
+                            });
+                        });
+
+                        $.each(images, function (i, img) {
+                            var image_box = $("#col-single-image-wrapper .col-single-image").clone();
+                            $(image_box).attr("data-cat0", img.category_id);
+                            $(image_box).attr("data-name0", img.name);
+                            $(image_box).find(".image_name").html(img.name);
+                            $(image_box).find(".widght-single-image img").attr("src", img.url);
+                            $("#list-gallery-image1").append(image_box);
+                        });
+                    }
+
+                    if(data.categories && data.categories.length > 0){
+
+                        $.each(data.categories, function (i, cat) {
+                            images_categories.push({"name" : cat.name_{{app()->getLocale()}}, "id" : cat.id });
+                        });
+
+                        $.each(images_categories, function (i, cat) {
+                            var cat_option = '<option value="'+cat.id+'">'+cat.name+'</option>';
+                            $("#image_categories").append(cat_option);
+                        });
+
+                    }
+
+                });
+            }
+
+            get_images();
+
+            function filter_images(){
+                var cat     = $("#image_categories").val()+"";
+                var name    = $("#image_search").val()+"";
+                $("#list-gallery-image1 .col-single-image").hide();
+                $("#list-gallery-image1 .col-single-image").filter(function (i, el) {
+                    var catx = true;
+                    if(cat != "0"){
+                        var cat0 = $(el).attr("data-cat0")+"";
+                        if(cat != cat0)
+                            catx = false;
+                    }
+                    var namex = true;
+                    if(name != ""){
+                        var name0 = $(el).attr("data-name0")+"";
+                        if(!name0.includes(name))
+                            namex = false;
+                    }
+
+                    return ( catx && namex );
+                }).show();
+            }
+
+            $(document).on("change", "#image_categories", function () {
+                filter_images();
+            });
+
+            $(document).on("change paste keyup", "#image_search", function () {
+                filter_images();
+            });
+
+            $(document).on("click", ".widght-single-image0", function () {
+                $(".widght-single-image").removeClass("active");
+                $(this).addClass("active");
+                chosen_image1 = $("img", this).attr("src");
+                $("#image_popup_save").removeClass("disabled");
+            });
+
+            $(document).on("click", "#image_popup_save", function () {
+                if(chosen_image1 && current_image){
+                    if($(current_image).hasClass("easy_image")){
+                        $("img", current_image).attr("src", chosen_image1);
+                    }else if($(current_image).hasClass("section")){
+                        $(current_image).css("background-image", 'url('+chosen_image1+')');
+                    }
+                    $(".settings_image_btn_nav_link").trigger("click");
+                    chosen_image1 = null;
+                    current_image = null;
+                }
+            });
+
+            function get_videos(){
+                videos              = [];
+                videos_categories   = [];
+                $("#list-gallery-video1").html("");
+                $("#video_categories").html('<option value="0">{{__("l.all")}}</option>');
+                var url = "{{route("video_api")}}";
+                $.get(url, function (data) {
+
+                    if(data.videos && data.videos.length > 0) {
+
+                        $.each(data.videos, function (i, vid) {
+                            videos.push({
+                                "name": vid.name_{{app()->getLocale()}},
+                                "url": vid.url,
+                                "category_id": vid.category_id
+                            });
+                        });
+
+                        $.each(videos, function (i, vid) {
+                            var video_box = $("#col-single-video-wrapper .col-single-image").clone();
+                            $(video_box).attr("data-cat0", vid.category_id);
+                            $(video_box).attr("data-name0", vid.name);
+                            $(video_box).find(".image_name").html(vid.name);
+                            $(video_box).find(".widght-single-image iframe").attr("src", vid.url);
+                            $("#list-gallery-video1").append(video_box);
+                        });
+                    }
+
+                    if(data.categories && data.categories.length > 0){
+
+                        $.each(data.categories, function (i, cat) {
+                            videos_categories.push({"name" : cat.name_{{app()->getLocale()}}, "id" : cat.id });
+                        });
+
+                        $.each(videos_categories, function (i, cat) {
+                            var cat_option = '<option value="'+cat.id+'">'+cat.name+'</option>';
+                            $("#video_categories").append(cat_option);
+                        });
+
+                    }
+
+                });
+            }
+
+            get_videos();
+
+            function filter_videos(){
+                var cat     = $("#video_categories").val()+"";
+                var name    = $("#video_search").val()+"";
+                $("#list-gallery-video1 .col-single-image").hide();
+                $("#list-gallery-video1 .col-single-image").filter(function (i, el) {
+                    var catx = true;
+                    if(cat != "0"){
+                        var cat0 = $(el).attr("data-cat0")+"";
+                        if(cat != cat0)
+                            catx = false;
+                    }
+                    var namex = true;
+                    if(name != ""){
+                        var name0 = $(el).attr("data-name0")+"";
+                        if(!name0.includes(name))
+                            namex = false;
+                    }
+
+                    return ( catx && namex );
+                }).show();
+            }
+
+            $(document).on("change", "#video_categories", function () {
+                filter_videos();
+            });
+
+            $(document).on("change paste keyup", "#video_search", function () {
+                filter_videos();
+            });
+
+            $(document).on("click", ".widght-single-video0", function () {
+                $(".widght-single-image").removeClass("active");
+                $(this).addClass("active");
+                chosen_video1 = $("iframe", this).attr("src");
+                $("#video_popup_save").removeClass("disabled");
+            });
+
+            $(document).on("click", "#video_popup_save", function () {
+                if(chosen_video1 && current_video){
+                    if($(current_video).hasClass("easy_video")){
+                        $("iframe", current_video).attr("src", chosen_video1);
+                    }
+                    $(".settings_video_btn_nav_link").trigger("click");
+                    chosen_video1 = null;
+                    current_video = null;
+                }
+            });
+
+            function savepage(s = null, reload = false) {
+                var iframe = $('#frame_wrap').contents();
+                //var html = window.frames[0].document.body;
+                var html = $('#frame_wrap').contents().find("body");
+                var status = (s) ? ($(s).hasClass("public")) ? 1 : 0 : 1;
+                iframe.contents().find(".main-sticky-toolbar2,.main-sticky-toolbar3, .main-editor-tools, .main-editor-tools-icon, .main-editor-tools-btn, .main-editor-tools-link, .main-editor-tools-image, main-editor-tools-video").remove();
+                html = $(html).find("#wrapper #content .content-wrap");
+                $('#frame_wrap').hide();
+                // destroy
+                //window.frame_wrap.front_destroying();
+                setTimeout(function () {
+                    // save now
+                    html = $(html).html();
+                    var url = "{{route("editor.save_page_html_content")}}";
+                    $.post(url, { "_token" : "{{csrf_token()}}", "id" : "{{$page->id}}", "lang": lang, "html" : html, "status" : status}, function(){
+                        goNotif("success", "{{__("l.Page Saved")}}");
+                        $("#header1").load(window.location + " #header2", function () {
+                            myHandler();
+                            if(reload)
+                                document.getElementById("frame_wrap").contentDocument.location.reload(true);
+                            get_images();
+                            get_videos();
+                        });
+                    });
+                }, 1000);
+            }
+
+            // upload_image
+            $(document).on("submit", "#images_upload_form", function (e) {
+                e.preventDefault();
+                var file_data   = $("#images_upload_form .file").prop('files')[0];
+                var form_data   = new FormData();
+                form_data.append('_token', "{{csrf_token()}}");
+                form_data.append('file', file_data);
+                var url         = $(this).attr("action");
+                var form        = $(this);
+                $("button[type='submit']", form).prop("disabled", true);
+                $.ajax({
+                    url: url,
+                    dataType: 'text',
+                    cache: false,
+                    contentType: false,
+                    type: "POST",
+                    processData: false,
+                    data: form_data,
+                    success: function(url) {
+                        $("#images_upload_form").trigger("reset");
+                        $("button[type='submit']", form).prop("disabled", false);
+                        $("#my_images_wrapper").load(window.location + " #my_images_div");
+                    }
+                });
+            });
+
+            $(document).on("click", ".widght-single-image1", function () {
+                $(".widght-single-image").removeClass("active");
+                $(this).addClass("active");
+                chosen_image1 = $("img", this).attr("src");
+                $("#image_popup_save2").removeClass("disabled");
+            });
+
+            $(document).on("click", "#image_popup_save2", function () {
+                if(chosen_image1 && current_image){
+                    if($(current_image).hasClass("easy_image")){
+                        $("img", current_image).attr("src", chosen_image1);
+                    }else if($(current_image).hasClass("section")){
+                        $(current_image).css("background-image", 'url('+chosen_image1+')');
+                    }
+                    $(".settings_image_btn_nav_link").trigger("click");
+                    chosen_image1 = null;
+                    current_image = null;
+                }
+            });
+
+            $(document).on("click", ".widght-single-image1 .remove_image", function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                var image = $(this).data("image");
+                var url = '{{route("editor.images_upload_delete")}}';
+                var form_data   = new FormData();
+                form_data.append('_token', "{{csrf_token()}}");
+                form_data.append('image', image);
+                $(this).confirm({
+                    conf : function () {
+                        $.ajax({
+                            url: url,
+                            dataType: 'text',
+                            cache: false,
+                            contentType: false,
+                            type: "POST",
+                            processData: false,
+                            data: form_data,
+                            success: function(url) {
+                                $("#my_images_wrapper").load(window.location + " #my_images_div");
+                            }
+                        });
+                    }
+                });
+            });
+
+            // upload_video
+
+            function parseVideo (url) {
+                // - Supported YouTube URL formats:
+                //   - http://www.youtube.com/watch?v=My2FRPA3Gf8
+                //   - http://youtu.be/My2FRPA3Gf8
+                //   - https://youtube.googleapis.com/v/My2FRPA3Gf8
+                // - Supported Vimeo URL formats:
+                //   - http://vimeo.com/25451551
+                //   - http://player.vimeo.com/video/25451551
+                // - Also supports relative URLs:
+                //   - //player.vimeo.com/video/25451551
+
+                url.match(/(http:|https:|)\/\/(player.|www.)?(vimeo\.com|youtu(be\.com|\.be|be\.googleapis\.com))\/(video\/|embed\/|watch\?v=|v\/)?([A-Za-z0-9._%-]*)(\&\S+)?/);
+
+                if (RegExp.$3.indexOf('youtu') > -1) {
+                    var type = 'youtube';
+                } else if (RegExp.$3.indexOf('vimeo') > -1) {
+                    var type = 'vimeo';
+                }else{
+                    return {
+                        type : "video",
+                        id : url
+                    }
+                }
+
+                return {
+                    type: type,
+                    id: RegExp.$6
+                };
+            }
+
+            function createVideo (url, width, height) {
+                // Returns an iframe of the video with the specified URL.
+                var videoObj = parseVideo(url);
+                var $iframe = $('<iframe>', { width: width, height: height });
+                $iframe.attr('frameborder', 0);
+                if (videoObj.type == 'youtube') {
+                    $iframe.attr('src', '//www.youtube.com/embed/' + videoObj.id);
+                } else if (videoObj.type == 'vimeo') {
+                    $iframe.attr('src', '//player.vimeo.com/video/' + videoObj.id);
+                }else{
+                    //$iframe.attr('src', videoObj.id);
+                    return "";
+                }
+                return $iframe;
+            }
+
+            $(document).on("change paste keyup blur", "#video_url_youtube_or_vimeo", function () {
+                var url     =  $(this).val();
+                //var html    = '<img src="'+url+'" style="width: 100%; height: 100%;">';
+                var html    = createVideo (url, "100%", "300")
+                $("#video_preview").html(html);
+            });
+
+            $(document).on("click", ".widght-single-video1", function () {
+                $(".widght-single-image").removeClass("active");
+                $(this).addClass("active");
+                chosen_video1 = $("iframe", this).attr("src");
+                $("#video_popup_save2").removeClass("disabled");
+            });
+
+            $(document).on("click", "#video_popup_save2", function () {
+                if(chosen_video1 && current_video){
+                    if($(current_video).hasClass("easy_video")){
+                        $("iframe", current_video).attr("src", chosen_video1);
+                    }
+                    $(".settings_video_btn_nav_link").trigger("click");
+                    chosen_video1 = null;
+                    current_video = null;
+                }
+            });
+
+            $(document).on("submit", "#videos_upload_form", function (e) {
+                e.preventDefault();
+                var file_data   = $("#videos_upload_form input").val();
+                var form_data   = new FormData();
+                form_data.append('_token', "{{csrf_token()}}");
+                form_data.append('video_url_youtube_or_vimeo', file_data);
+                var url         = $(this).attr("action");
+                var form        = $(this);
+                $("button[type='submit']", form).prop("disabled", true);
+                $("#video_preview").html("");
+                $.ajax({
+                    url: url,
+                    dataType: 'text',
+                    cache: false,
+                    contentType: false,
+                    type: "POST",
+                    processData: false,
+                    data: form_data,
+                    success: function(url) {
+                        $("#videos_upload_form").trigger("reset");
+                        $("button[type='submit']", form).prop("disabled", false);
+                        $("#my_videos_wrapper").load(window.location + " #my_videos_div");
+                    }
+                });
+            });
+
+            $(document).on("click", ".widght-single-video1 .remove_video", function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                var id = $(this).data("id");
+                var url = '{{route("editor.videos_upload_delete")}}';
+                var form_data   = new FormData();
+                form_data.append('_token', "{{csrf_token()}}");
+                form_data.append('id', id);
+                $(this).confirm({
+                    conf : function () {
+                        $.ajax({
+                            url: url,
+                            dataType: 'text',
+                            cache: false,
+                            contentType: false,
+                            type: "POST",
+                            processData: false,
+                            data: form_data,
+                            success: function(url) {
+                                $("#my_videos_wrapper").load(window.location + " #my_videos_div");
+                            }
+                        });
+                    }
+                });
+
+            });
+
+            // Change Font
+            $(document).on("click", ".change_font", function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                var font = $(this).data("font");
+                var url = '{{route("editor.change_font")}}';
+                var form_data   = new FormData();
+                form_data.append('_token', "{{csrf_token()}}");
+                form_data.append('font', font);
+                form_data.append('id', "{{$website->id}}");
+                $(this).confirm({
+                    conf : function () {
+                        $.ajax({
+                            url: url,
+                            dataType: 'text',
+                            cache: false,
+                            contentType: false,
+                            type: "POST",
+                            processData: false,
+                            data: form_data,
+                            success: function(url) {
+                                $(".fonts_link .widget__item-option-icon").html('<i class="fas fa-spinner fa-spin"></i>');
+                                $(".fonts_link").trigger("click");
+                                savepage(null, true);
+                            }
+                        });
+                    }
+                });
+            });
 
         });
 

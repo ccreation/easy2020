@@ -182,6 +182,9 @@ class HomeController extends Controller
         if(isset($_GET["category_id"]))
             $videos         = $videos->where("category_id", $_GET["category_id"]);
         $videos             = $videos->get();
+        foreach ($videos as $video){
+            $video->url = createVideo($video->url);
+        }
         $data               = ["videos" => $videos, "categories" => $video_categories];
         return response($data, 200);
     }

@@ -271,21 +271,15 @@ if(!function_exists("parseVideo")){
 }
 
 if(!function_exists("createVideo")){
-    function createVideo($url = null, $width = null, $height = null, $style = "background: #000"){
+    function createVideo($url = null){
         if($url){
             $obj = parseVideo($url);
-            $iframe = "";
             if (@$obj["type"] == 'youtube'){
                 $urll = "https://www.youtube.com/embed/" . @$obj["id"];
-                $iframe = "<iframe src='$urll' width='$width' height='$height' frameborder='0' style='$style'></iframe>";
             } elseif(@$obj["type"] == 'vimeo'){
                 $urll = "https://player.vimeo.com/video/" . @$obj["id"];
-                $iframe = "<iframe src='$urll' width='$width' height='$height' frameborder='0' style='$style'></iframe>";
-            } else{
-                $urll = @$obj["id"];
-                $iframe = "<video preload='none' width='$width' height='$height' frameborder='0' style='$style' controls><source src='$urll'></video>";
             }
-            return $iframe;
+            return $urll;
         }
     }
 }

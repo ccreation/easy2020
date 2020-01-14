@@ -21,7 +21,28 @@
         font-weight: bold;
     }
     .widget__item_dropdown_inner_content{
-        height: 260px;
+        min-height: 140px;
+    }
+    .main_header_option .widget__item-list{
+        margin: 0px auto;
+    }
+    .widght-single-image{
+        background: #fff;
+        height: 110px;
+        width: 110px;
+        position: relative;
+    }
+    .widght-single-image .image_name{
+        width: 100%;
+        color: #fff;
+        font-size: 0.9em;
+        background: #0000008f;
+        overflow: hidden;
+        height: 17px;
+        text-align: center;
+        line-height: 17px;
+        position: absolute;
+        bottom: 0px;
     }
 </style>
 

@@ -45,6 +45,7 @@ class WebsitesController extends ClientBaseController
         if(!cpermissions("my_websites_list_all") and !cpermissions("my_websites_list_only_mine"))
             return redirect()->route("client.settings.no_permissions");
 
+
         $client         = $this->client;
         $user_id        = Auth::guard("client")->user()->id;
         if(cpermissions("my_websites_list_all"))
@@ -66,7 +67,7 @@ class WebsitesController extends ClientBaseController
     public function add(){
         if(!cpermissions("my_websites_add"))
             return redirect()->route("client.settings.no_permissions");
-
+        
         $client          = $this->client;
         $c          = Client::find($client->id);
         $plan       = Plan::find($c->plan_id);
@@ -77,7 +78,7 @@ class WebsitesController extends ClientBaseController
 
             return view("client.websites.add", compact("catgeories", "plan"));
         }else{
-            return back();
+            return back()->with("error", __("l.website_numbers_error"));
         }
     }
 
@@ -125,6 +126,9 @@ class WebsitesController extends ClientBaseController
         $website->save();
 
         create_homepage($website->id, $website->client_id, $website->user_id);
+
+        if($request->type == __("l.use_template"))
+            return redirect()->route("client.websites.choose_template_by_id", $website->id)->with("success", __("l.success_save"));
 
         return redirect()->route("editor.edit", $website->id)->with("success", __("l.success_save"));
     }
@@ -417,7 +421,6 @@ class WebsitesController extends ClientBaseController
             }
 
             if($website){
-                dd($website);
                 // Delete website data
                 foreach ($website->pages as $page){
                     $page->delete();
@@ -460,7 +463,7 @@ class WebsitesController extends ClientBaseController
 
                 }
 
-                return redirect()->route("pages.indexbywebsite", $website->id)->with("success", __("l.success_save"));
+                return redirect()->route("editor.edit", $website->id)->with("success", __("l.success_save"));
             }else{
                 return redirect()->back();
             }

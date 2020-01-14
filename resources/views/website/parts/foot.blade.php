@@ -67,6 +67,16 @@
             $(".main-editor-tools-form").css("display", "none");
         }
         $(document).on("click", handler_form);
+        var handler_image = function(event){
+            if($(event.target).is(".main-editor-tools-image, .main-editor-tools-image *")) return;
+            $(".main-editor-tools-image").css("display", "none");
+        }
+        $(document).on("click", handler_image);
+        var handler_video = function(event){
+            if($(event.target).is(".main-editor-tools-video, .main-editor-tools-video *")) return;
+            $(".main-editor-tools-video").css("display", "none");
+        }
+        $(document).on("click", handler_video);
 
     });
 
@@ -95,10 +105,9 @@
                     plugins: [
                         'lists',
                         'link',
-                        'emoticons',
                         'quickbars'
                     ],
-                    quickbars_selection_toolbar: 'undo redo | bold italic underline | forecolor backcolor | emoticons quicklink unlink | bullist | alignleft aligncenter alignright alignjustify alignnone fontselect fontsizeselect',
+                    quickbars_selection_toolbar: 'undo redo | bold italic underline | forecolor backcolor | quicklink unlink | bullist | alignleft aligncenter alignright alignjustify alignnone fontselect fontsizeselect',
                     font_formats: 'درويد كوفي =Droid Arabic Kufi;' +
                         'أميري=Amiri;' +
                         'كايرو=Cairo;' +
@@ -978,14 +987,16 @@
 --}}
 
 <style>
-    .easy_text, .easy_icon{
-        display: block !important;
-        width: 100%;
-        visibility: visible !important;
+
+    @if(@$website->font and @$website->font!="")
+        body *:not(.fa):not(.fab):not(.fas):not(.far){
+        font-family: "{{@$website->font}}" !important;
     }
+    @endif
+
     section.section.highlighted, section.section.highlighted .background_color_div, .easy_col.highlighted {
         transition: box-shadow 0.2s;
-        box-shadow: 0 0 0 7px #58e033 inset !important;
+        box-shadow: 0 0 0 7px #543c93 inset !important;
     }
     .language-switcher{
         border: 1px solid #d4d4d4;
@@ -1132,7 +1143,7 @@
     .main-sticky-toolbar2 .list-sticky-toolbar2{
         height: 46px;
         position: absolute;
-        right: -240px;
+        right: -290px;
         list-style: none;
         transition: .3s ease-in-out;
         -webkit-transition: .3s ease-in-out;
@@ -1168,6 +1179,26 @@
     }
     .main-sticky-toolbar2.sticky-toolbar-active .list-sticky-toolbar2{
         display: block;
+    }
+    .main-sticky-toolbar3 {
+        position: absolute;
+        bottom: 24px;
+        right: 50%;
+        left: 50%;
+        background-color: #512293;
+        color: #FFF;
+        z-index: 1000;
+    }
+    .main-sticky-toolbar3 .toggle-sticky-toolbar3{
+        height: 40px;
+        width: 40px;
+        position: absolute;
+        right: -30px;
+        top: 0px;
+        background-color: #673EA1;
+        border: none;
+        border-radius: 4px;
+        color: #fff;
     }
     .content-wrap section.section:first-of-type .up_block_btn a, .content-wrap section.section:last-of-type .down_block_btn a{
         pointer-events: none;
@@ -1557,7 +1588,73 @@
         color: #fff;
         font-size: 1.2em;
     }
+    .main-editor-tools-image, .main-editor-tools-video {
+        background-color: #512293;
+        border: 1px solid #AF96D3;
+        border-radius: 5px;
+        padding: 5px;
+        display: inline-block;
+        position: absolute;
+        width: fit-content;
+        margin-bottom: 5px;
+        z-index: 1000
+    }
+    .main-editor-tools-image .side-tool-buttons .group-list-btn,
+    .main-editor-tools-video .side-tool-buttons .group-list-btn{
+        display: flex;
+        align-items: center;
+        margin: 0px 5px;
+        flex-wrap: wrap;
+    }
+    .main-editor-tools-image .side-tool-buttons .btn-switch-mode,
+    .main-editor-tools-video .side-tool-buttons .btn-switch-mode{
+        background: transparent;
+        display: inline-block;
+        margin: 3px 3px;
+        transition: .2s ease-in-out;
+        -webkit-transition: .2s ease-in-out;
+        -moz-transition: .2s ease-in-out;
+        -ms-transition: .2s ease-in-out;
+        -o-transition: .2s ease-in-out;
+        border: none;
+        padding: 0px;
+    }
+    .main-editor-tools-image .side-tool-buttons .btn-switch-mode .pbicon-wrapper:hover,
+    .main-editor-tools-video .side-tool-buttons .btn-switch-mode .pbicon-wrapper:hover{
+        background-color: transparent;
+    }
+    .main-editor-tools-image .side-tool-buttons .btn-switch-mode .pbicon-wrapper.active-btn,
+    .main-editor-tools-video .side-tool-buttons .btn-switch-mode .pbicon-wrapper.active-btn{
+        background-color: #7D58AE;
+    }
+    .main-editor-tools-image .side-tool-buttons .btn-switch-mode .pbicon-wrapper,
+    .main-editor-tools-video .side-tool-buttons .btn-switch-mode .pbicon-wrapper{
+        border: 1px solid #AF96D3;
+        background-color: #673EA1;
+        width: auto;
+        padding: 0px 5px;
+        display: inline-block;
+        height: 35px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 3px;
+        overflow: hidden;
+        cursor: pointer;
+    }
+    .main-editor-tools-image .pbicon-wrapper .fa,
+    .main-editor-tools-video .pbicon-wrapper .fa{
+        color: #fff;
+    }
 
+    .feature-box.fbox-center .fbox-icon{
+        width: inherit;
+    }
+    .easy_text, .easy_icon{
+        display: block !important;
+        width: 100%;
+        visibility: visible !important;
+    }
 </style>
 
 @if(@$my_plugins["3"])

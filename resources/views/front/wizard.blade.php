@@ -110,6 +110,16 @@
                     <section class="section">
                         <div class="inner">
                             <h1 class="text-center">قم الان بتحرير موقعك</h1>
+                            <div class="actions actions_show clearfix">
+                                <ul role="menu" aria-label="Pagination">
+                                    <li aria-hidden="false" style="margin-top: 15px; display: block; background: #6eba2a; border-radius: 50px; margin-left: 20px;">
+                                        <input class="submit_btn" type="submit" name="type" value="{{__("l.use_template")}}" style="background: none; color: #fff; padding: 12px 20px; min-width: 200px;">
+                                    </li>
+                                    <li aria-hidden="false" style="margin-top: 15px;">
+                                        <input class="submit_btn" type="submit" name="type" value="{{__("l.start_editor")}}" style="background: none; color: #fff; padding: 12px 20px; min-width: 200px;">
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </section>
                 </div>
@@ -121,6 +131,12 @@
 
 
 @section("scripts")
+
+    <style>
+        .actions:not(.actions_show) ul li:last-of-type{
+            display: none !important;
+        }
+    </style>
 
 <script>
     $(function () {
@@ -187,7 +203,7 @@
             labels: {
                 previous : 'السابق',
                 next: 'التالي',
-                finish: 'انطلق',
+                finish: '',
                 current: ''
             },
             onStepChanging: function (event, currentIndex, newIndex) {
@@ -212,6 +228,13 @@
                  $("#form-register").submit();
              }
         });
+
+         $(document).on("click", ".submit_btn", function () {
+             $("#form-register").remove(".category_id");
+             $("#form-register").append('<input class="category_id" name="category_id" value="'+category_id+'">');
+             $("#form-register").remove(".default_lang");
+             $("#form-register").append('<input class="default_lang" name="default_lang" value="'+default_lang+'">');
+         });
     });
 </script>
 

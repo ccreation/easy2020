@@ -662,4 +662,11 @@ return array (
   'up' => 'Up',
   'down' => 'Down',
   'buttons' => 'Buttons',
+  'start_editor' => 'Complete To Editor',
+  'use_template' => 'Use a Template',
+  'images' => 'Images',
+  'paddings' => 'Paddings',
+  'website_numbers_error' => 'The current plan must be upgraded to add new websites',
+  'videos' => 'Videos List',
+  'fonts_note' => 'You can choose the font that will appear throughout the site',
 );
