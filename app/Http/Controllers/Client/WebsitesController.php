@@ -237,8 +237,6 @@ class WebsitesController extends ClientBaseController
         $website->name_en           = ($request->name_en)?$request->name_en:"";
         $website->description_ar    = ($request->description_ar)?$request->description_ar:"";
         $website->description_en    = ($request->description_en)?$request->description_en:"";
-        $website->color1            = $request->color1;
-        $website->color2            = $request->color2;
         $website->default_lang      = $request->default_lang;
         if($request->hasFile("logo")){
             if($website->logo){
@@ -429,8 +427,6 @@ class WebsitesController extends ClientBaseController
                 // Copy template general configurations
                 $website->multi_lang    = $template->multi_lang;
                 $website->default_lang  = $template->default_lang;
-                $website->color1        = $template->color1;
-                $website->color2        = $template->color2;
                 $website->homepage      = $template->homepage;
                 $website->topbar_type   = $template->topbar_type;
                 $website->templatee_id  = $template->id;

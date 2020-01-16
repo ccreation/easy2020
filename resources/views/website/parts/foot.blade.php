@@ -1674,3 +1674,7 @@
         {!! @$plugin_datas["7"]->code !!}
     @endif
 @endif
+
+@if(@$website->color)
+    @include("website.parts.color")
+@endif

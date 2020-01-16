@@ -14,6 +14,7 @@ use App\Client;
 use App\Plan;
 use App\Form;
 use App\ClientVideo;
+use App\Color;
 
 class EditorController extends Controller{
 
@@ -98,7 +99,7 @@ class EditorController extends Controller{
      */
     public function edit($id = null, $page_id = null){
         $client_id          = @$this->client->id;
-        $website            = Website::where(["id" => $id, "client_id" => $client_id])->first();
+        $website            = Website::with("color")->where(["id" => $id, "client_id" => $client_id])->first();
         $websites           = Website::where("client_id", $client_id)->where("id", "!=", $id)->orderby("created_at", "desc")->get();
         if(!$website)
             return back();
@@ -148,9 +149,10 @@ class EditorController extends Controller{
         foreach ($my_videos as $my_video){
             $my_video->url = createVideo($my_video->url);
         }
+        $colors = Color::where("client_id", $client_id)->orderby("created_at", "desc")->get();
 
         return  view("editor.edit", compact("website", "page", "websites", "pages",
-            "website_lang", "real_page_url", "page_url", "forms", "my_images", "my_videos"));
+            "website_lang", "real_page_url", "page_url", "forms", "my_images", "my_videos", "colors"));
     }
 
     /**
@@ -321,6 +323,57 @@ class EditorController extends Controller{
             else
                 $website->font = null;
             $website->save();
+        }
+    }
+
+    public function save_color(Request $request){
+        $client_id          = @$this->client->id;
+
+        $color              = new Color;
+        $color->client_id   = $client_id;
+        $color->name        = $request->name;
+        $color->color1      = $request->color1;
+        $color->color2      = $request->color2;
+        $color->save();
+    }
+
+    public function change_color_default(Request $request){
+        $client_id          = @$this->client->id;
+
+        $website            = Website::where(["id" => $request->website_id, "client_id" => $client_id])->first();
+        if($website){
+            $website->color_id = ($request->color_id and $request->color_id != "0") ? $request->color_id : null;
+            $website->save();
+        }
+    }
+
+    public function update_color(Request $request){
+        $client_id          = @$this->client->id;
+
+        $color              = Color::where(["id" => $request->color_id, "client_id" => $client_id])->first();
+        if($color){
+            $color->name        = $request->name;
+            $color->color1      = $request->color1;
+            $color->color2      = $request->color2;
+            $color->save();
+        }
+    }
+
+    public function remove_color(Request $request){
+        $client_id          = @$this->client->id;
+
+        $website            = Website::where(["id" => $request->website_id, "client_id" => $client_id])->first();
+        $color              = Color::where(["id" => $request->color_id, "client_id" => $client_id])->first();
+
+        if($color){
+            $color->delete();
+        }
+
+        if($website){
+            if($website->color_id == $request->color_id){
+                $website->color_id = null;
+                $website->save();
+            }
         }
     }
 

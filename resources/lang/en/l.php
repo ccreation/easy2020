@@ -669,4 +669,7 @@ return array (
   'website_numbers_error' => 'The current plan must be upgraded to add new websites',
   'videos' => 'Videos List',
   'fonts_note' => 'You can choose the font that will appear throughout the site',
+  'colors_notes' => 'Choose a color that suits your site, or create your own',
+  'default_color' => 'Default color',
+  'color_name' => 'Colors Name',
 );

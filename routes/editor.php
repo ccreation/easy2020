@@ -15,5 +15,9 @@ Route::group(["namespace" => "Common", 'prefix' => 'editor/', "as"=>"editor."], 
     Route::post('videos_upload_save', 'EditorController@videos_upload_save')->name('videos_upload_save');
     Route::post('videos_upload_delete', 'EditorController@videos_upload_delete')->name('videos_upload_delete');
     Route::post('change_font', 'EditorController@change_font')->name('change_font');
+    Route::post('save_color', 'EditorController@save_color')->name('save_color');
+    Route::post('change_color_default', 'EditorController@change_color_default')->name('change_color_default');
+    Route::post('update_color', 'EditorController@update_color')->name('update_color');
+    Route::post('remove_color', 'EditorController@remove_color')->name('remove_color');
 
 });

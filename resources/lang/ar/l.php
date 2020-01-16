@@ -485,7 +485,7 @@ return array (
   'link_url5' => 'الرابط 5',
   'link_url6' => 'الرابط 6',
   'link_url7' => 'الرابط 7',
-  'default' => 'الإفتراضي',
+  'default' => 'إفتراضي',
   'newsletter_text' => 'نص النشرة البريدية',
   'portfolio_data' => 'قائمة الأعمال',
   'all_works' => 'كل الأعمال',
@@ -668,4 +668,7 @@ return array (
   'website_numbers_error' => 'يجب ترقية الباقة لإضافة مواقع جديدة',
   'videos' => 'قائمة الفيديوهات',
   'fonts_note' => 'يمكنك اختيار الخط الذي سيظهر في كامل الموقع',
+  'colors_notes' => 'اختر لون يناسب موقعك، أو أنشأ لون خاص بك',
+  'default_color' => 'اللون الإفتراضي',
+  'color_name' => 'إسم التركيبة',
 );

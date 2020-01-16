@@ -138,8 +138,6 @@ class PaymentsController extends AdminBaseController
                 // Copy template general configurations
                 $website->multi_lang    = $template->multi_lang;
                 $website->default_lang  = $template->default_lang;
-                $website->color1        = $template->color1;
-                $website->color2        = $template->color2;
                 $website->homepage      = $template->homepage;
                 $website->topbar_type   = $template->topbar_type;
                 $website->footer_type   = $template->footer_type;

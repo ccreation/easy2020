@@ -116,22 +116,6 @@
 
                 </div>
 
-                <div class="col-md-12 mt-2 mb-2"></div>
-
-                <div class="col-md-5 mx-auto">
-                    <div class="form-group">
-                        <label>{{__("l.color1")}}</label>
-                        <input type="text" name="color1" value="{{$website->color1}}" class="form-control colorpicker">
-                    </div>
-                </div>
-
-                <div class="col-md-5 mx-auto">
-                    <div class="form-group">
-                        <label>{{__("l.color2")}}</label>
-                        <input type="text" name="color2" value="{{$website->color2}}" class="form-control colorpicker">
-                    </div>
-                </div>
-
             </div>
 
             <div class="row">

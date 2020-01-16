@@ -1210,20 +1210,20 @@
                         </li>
                         <!-- colors -->
                         <li class="widget__item-option-item">
-                            <a class="nav-item nav-link"><span class="widget__item-option-icon">
-                        <img src="../images/cpanel/art-and-design.png" alt=""></span><span
-                                        class="widget__item-option-text"> الألوان</span></a>
+                            <a class="nav-item nav-link colors_link"><span class="widget__item-option-icon"><img src="{{asset("public/dashboard/images/cpanel/art-and-design.png")}}" alt=""></span><span
+                                        class="widget__item-option-text"> {{__("l.colors")}}</span></a>
                             <div class="dropdown_widget ">
                                 <div class="container">
                                     <div class="dropdown_widget-grid">
                                         <div class="dropdown_widget-sidebar">
-                                            <h5>الألوان</h5>
-                                            <h6>اختر لون يناسب موقعك، أو أنشأ لون خاص بك </h6>
+                                            <h5>{{__("l.colors")}}</h5>
+                                            <h6>{{__("l.colors_notes")}}</h6>
                                         </div>
                                         <div class="dropdown_widget-content">
                                             <div class="row">
                                                 <div class="col-lg-12">
-                                                    <div class="widget__item_dropdown_inner_content height-scroll-115 scroll">
+
+                                                    <div class="widget__item_dropdown_inner_content height-scroll-115 scroll colors_widget colors_list">
                                                         <div class="row">
                                                             <div class="col-lg-3">
                                                                 <a class="widget__item_dropdown-link link-active add_new_color">
@@ -1235,65 +1235,103 @@
                                                                 </a>
                                                             </div>
                                                             <div class="col-lg-3">
-                                                                <div class="widget__item-color">
-                                                                    <div class="widget__item-color-header">
-                                                                        اسم تركيبة اللون
-                                                                    </div>
+                                                                <div class="widget__item-color @if(!$website->color_id) active @endif change_color_default">
+                                                                    <div class="widget__item-color-header">{{__("l.default_color")}}</div>
                                                                     <div class="widget__item-color-body">
-                                                                        <div class="widget__item-color-option bg-danger">
+                                                                        <div class="widget__item-color-option" style="background: #763a96;">
                                                                         </div>
-                                                                        <div class="widget__item-color-option bg-warning">
+                                                                        <div class="widget__item-color-option" style="background: #551B74	;">
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-lg-3">
-                                                                <div class="widget__item-color">
-                                                                    <div class="widget__item-color-header">
-                                                                        اسم تركيبة اللون
-                                                                    </div>
-                                                                    <div class="widget__item-color-body">
-                                                                        <div class="widget__item-color-option bg-danger">
-                                                                        </div>
-                                                                        <div class="widget__item-color-option bg-warning">
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-lg-3">
-                                                                <div class="widget__item-color">
-                                                                    <div class="widget__item-color-header">
-                                                                        اسم تركيبة اللون
-                                                                    </div>
-                                                                    <div class="widget__item-color-body">
-                                                                        <div class="widget__item-color-option bg-white">
-                                                                        </div>
-                                                                        <div class="widget__item-color-option bg-dark">
+                                                            @foreach($colors as $color)
+                                                                <div class="col-lg-3">
+                                                                    <div class="widget__item-color @if($website->color_id == $color->id) active @endif colors_edit_btn" data-id="{{$color->id}}">
+                                                                        <div class="widget__item-color-header">{{$color->name}}</div>
+                                                                        <div class="widget__item-color-body">
+                                                                            <div class="widget__item-color-option" style="background: {{$color->color1}};">
+                                                                            </div>
+                                                                            <div class="widget__item-color-option" style="background: {{$color->color2}};">
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
-                                                            <div class="col-lg-3">
-                                                                <div class="widget__item-color">
-                                                                    <div class="widget__item-color-header">
-                                                                        اسم تركيبة اللون
-                                                                    </div>
-                                                                    <div class="widget__item-color-body">
-                                                                        <div class="widget__item-color-option bg-info">
-                                                                        </div>
-                                                                        <div class="widget__item-color-option bg-secondary">
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
+                                                            @endforeach
                                                         </div>
                                                     </div>
+
+                                                    <div class="widget__item_dropdown_inner_content height-scroll-115 scroll colors_widget colors_add">
+                                                        <form action="{{route("editor.save_color")}}" class="row save_color" method="post">
+                                                            <div class="col-lg-10">
+                                                                <div class="row">
+                                                                    <div class="col-sm-3"><label class="text-white">{{__("l.color_name")}}</label></div>
+                                                                    <div class="col-sm-9">
+                                                                        <input type="text" class="form-control name" name="name" required style="height: 40px !important; color: #543c93 !important;">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row mt-1">
+                                                                    <div class="col-sm-3"><label class="text-white">{{__("l.color1")}}</label></div>
+                                                                    <div class="col-sm-9">
+                                                                        <input type="text" class="form-control colorpicker color1" name="color1" value="#763a96" required>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row mt-1">
+                                                                    <div class="col-sm-3"><label class="text-white">{{__("l.color2")}}</label></div>
+                                                                    <div class="col-sm-9">
+                                                                        <input type="text" class="form-control colorpicker color2" name="color2" value="#551B74" required>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-2">
+                                                                <button type="submit" class="btn general-btn-sm-blue rounded btn-block">{{__("l.save")}}</button>
+                                                                <button type="button" class="btn general-btn-sm-blue rounded btn-block show_colors_list">{{__("l.reset")}}</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                    @foreach($colors as $color)
+                                                        <div class="widget__item_dropdown_inner_content height-scroll-115 scroll colors_widget colors_edit colors_edit{{$color->id}}">
+                                                            <form action="{{route("editor.update_color")}}" class="row update_color" method="post">
+                                                                <input type="hidden" name="id" class="color_id" value="{{$color->id}}">
+                                                                <div class="col-lg-8">
+                                                                    <div class="row">
+                                                                        <div class="col-sm-3"><label class="text-white">{{__("l.color_name")}}</label></div>
+                                                                        <div class="col-sm-9">
+                                                                            <input type="text" value="{{$color->name}}" class="form-control name" name="name" required style="height: 40px !important; color: #543c93 !important;">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row mt-1">
+                                                                        <div class="col-sm-3"><label class="text-white">{{__("l.color1")}}</label></div>
+                                                                        <div class="col-sm-9">
+                                                                            <input type="text" class="form-control colorpicker color1" name="color1" value="{{$color->color1}}" required>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row mt-1">
+                                                                        <div class="col-sm-3"><label class="text-white">{{__("l.color2")}}</label></div>
+                                                                        <div class="col-sm-9">
+                                                                            <input type="text" class="form-control colorpicker color2" name="color2" value="{{$color->color2}}" required>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-2">
+                                                                    <button type="submit" class="btn general-btn-sm-blue rounded btn-block">{{__("l.save")}}</button>
+                                                                    <button type="button" class="btn general-btn-sm-blue rounded btn-block show_colors_list">{{__("l.reset")}}</button>
+                                                                </div>
+                                                                <div class="col-lg-2">
+                                                                    <button type="button" class="btn general-btn-sm-blue rounded btn-block change_color_default" data-id="{{$color->id}}">{{__("l.default")}}</button>
+                                                                    <button type="button" class="btn general-btn-sm-blue rounded btn-block remove_color" data-id="{{$color->id}}">{{__("l.delete")}}</button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    @endforeach
+
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            <!--
                             <div class="dropdown_widget dropdown_widget_second">
                                 <div class="container">
                                     <div class="dropdown_widget-grid">
@@ -1361,6 +1399,7 @@
                                     </div>
                                 </div>
                             </div>
+                            -->
                         </li>
                         <!-- lang -->
                         <li class="widget__item-option-item">

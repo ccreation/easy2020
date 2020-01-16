@@ -26,4 +26,8 @@ class Website extends Model
         return $this->belongsTo("App\Client", "client_id");
     }
 
+    public function color(){
+        return $this->belongsTo("App\Color", "color_id");
+    }
+
 }

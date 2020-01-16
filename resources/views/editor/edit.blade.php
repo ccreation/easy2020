@@ -430,6 +430,16 @@
             border: 2px solid #543c93 !important;
             box-sizing: border-box;
         }
+        .colors_add, .colors_edit{
+            display: none;
+        }
+        .widget__item-color.active{
+            border: 2px solid #543c93 !important;
+            box-sizing: border-box;
+        }
+        .widget__item-color-header{
+            font-weight: bold;
+        }
     </style>
 
     <script>
@@ -2068,6 +2078,142 @@
                     }
                 });
             });
+
+            // Change Colors
+            $(document).on("click", ".add_new_color", function (e) {
+                e.preventDefault();
+                $(".colors_widget").hide();
+                $(".colors_add").show();
+            });
+
+            $(document).on("click", ".show_colors_list", function (e) {
+                e.preventDefault();
+                $(".colors_widget").hide();
+                $(".colors_list").show();
+            });
+
+            $(document).on("submit", ".save_color", function (e) {
+                e.preventDefault();
+                var url = $(this).attr("action");
+                var form_data   = new FormData();
+                form_data.append("_token", "{{csrf_token()}}");
+                form_data.append("name", $(".name", this).val());
+                form_data.append("color1", $(".color1", this).val());
+                form_data.append("color2", $(".color2", this).val());
+                $(this).confirm({
+                    conf : function () {
+                        $.ajax({
+                            url: url,
+                            dataType: 'text',
+                            cache: false,
+                            contentType: false,
+                            type: "POST",
+                            processData: false,
+                            data: form_data,
+                            success: function(url) {
+                                $("#header1").load(window.location + " #header2", function () {
+                                    relaoding();
+                                    get_images();
+                                    get_videos();
+                                    $(".colors_link").trigger("click");
+                                });
+                            }
+                        });
+                    }
+                });
+            });
+
+            $(document).on("click", ".change_color_default", function (e) {
+                e.preventDefault();
+                var url = '{{route("editor.change_color_default")}}';
+                var id = $(this).data("id") ? $(this).data("id") : "0";
+                var form_data   = new FormData();
+                form_data.append("_token", "{{csrf_token()}}");
+                form_data.append("website_id", "{{$website->id}}");
+                form_data.append("color_id", id);
+                $(this).confirm({
+                    conf : function () {
+                        $.ajax({
+                            url: url,
+                            dataType: 'text',
+                            cache: false,
+                            contentType: false,
+                            type: "POST",
+                            processData: false,
+                            data: form_data,
+                            success: function(url) {
+                                $(".colors_link").trigger("click");
+                                $(".colors_link .widget__item-option-icon").html('<i class="fas fa-spinner fa-spin"></i>');
+                                savepage(null, true);
+                            }
+                        });
+                    }
+                });
+            });
+
+            $(document).on("click", ".colors_edit_btn", function (e) {
+                e.preventDefault();
+                var id = $(this).data("id");
+                $(".colors_widget").hide();
+                $(".colors_edit"+id).show();
+            });
+
+            $(document).on("submit", ".update_color", function (e) {
+                e.preventDefault();
+                var url = $(this).attr("action");
+                var form_data   = new FormData();
+                form_data.append("_token", "{{csrf_token()}}");
+                form_data.append("color_id", $(".color_id", this).val());
+                form_data.append("name", $(".name", this).val());
+                form_data.append("color1", $(".color1", this).val());
+                form_data.append("color2", $(".color2", this).val());
+                $(this).confirm({
+                    conf : function () {
+                        $.ajax({
+                            url: url,
+                            dataType: 'text',
+                            cache: false,
+                            contentType: false,
+                            type: "POST",
+                            processData: false,
+                            data: form_data,
+                            success: function(url) {
+                                $(".colors_link .widget__item-option-icon").html('<i class="fas fa-spinner fa-spin"></i>');
+                                savepage(null, true);
+                            }
+                        });
+                    }
+                });
+            });
+
+            $(document).on("click", ".remove_color", function (e) {
+                e.preventDefault();
+                var url = '{{route("editor.remove_color")}}';
+                var id = $(this).data("id");
+                var form_data   = new FormData();
+                form_data.append("_token", "{{csrf_token()}}");
+                form_data.append("website_id", "{{$website->id}}");
+                form_data.append("color_id", id);
+                $(this).confirm({
+                    conf : function () {
+                        $.ajax({
+                            url: url,
+                            dataType: 'text',
+                            cache: false,
+                            contentType: false,
+                            type: "POST",
+                            processData: false,
+                            data: form_data,
+                            success: function(url) {
+                                $(".colors_link .widget__item-option-icon").html('<i class="fas fa-spinner fa-spin"></i>');
+                                savepage(null, true);
+                            }
+                        });
+                    }
+                });
+            });
+
+
 
         });
 
