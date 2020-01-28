@@ -65,7 +65,9 @@ class ClientController extends Controller{
         \Session::put('locale', "ar");
         \App::setlocale("ar");
         \Session::put('myclient', $client);
-
+        if(Auth::guard("web")->check()){
+            Auth::guard("web")->logout();
+        }
         Auth::guard("client")->attempt(["email" => $request->email, "password" => $request->password], true);
 
         $request->session()->regenerate();
@@ -120,6 +122,9 @@ class ClientController extends Controller{
                 \Session::forget('locale');
                 \Session::put('locale', "ar");
                 \App::setlocale("ar");
+            }
+            if(Auth::guard("web")->check()){
+                Auth::guard("web")->logout();
             }
             \Session::put('myclient', $client_user->client);
             $request->session()->regenerate();

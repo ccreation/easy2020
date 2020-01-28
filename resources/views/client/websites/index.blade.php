@@ -48,6 +48,9 @@
                                             @if(cpermissions("my_websites_update"))
                                                 <a class="dropdown-item" href="{{route("client.websites.edit", $website->id)}}">{{__("l.edit_website")}}</a>
                                             @endif
+                                            @if($my_plan->root_domain == 1 and $website->status == 1)
+                                                <a class="dropdown-item" href="{{route("client.websites.add_domain_step_1", $website->id)}}">{{__("l.change_domain")}}</a>
+                                            @endif
                                             @if(cpermissions("my_websites_delete"))
                                                 <a class="dropdown-item" href="{{route("client.websites.delete", $website->id)}}" onclick="return confirm('{{__("l.are_you_sure")}}')">{{__("l.delete")}}</a>
                                             @endif

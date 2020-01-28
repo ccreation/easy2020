@@ -169,7 +169,8 @@ class Promocodes
         try {
             if ($promocode = $this->check($code)) {
                 if ($this->isSecondUsageAttempt($promocode)) {
-                    throw new AlreadyUsedException;
+                    //throw new AlreadyUsedException;
+                    return back()->with("error", "لا يمك إستعمال هذا الكوبون أكثر من مرة م نفس المستخدم");
                 }
 
                 $promocode->users()->attach(auth()->guard("client")->user()->id, [

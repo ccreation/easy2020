@@ -5,10 +5,10 @@
                 <div class="widget__item-list">
                     <ul class="widget__item-option list_screen">
                         <li class="widget__item-option-item">
-                            @if(Auth::guard("client")->check())
-                                <a href="{{route("client.websites.index")}}" class="nav-item nav-link px-3 px-lg-2"><span class="widget__item-option-icon"><i class="fa fa-chevron-right fa-2x"></i></span></a>
-                            @elseif(Auth::guard("web")->check())
+                            @if(Auth::guard("web")->check())
                                 <a href="{{route("admin.templates.index")}}" class="nav-item nav-link px-3 px-lg-2"><span class="widget__item-option-icon"><i class="fa fa-chevron-right fa-2x"></i></span></a>
+                            @elseif(Auth::guard("client")->check())
+                                <a href="{{route("client.websites.index")}}" class="nav-item nav-link px-3 px-lg-2"><span class="widget__item-option-icon"><i class="fa fa-chevron-right fa-2x"></i></span></a>
                             @endif
                         </li>
                     </ul>
@@ -886,7 +886,7 @@
                                                                 <div class="input-group-prepend">
                                                                     <div class="input-group-text">{{__("l.color")}}</div>
                                                                 </div>
-                                                                <input class="form-control colorpicker" id="colorpicker3">
+                                                                <input class="form-control colorpicker" id="colorpicker5">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1238,9 +1238,9 @@
                                                                 <div class="widget__item-color @if(!$website->color_id) active @endif change_color_default">
                                                                     <div class="widget__item-color-header">{{__("l.default_color")}}</div>
                                                                     <div class="widget__item-color-body">
-                                                                        <div class="widget__item-color-option" style="background: #763a96;">
+                                                                        <div class="widget__item-color-option" style="background: #551B74;">
                                                                         </div>
-                                                                        <div class="widget__item-color-option" style="background: #551B74	;">
+                                                                        <div class="widget__item-color-option" style="background: #763a96;">
                                                                         </div>
                                                                     </div>
                                                                 </div>

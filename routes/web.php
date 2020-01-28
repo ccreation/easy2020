@@ -14,6 +14,7 @@ Route::get("/policy", "HomeController@policy")->name("policy");
 Route::post('sluggable', 'HomeController@sluggable')->name('sluggable');
 Route::get("/image_api", "HomeController@image_api")->name("image_api");
 Route::get("/video_api", "HomeController@video_api")->name("video_api");
+
 // Client Dashboard
 require ("client.php");
 

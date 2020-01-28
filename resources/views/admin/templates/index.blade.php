@@ -142,14 +142,10 @@
                                     <div class="widget__list_image">
                                         <div class="widget__item_overlay">
                                             @if($website->slug)
-                                                <a href="{{--route("template.website.index2", [$website->slug])--}}" title="رابط القالب" target="_blank"><img src="{{asset("public/dashboard/images/eye.png")}}" alt="" /></a>
-                                            @else
-                                                <a href="javascript:void(0)" class="disabled" style="cursor: pointer !important; pointer-events: inherit;"
-                                                   onclick="event.preventDefault();alert('يجب عليك إختيار رابط للقالب أولا !')"
-                                                   title="هذا القالب لا يملك رابط خاص به"><img src="{{asset("public/dashboard/images/eye.png")}}" alt="" /></a>
+                                                <a href="{{route("website.index", [$website->slug, app()->getLocale()])}}" title="رابط القالب" target="_blank"><img src="{{asset("public/dashboard/images/eye.png")}}" alt="" /></a>
                                             @endif
                                             @if(permissions("templates_edit"))
-                                                <a href="{{--route("pages.indexbywebsite", $website->id)--}}" title="قائمة صفحات القالب"><i class="fa fa-list" style="color: #dfdfdf"></i></a>
+                                                <a href="{{route("editor.edit", $website->id)}}" title="محرر الصفحات"><i class="fa fa-edit" style="color: #dfdfdf"></i></a>
                                                 <a href="{{route("admin.templates.edit", $website->id)}}" title="تعديل البيانات العامة للقالب"><img src="{{asset("public/dashboard/images/settings.png")}}" alt="" /></a>
                                             @endif
                                             @if(permissions("templates_remove"))

@@ -36,7 +36,10 @@ class EditorController extends Controller{
         $this->middleware('language');
         $this->middleware('pages');
         $this->middleware(function ($request, $next) {
-            $client = Client::find($request->client->id);
+            if(Auth::guard("web")->check())
+                $client = Client::find(1);
+            else
+                $client = Client::find($request->client->id);
             $this->client = $client;
             View::share("client", $this->client);
             $this->lang = $request->langg;
@@ -116,6 +119,7 @@ class EditorController extends Controller{
                 $page       = Page::where(["id"=>$website->homepage, "website_id" => $id, "client_id" => $client_id])->first();
             }
         }
+
         $pages              = Page::where(["website_id" => $id, "client_id" => $client_id])->orderby("created_at", "desc")->get();
 
         $website_lang       = $website->default_lang;
@@ -227,6 +231,25 @@ class EditorController extends Controller{
         $page->save();
 
         return back()->with("success", __("l.success_update"));
+    }
+    /**
+     * Delete the page
+     * @param  Page id  $id
+     * @return a redirect to pages list (index)
+     */
+    public function delete_page($id=null){
+        if(Auth::guard("client")->check())
+            if(!cpermissions("pages_list_delete"))
+                return redirect()->route("client.settings.no_permissions");
+
+        $page           = Page::where(["id" => $id, "client_id"=>$this->client->id])->first();
+        if(!$page)
+            return back();
+        $website_id = $page->website_id;
+
+        $page->delete();
+
+        return redirect()->route("editor.edit", $website_id)->with("success", __("l.success_delete"));
     }
 
     /**

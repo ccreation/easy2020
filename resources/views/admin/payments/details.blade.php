@@ -135,7 +135,7 @@
                                 @if(@$payment->template->homepage)
                                     <li>
                                         <span>
-                                            <a href="{{--route("website.index2", [@$payment->template->slug])--}}" target="_blank" class="btn general-btn-sm-blue rounded">مشاهدة القالب</a>
+                                            <a href="{{route("website.index", [@$payment->template->slug, app()->getLocale()])}}" target="_blank" class="btn general-btn-sm-blue rounded">مشاهدة القالب</a>
                                         </span>
                                     </li>
                                 @endif

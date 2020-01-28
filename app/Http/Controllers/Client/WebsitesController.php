@@ -45,7 +45,6 @@ class WebsitesController extends ClientBaseController
         if(!cpermissions("my_websites_list_all") and !cpermissions("my_websites_list_only_mine"))
             return redirect()->route("client.settings.no_permissions");
 
-
         $client         = $this->client;
         $user_id        = Auth::guard("client")->user()->id;
         if(cpermissions("my_websites_list_all"))
@@ -240,7 +239,7 @@ class WebsitesController extends ClientBaseController
         $website->default_lang      = $request->default_lang;
         if($request->hasFile("logo")){
             if($website->logo){
-                $path               = str_replace(route("client.homepage"), base_path(), $website->logo);
+                $path               = str_replace(route("home"), base_path(), $website->logo);
                 if($path and file_exists($path) and is_file($path))
                     unlink($path);
             }
@@ -282,86 +281,12 @@ class WebsitesController extends ClientBaseController
             return redirect()->route("client.websites.index");
 
         if($website->logo){
-            $path               = str_replace(route("client.homepage"), base_path(), $website->logo);
+            $path               = str_replace(route("home"), base_path(), $website->logo);
             if($path and file_exists($path) and is_file($path))
                 unlink($path);
         }
         foreach ($website->pages as $page){
-            foreach ($page->blocks as $block){
-                $pageBlockMetas      = PageBlockMeta::where(["block_id" => $block->id, "client_id" => $client->id])->get();
-                foreach ($pageBlockMetas as $item){
-                    if($item->type =="image" or $item->type=="image" or $item->type=="links" or $item->type=="youtube"){
-                        if($item->value){
-                            $path   = str_replace(route("client.homepage"), base_path(), $item->value);
-                            if($path and file_exists($path) and is_file($path))
-                                unlink($path);
-                        }
-                    }
-                    if($item->old_image){
-                        $path   = str_replace(route("client.homepage"), base_path(), $item->old_image);
-                        if($path and file_exists($path) and is_file($path))
-                            unlink($path);
-                    }
-                    $item->delete();
-                }
-                $posts              = Post::where(["client_id" => $client, "block_id" => $block->id])->get();
-                foreach ($posts as $item){
-                    if($item->image){
-                        $path       = str_replace(route("client.homepage"), base_path(), $item->image);
-                        if($path and file_exists($path) and is_file($path))
-                            unlink($path);
-                    }if($item->old_image){
-                        $path       = str_replace(route("client.homepage"), base_path(), $item->old_image);
-                        if($path and file_exists($path) and is_file($path))
-                            unlink($path);
-                    }
-                    $item->delete();
-                }
-                Category::where(["client_id" => $client, "block_id" => $block->id])->delete();
-                $block->delete();
-            }
-            $posts              = Post::where(["client_id" => $client, "page_id" => $page->id])->get();
-            foreach ($posts as $item){
-                if($item->image){
-                    $path       = str_replace(route("client.homepage"), base_path(), $item->image);
-                    if($path and file_exists($path) and is_file($path))
-                        unlink($path);
-                }if($item->old_image){
-                    $path       = str_replace(route("client.homepage"), base_path(), $item->old_image);
-                    if($path and file_exists($path) and is_file($path))
-                        unlink($path);
-                }
-                $item->delete();
-            }
             $page->delete();
-        }
-        PageBlock::where(["website_id" => $website->id, "client_id" => $client->id])->delete();
-        $sliders                    = Slider::where(["website_id" => $website->id, "client_id" => $client->id])->get();
-        foreach ($sliders as $item){
-            if($item->image){
-                $path       = str_replace(route("client.homepage"), base_path(), $item->image);
-                if($path and file_exists($path) and is_file($path))
-                    unlink($path);
-            }if($item->old_image){
-                $path       = str_replace(route("client.homepage"), base_path(), $item->old_image);
-                if($path and file_exists($path) and is_file($path))
-                    unlink($path);
-            }
-            $item->delete();
-        }
-        Menu::where(["website_id" => $website->id, "client_id" => $client->id])->delete();
-        $posts              = Post::where("client_id", $client->id)->whereNull("page_id")->get();
-        foreach ($posts as $item){
-            if($item->image){
-                $path       = str_replace(route("client.homepage"), base_path(), $item->image);
-                if($path and file_exists($path) and is_file($path))
-                    unlink($path);
-            }if($item->old_image){
-                $path       = str_replace(route("client.homepage"), base_path(), $item->old_image);
-                if($path and file_exists($path) and is_file($path))
-                    unlink($path);
-            }
-            $item->delete();
         }
         $website->delete();
 
@@ -441,12 +366,8 @@ class WebsitesController extends ClientBaseController
                     $new_page->user_id              = $user_id;
                     $new_page->slug                 = $this->create_slug();
                     $new_page->name                 = $page->name;
-                    $new_page->content              = $page->content;
                     $new_page->name_en              = $page->name_en;
-                    $new_page->content_en           = $page->content_en;
                     $new_page->status               = $page->status;
-                    $new_page->default_content_ar   = $page->default_content_ar;
-                    $new_page->default_content_en   = $page->default_content_en;
                     $new_page->html_content_ar      = $page->html_content_ar;
                     $new_page->html_content_en      = $page->html_content_en;
                     $new_page->save();
@@ -463,6 +384,7 @@ class WebsitesController extends ClientBaseController
             }else{
                 return redirect()->back();
             }
+
         }else{
          return redirect()->route("client.payments.template_payment", [$from_id, $to_id]);
         }
@@ -717,48 +639,6 @@ class WebsitesController extends ClientBaseController
         $website        = Website::where(["id" => $request->id, "status" => 1, "client_id" => $client_id])->first();
         if (!$website)
             return back();
-
-        $domain         = $request->domain;
-        $old_url        = env("client_sub_domain")."/".$website->slug;
-
-        $blocks         = PageBlock::where("website_id", $website->id)->get();
-        $blocks_ids     = [];
-        foreach ($blocks as $block)
-            array_push($blocks_ids, $block->id);
-        //
-        $metas          = PageBlockMeta::whereIn("block_id", $blocks_ids)->where("value", "like", "%".$old_url."%")->get();
-        foreach ($metas as $meta){
-            $meta->value = str_replace($old_url, $domain, $meta->value);
-            $meta->save();
-        }
-        //
-        $menus          = Menu::where("website_id", $website->id)->where("link0", "like", "%".$old_url."%")->get();
-        foreach ($menus as $menu){
-            $menu->link0 = str_replace($old_url, $domain, $menu->link0);
-            $menu->save();
-        }
-        $sliders        = Slider::where("website_id", $website->id)->where("image", "like", "%".$old_url."%")->get();
-        foreach ($sliders as $slider){
-            $slider->image = str_replace($old_url, $domain, $slider->image);
-            $slider->save();
-        }
-        //
-        $sliders        = Slider::where("website_id", $website->id)->where("link0", "like", "%".$old_url."%")->get();
-        foreach ($sliders as $slider){
-            $slider->link0 = str_replace($old_url, $domain, $slider->link0);
-            $slider->save();
-        }
-        $posts          = Post::whereIn("block_id", $blocks_ids)->where("image", "like", "%".$old_url."%")->get();
-        foreach ($posts as $post){
-            $post->image = str_replace($old_url, $domain, $post->image);
-            $post->save();
-        }
-        //
-        $posts          = Post::whereIn("block_id", $blocks_ids)->where("link0", "like", "%".$old_url."%")->get();
-        foreach ($posts as $post){
-            $post->link0 = str_replace($old_url, $domain, $post->link0);
-            $post->save();
-        }
 
         $website->domain = $request->domain;
         $website->save();

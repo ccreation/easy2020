@@ -153,12 +153,8 @@ class PaymentsController extends AdminBaseController
                     $new_page->user_id              = $user_id;
                     $new_page->slug                 = $this->create_slug($client->id);
                     $new_page->name                 = $page->name;
-                    $new_page->content              = $page->content;
                     $new_page->name_en              = $page->name_en;
-                    $new_page->content_en           = $page->content_en;
                     $new_page->status               = $page->status;
-                    $new_page->default_content_ar   = $page->default_content_ar;
-                    $new_page->default_content_en   = $page->default_content_en;
                     $new_page->html_content_ar      = $page->html_content_ar;
                     $new_page->html_content_en      = $page->html_content_en;
                     $new_page->save();

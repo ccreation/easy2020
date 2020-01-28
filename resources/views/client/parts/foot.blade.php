@@ -62,6 +62,14 @@
     .header_menu .header_menu_nav .menu-item .menu-item-link.active::before{
         display: none;
     }
+    .card.card-primary{
+        border-color: #512293;
+    }
+    .card.card-primary .card-header{
+        background-color: #512293;
+        color: #fff;
+        font-weight: bold;
+    }
 </style>
 
 <script>

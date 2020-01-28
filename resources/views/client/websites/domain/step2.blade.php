@@ -2,36 +2,13 @@
 
 @section("content")
 
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{route("client.home")}}"><i class="fa fa-home"></i> <span>{{__("l.home")}}</span></a></li>
-            <li class="breadcrumb-item"><a href="{{route("client.websites.index")}}"><i class="fa fa-globe"></i> <span>{{__("l.my_websites")}}</span></a></li>
-            <li class="breadcrumb-item active" aria-current="page"><i class="fab fa-internet-explorer"></i> <span>إضافة دومين جديد للموقع</span></li>
-        </ol>
-    </nav>
+    <div class="container pt-3 pb-5" style="min-height: 500px;">
 
-    <div class="kt-portlet">
+        <h4 class="mb-4 text-center" style="color: #512293"><b><span>إضافة دومين جديد </span> <span>"{{$domain}}"</span> <span>للموقع</span> "<span>{{$website->{"name_".app()->getLocale()} }}</span>"</b></h4>
 
-        <div class="kt-portlet__head kt-portlet__head--lg">
-            <div class="kt-portlet__head-label">
-                <span class="kt-portlet__head-icon">
-                    <i class="kt-font-brand fab fa-internet-explorer"></i>
-                </span>
-                <h3 class="kt-portlet__head-title"><span>إضافة دومين جديد </span> <span>"{{$domain}}"</span> <span>للموقع</span> "<span>{{$website->{"name_".app()->getLocale()} }}</span>"</h3>
-            </div>
-            <div class="kt-portlet__head-toolbar">
-                <div class="kt-portlet__head-wrapper">
-                    <div class="kt-portlet__head-actions">
-                        <a href="{{route("client.websites.index")}}" class="btn btn-brand btn-elevate btn-icon-sm"><i class="fa fa-list"></i> <span>{{__("l.websites_list")}}</span></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="kt-portlet__body">
-
-            <h5><span class="plix" style="width: 27px; height: 27px; line-height: 26px; font-size: 17px;">2</span> <span>أضف هذه الإعدادات إلى الحساب الخاص بالدومين الجديد</span></h5>
-
-            <div style="border: 1px solid #eee; padding: 15px 15px 0px; margin-top: 15px; background: #f5f5f5;">
+        <div class="card card-primary">
+            <div class="card-header"><span class="plix" style="width: 27px; height: 27px; line-height: 26px; font-size: 17px;">2</span> <span>أضف هذه الإعدادات إلى الحساب الخاص بالدومين الجديد</span></div>
+            <div class="card-body">
 
                 <form id="step3_form" action="{{route("client.websites.add_domain_step_3")}}" method="post" style=" ">
                     @csrf
@@ -47,7 +24,7 @@
                         </tr>
                         <tr>
                             <td>Answer</td>
-                            <td style="direction: initial;">{{env("cname_sub_domain")}}</td>
+                            <td style="direction: initial; text-align: right;">{{env("cname_sub_domain")}}</td>
                         </tr>
                     </table>
 
@@ -60,10 +37,10 @@
                     <input type="hidden" name="id" value="{{$website->id}}">
                     <input type="hidden" name="domain" value="{{$domain}}">
 
-                    <p class="text-center">قد يأخذ بضعة دقائق لربط الدومين الجديد</p>
+                    <p class="text-center mt-2">قد يأخذ بضعة دقائق لربط الدومين الجديد</p>
 
-                    <div class="form-group mb-20 mt-15 text-center">
-                        <button type="submit" class="btn btn-primary w200"><i class="fa fa-check"></i> <span>التحقق من الدومين</span></button>
+                    <div class="form-group mt-2 text-center">
+                        <button type="submit" class="general-btn-md btn" style="background-color: #512293;"><i class="fa fa-check"></i> <span>التحقق من الدومين</span></button>
                     </div>
 
                 </form>
@@ -82,10 +59,7 @@
 
             </div>
 
-        </div>
     </div>
-
-
 
 @endsection
 

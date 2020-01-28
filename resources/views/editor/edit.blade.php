@@ -1045,7 +1045,7 @@
                         if($.isNumeric(font_weight2) && font_weight2 >= 600)
                             font_weight2 = "bold";
                         $("#font_weight2").selectpicker('val', font_weight2);
-                        $("#colorpicker3").spectrum("set", $("a", link).css('color'));
+                        $("#colorpicker5").spectrum("set", $("a", link).css('color'));
                         var text_align2 = $("a", link).closest(".easy_link").css('text-align');
                         $(".text_align2").removeClass("active");
                         $(".text_align2.text_align2_"+text_align2).addClass("active");
@@ -1502,7 +1502,7 @@
                 $("a", current_link).css('font-weight', $(this).val());
             });
 
-            $(document).on("change", "#colorpicker3", function () {
+            $(document).on("change", "#colorpicker5", function () {
                 var color = $(this).val();
                 $("a", current_link).css("color", color);
             });

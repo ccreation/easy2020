@@ -139,7 +139,7 @@
                                                     <div class="kt-widget19__info">
                                                         <div class="kt-widget19__action mb-0 mt-0">
                                                             @if($template->homepage)
-                                                                <a target="_blank" href="{{route("website.index2", [$template->slug])}}" class="btn btn-sm btn-label-brand btn-bold">{{__("l.preview_site")}}</a>
+                                                                <a target="_blank" href="{{route("website.index", [$template->slug, app()->getLocale()])}}" class="btn btn-sm btn-label-brand btn-bold">{{__("l.preview_site")}}</a>
                                                             @endif
                                                             <div class="previews dib float-right">
                                                                 <div class="preview dib laptop">

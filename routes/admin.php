@@ -7,6 +7,7 @@ Route::post('logout', 'LoginController@logout')->name('logout');
 
 // Home
 Route::get('/', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home');
 
 // Settings
 Route::group(["prefix" => "settings", "as" => "settings."], function () {

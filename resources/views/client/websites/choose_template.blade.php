@@ -74,11 +74,7 @@
                                                 <a href="{{route("client.websites.templating", ["from_id" => $template->id, "to_id" => @$website->id])}}" class="choose_this" title="{{__("l.choose_this")}}"><i class="fab fa-paypal text-white"></i></a>
                                             @endif
                                             @if($template->slug)
-                                                <a href="{{--route("template.website.index2", [$template->slug])--}}" title="رابط القالب" target="_blank"><img src="{{asset("public/dashboard/images/eye.png")}}" alt="" /></a>
-                                            @else
-                                                <a href="javascript:void(0)" class="disabled" style="cursor: pointer !important; pointer-events: inherit;"
-                                                   onclick="event.preventDefault();alert('يجب عليك إختيار رابط للقالب أولا !')"
-                                                   title="هذا القالب لا يملك رابط خاص به"><img src="{{asset("public/dashboard/images/eye.png")}}" alt="" /></a>
+                                                <a href="{{route("website.index", [$template->slug, app()->getLocale()])}}" title="رابط القالب" target="_blank"><img src="{{asset("public/dashboard/images/eye.png")}}" alt="" /></a>
                                             @endif
                                         </div>
                                         <div class="widget__image image-desktop">

@@ -72,13 +72,13 @@ Route::group(["namespace" => "Client", 'prefix' => 'client', "as" => "client."],
     Route::group(["prefix" => "payments", "as" => "payments."], function () {
         Route::post('plan_payment', 'PaymentsController@plan_payment')->name('plan_payment');
         Route::post('do_plan_payment', 'PaymentsController@do_plan_payment')->name('do_plan_payment');
-        //Route::get('hyperpay_plan', 'PaymentsController@hyperpay_plan')->name('hyperpay_plan');
+        Route::get('hyperpay_plan', 'PaymentsController@hyperpay_plan')->name('hyperpay_plan');
         Route::get('template_payment/{from_id?}/{to_id?}', 'PaymentsController@template_payment')->name('template_payment');
         Route::post('do_template_payment', 'PaymentsController@do_template_payment')->name('do_template_payment');
         Route::get('hyperpay_template', 'PaymentsController@hyperpay_template')->name('hyperpay_template');
         Route::get('plugin_payment/{id?}', 'PaymentsController@plugin_payment')->name('plugin_payment');
         Route::post('do_plugin_payment', 'PaymentsController@do_plugin_payment')->name('do_plugin_payment');
-        //Route::get('hyperpay_plugin', 'PaymentsController@hyperpay_plugin')->name('hyperpay_plugin');
+        Route::get('hyperpay_plugin', 'PaymentsController@hyperpay_plugin')->name('hyperpay_plugin');
     });
 
     // Subscriptions

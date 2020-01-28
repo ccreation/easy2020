@@ -46,6 +46,9 @@ class ClientBaseController extends Controller{
             $this->my_plugins   = $c->my_plugins->KeyBy("id");
             View::share("my_plugins", $this->my_plugins);
 
+            $admin_settings     = Setting::all()->keyby("key");
+            $this->admin_settings   = $admin_settings;
+            View::share("admin_settings", $admin_settings);
             /*
 
             $new_notifications  = Notification::where(["client_id" => $c->id, "status" => 0])->orderby("created_at", "desc")->get();
@@ -75,9 +78,7 @@ class ClientBaseController extends Controller{
             $this->frontLang    = $request->frontLang;
             View::share("frontLang", $this->frontLang);
             $this->redirectTo   = $request->redirectTo;
-            $admin_settings     = Setting::all()->keyby("key");
-            $this->admin_settings   = $admin_settings;
-            View::share("admin_settings", $admin_settings);
+
             */
             return $next($request);
         });
