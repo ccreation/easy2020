@@ -923,8 +923,8 @@
                     var link = $(this);
                     current_link = link;
                     var section = $(this).closest("section.section");
-                    $(settings_link).insertAfter($(this));
-                    var position = $(this).position();
+                    $(settings_link).insertAfter(iframe.contents().find("#content"));
+                    var position = $(this).offset();
                     var width = $(this).outerWidth(true);
                     var width2 = $(settings_link).outerWidth(true);
                     var height = $(this).outerHeight(true);
@@ -938,13 +938,13 @@
                         if($(section).attr("id") == "header"){
                             $(settings_link).css({top: position.top + height - 10, left: position.left + (width/2) - (width2/2)});
                         }else{
-                            $(settings_link).css({top: position.top - (height + 5), left: position.left + (width/2) - (width2/2) });
+                            $(settings_link).css({top: position.top - (height / 2), left: position.left + (width/2) - (width2/2) - 10 });
                         }
                     } else{
                         if($(section).attr("id") == "header"){
                             $(settings_link).css({top: position.top + height - 10, left: position.left + (width/2) - (width2/2)});
                         }else{
-                            $(settings_link).css({top: position.top - (height + 5), left: position.left + (width/2) - (width2/2) });
+                            $(settings_link).css({top: position.top - (height / 2), left: position.left + (width/2) - (width2/2) - 5 });
                         }
                     }
                     // change Move Right & Move Left icons to up and down icons if links are verical
@@ -1280,8 +1280,13 @@
 
             $(document).on("change", ".sliderInput_2", function () {
                 var padding_top     = $(this).val();
-                padding_top         = parseInt(padding_top);
-                var padding_bottom  = 120 - parseInt(padding_top);
+                if($(current_section).hasClass("padding-60")){
+                    padding_top         = parseInt(padding_top/2);
+                    var padding_bottom  = 60 - parseInt(padding_top);
+                } else{
+                    padding_top         = parseInt(padding_top);
+                    var padding_bottom  = 120 - parseInt(padding_top);
+                }
                 $(current_section).css("padding-top", padding_top).css("padding-bottom", padding_bottom);
             });
 

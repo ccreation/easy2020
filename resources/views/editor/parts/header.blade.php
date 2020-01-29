@@ -1240,7 +1240,7 @@
                                                                     <div class="widget__item-color-body">
                                                                         <div class="widget__item-color-option" style="background: #551B74;">
                                                                         </div>
-                                                                        <div class="widget__item-color-option" style="background: #763a96;">
+                                                                        <div class="widget__item-color-option" style="background: #994bc2;">
                                                                         </div>
                                                                     </div>
                                                                 </div>

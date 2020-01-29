@@ -29,3 +29,11 @@
 .bg_colo_1{
     background: #551B74;
 }
+
+.icon-circle .fa, .icon-circle .fab, .icon-circle .far, .icon-circle .fas{
+    color: #551B74;
+}
+
+.icon-circle .fa:hover, .icon-circle .fab:hover, .icon-circle .far:hover, .icon-circle .fas:hover{
+    background-color: #994bc2;
+}

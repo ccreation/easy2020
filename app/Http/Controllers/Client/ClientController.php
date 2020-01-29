@@ -91,7 +91,9 @@ class ClientController extends Controller{
      * @return a view client login
      */
     public function login(){
-        return view("client.auth.login");
+        $page_title = "تسجيل الدخول";
+
+        return view('front.login', compact("page_title"));
     }
 
     /**

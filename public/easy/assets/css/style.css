@@ -438,3 +438,37 @@ ul {
 .text-gray{
     color: gray;
 }
+
+.triangle-after1:after{
+    content: "";
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 15px 20px 15px 0;
+    border-color: transparent #ffffff transparent transparent;
+    position: absolute;
+    left: -20px;
+    top: 50%;
+    margin-top: -10px;
+    z-index: 1;
+}
+
+.icon-circle .fa, .icon-circle .fab, .icon-circle .far, .icon-circle .fas{
+    font-size: 3em;
+    line-height: 130px;
+    border: none;
+    background-color: #fff;
+    text-align: center;
+    border-radius: 50%;
+    width: 130px;
+    height: 130px;
+    box-shadow: 0 0 35px rgba(140, 152, 164, 0.2);
+    webkit-transition: color 0.5s, box-shadow 0.5s, background-color 0.5s;
+    -o-transition: color 0.5s, box-shadow 0.5s, background-color 0.5s;
+    transition: color 0.5s, box-shadow 0.5s, background-color 0.5s;
+}
+
+.icon-circle .fa:hover, .icon-circle .fab:hover, .icon-circle .far:hover, .icon-circle .fas:hover{
+    color: #fff;
+    box-shadow: none;
+}

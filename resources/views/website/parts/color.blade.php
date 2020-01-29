@@ -28,6 +28,12 @@
         background: {{@$website->color->color2}} !important;
     }
     .bg_colo_1{
-        background: {{@$website->color->color1}} !important;;
+        background: {{@$website->color->color1}} !important;
+    }
+    .icon-circle .fa, .icon-circle .fab, .icon-circle .far, .icon-circle .fas{
+        color: {{@$website->color->color1}} !important;
+    }
+    .icon-circle .fa:hover, .icon-circle .fab:hover, .icon-circle .far:hover, .icon-circle .fas:hover{
+        background-color: {{@$website->color->color2}} !important;
     }
 </style>
