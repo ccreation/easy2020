@@ -37,3 +37,11 @@
 .icon-circle .fa:hover, .icon-circle .fab:hover, .icon-circle .far:hover, .icon-circle .fas:hover{
     background-color: #994bc2;
 }
+
+section.section blockquote{
+    border-color: #551B74;
+}
+
+.icon-circle2 .fa, .icon-circle2 .fab, .icon-circle2 .far, .icon-circle2 .fas{
+    background-color: #551B74;
+}

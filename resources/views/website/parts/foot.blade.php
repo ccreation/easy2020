@@ -209,7 +209,7 @@
     .process-steps.process-steps-stl li:first-child:after, .process-steps.process-steps-stl li:before{
         content: '●';
     }
-    
+
     .col_one_fourth{
         margin: 0px 1.5% 20px;
     }
@@ -238,7 +238,7 @@
     .main-sticky-toolbar2 .list-sticky-toolbar2{
         height: 46px;
         position: absolute;
-        right: -330px;
+        right: -290px;
         list-style: none;
         transition: .3s ease-in-out;
         -webkit-transition: .3s ease-in-out;
@@ -746,8 +746,8 @@
         width: inherit;
     }
     .easy_text, .easy_icon{
-        display: block !important;
-        width: 100%;
+        /*display: block !important;
+        width: 100%;*/
         visibility: visible !important;
     }
 </style>

@@ -36,4 +36,10 @@
     .icon-circle .fa:hover, .icon-circle .fab:hover, .icon-circle .far:hover, .icon-circle .fas:hover{
         background-color: {{@$website->color->color2}} !important;
     }
+    section.section blockquote{
+        border-color: {{@$website->color->color1}} !important;
+    }
+    .icon-circle2 .fa, .icon-circle2 .fab, .icon-circle2 .far, .icon-circle2 .fas{
+        background-color: {{@$website->color->color1}} !important;
+    }
 </style>

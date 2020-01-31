@@ -472,3 +472,86 @@ ul {
     color: #fff;
     box-shadow: none;
 }
+
+.box1{
+    box-sizing: border-box;
+    width: 120%;
+    height: auto;
+    min-height: 300px;
+    padding: 30px;
+    margin-top: 50px;
+    margin-right: -20%;
+    background: #fff;
+    z-index: 4;
+    box-shadow: 0 10px 45px rgba(0,0,0,.1);
+    transition: all ease-in .3s;
+    -ms-flex-preferred-size: auto;
+    flex-basis: auto;
+    position: relative;
+}
+
+.box1.rev{
+    margin-right: auto;
+    margin-left: -20%;
+}
+
+.box11{
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+section.section blockquote{
+    border-right: 5px solid #eee;
+    padding-right: 15px;
+}
+
+.icon-circle2 .fa, .icon-circle2 .fab, .icon-circle2 .far, .icon-circle2 .fas{
+    width: 64px;
+    height: 64px;
+    line-height: 64px;
+    border-radius: 50px;
+    font-size: 2em;
+    color: #fff;
+    background-color: #551B74;
+    border: 3px solid #fff;
+    box-sizing: content-box;
+}
+
+.icon-circle2 .fa:hover, .icon-circle2 .fab:hover, .icon-circle2 .far:hover, .icon-circle2 .fas:hover{
+    box-shadow: 0 0 0 2px #333;
+}
+
+#footer .background_color_div{
+    border-top: 6px solid rgba(0,0,0,0.2);
+}
+
+.social-icon-footer{
+    background-color: rgba(255,255,255,0.1);
+    width: 32px;
+    height: 32px;
+    line-height: 34px;
+    font-size: 18px;
+    text-align: center;
+    border-radius: 50px;
+    transition: all ease-in 0.1s;
+}
+
+.social-icon-footer:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.social-icon-footer a{
+    display: block;
+    color: #ccc;
+}
+
+.copy_right{
+    height: 70px;
+    line-height: 70px;
+    font-size: 0.9em;
+    color: #ccc;
+    background-color: rgba(0,0,0,0.2);
+    position: absolute;
+    bottom: 0px;
+}
