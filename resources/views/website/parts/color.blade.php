@@ -18,6 +18,26 @@
         background: {{@$website->color->color1}} !important;
         border-color: {{@$website->color->color1}} !important;
     }
+    .btn-6, .btn-7, .btn-8, .btn-9, .btn-10 {
+        border-color: {{@$website->color->color1}} !important;
+        color: {{@$website->color->color1}} !important;
+        background-color: transparent !important;
+    }
+    .btn-6:hover, .btn-7:hover, .btn-8:hover, .btn-9:hover, .btn-10:hover {
+        border-color: {{@$website->color->color2}} !important;
+        color: {{@$website->color->color2}} !important;
+        background-color: transparent !important;
+    }
+    .btn-11 {
+        border-color: transparent !important;
+        background-color: transparent !important;
+        color: {{@$website->color->color1}} !important;
+    }
+    .btn-11:hover {
+        border-color: transparent !important;
+        background-color: transparent !important;
+        color: {{@$website->color->color2}} !important;
+    }
     #gotoTop{
         background: {{@$website->color->color1}} !important;
     }

@@ -17,6 +17,26 @@
     background: #551B74;
     border-color: #551B74;
 }
+.btn-6, .btn-7, .btn-8, .btn-9, .btn-10 {
+    border-color: #551B74;
+    color: #551B74;
+    background-color: transparent !important;
+}
+.btn-6:hover, .btn-7:hover, .btn-8:hover, .btn-9:hover, .btn-10:hover {
+    border-color: #994bc2;
+    color: #994bc2;
+    background-color: transparent !important;
+}
+.btn-11 {
+    border-color: transparent !important;
+    background-color: transparent !important;
+    color: #551B74;
+}
+.btn-11:hover {
+    border-color: transparent !important;
+    background-color: transparent !important;
+    color: #994bc2;
+}
 #gotoTop{
     background: #551B74;
 }
@@ -29,7 +49,6 @@
 .bg_colo_1{
     background: #551B74;
 }
-
 .icon-circle .fa, .icon-circle .fab, .icon-circle .far, .icon-circle .fas{
     color: #551B74;
 }

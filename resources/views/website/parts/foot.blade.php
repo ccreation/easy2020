@@ -128,13 +128,11 @@
 </script>
 
 <style>
-
     @if(@$website->font and @$website->font!="")
         body *:not(.fa):not(.fab):not(.fas):not(.far){
         font-family: "{{@$website->font}}" !important;
     }
     @endif
-
     section.section.highlighted, section.section.highlighted .background_color_div, .easy_col.highlighted {
         transition: box-shadow 0.2s;
         box-shadow: 0 0 0 7px #543c93 inset !important;
@@ -209,7 +207,6 @@
     .process-steps.process-steps-stl li:first-child:after, .process-steps.process-steps-stl li:before{
         content: '●';
     }
-
     .col_one_fourth{
         margin: 0px 1.5% 20px;
     }
@@ -741,7 +738,6 @@
     .main-editor-tools-video .pbicon-wrapper .fa{
         color: #fff;
     }
-
     .feature-box.fbox-center .fbox-icon{
         width: inherit;
     }
