@@ -672,4 +672,6 @@ return array (
   'colors_notes' => 'Choose a color that suits your site, or create your own',
   'default_color' => 'Default color',
   'color_name' => 'Colors Name',
+  'google_map' => 'Google Map',
+  'how_to_get_google_map_code' => 'How to get google map code',
 );

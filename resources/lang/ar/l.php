@@ -671,4 +671,6 @@ return array (
   'colors_notes' => 'اختر لون يناسب موقعك، أو أنشأ لون خاص بك',
   'default_color' => 'اللون الإفتراضي',
   'color_name' => 'إسم التركيبة',
+  'google_map' => 'غوغل ماب',
+  'how_to_get_google_map_code' => 'كيفية الحصول على كود خريطة جوجل',
 );

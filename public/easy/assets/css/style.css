@@ -555,3 +555,29 @@ section.section blockquote{
     position: absolute;
     bottom: 0px;
 }
+
+#contact-form-overlay{
+    position: relative;
+    max-width: 800px;
+    background-color: #FFF;
+    padding: 40px;
+    margin: 0 auto;
+    z-index: 10;
+    border-radius: 4px;
+    box-shadow: 0 1px 10px rgba(0,0,0,0.15);
+    height: auto !important;
+    max-height: inherit !important;
+    padding-bottom: 60px;
+}
+#map-overlay{
+    height: 100vh;
+}
+
+#map-overlay #google-map {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    right: 0;
+    left: auto;
+}

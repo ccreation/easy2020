@@ -138,6 +138,16 @@
             </div>
         </div>
 
+        <div class="main-editor-tools-gmap">
+            <div class="side-tool-buttons">
+                <div class="group-list-btn">
+                    <button class="btn-switch-mode add_gmap_btn" title="{{__("l.google_map")}}">
+                        <span class="pbicon-wrapper"><i class="fas fa-map-marked-alt"></i></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
         <div id="col-single-image-wrapper">
             <div class="col-single-image">
                 <div class="widght-single-image widght-single-image0">
@@ -320,7 +330,7 @@
         , .close_btn_settings, .close_btn_settings:hover, .close_link_settings, .close_link_settings:hover
         , .close_icons_settings, .close_icons_settings:hover, .close_linkicons_settings, .close_linkicons_settings:hover
         , .close_form_settings, .close_form_settings:hover, .close_image_settings, .close_image_settings:hover
-        , .close_video_settings, .close_video_settings:hover{
+        , .close_video_settings, .close_video_settings:hover, .close_gmap_settings, .close_gmap_settings:hover{
             background-color: #673EA1;
             padding: 10px 21px;
             border-radius: 5px;
@@ -458,6 +468,7 @@
         var current_link        = null;
         var form_wrapper        = null;
         var current_image       = null;
+        var current_map         = null;
         var chosen_image1       = null;
         var current_video       = null;
         var chosen_video1       = null;
@@ -538,6 +549,7 @@
                 iframe.contents().find(".main-editor-tools-form").remove();
                 iframe.contents().find(".main-editor-tools-image").remove();
                 iframe.contents().find(".main-editor-tools-video").remove();
+                iframe.contents().find(".main-editor-tools-gmap").remove();
                 var settings_block  = $(".main-sticky-toolbar2").clone();
                 var settings_block_add  = $(".main-sticky-toolbar3").clone();
                 var settings_col    = $(".main-editor-tools").clone();
@@ -547,6 +559,7 @@
                 var settings_form   = $(".main-editor-tools-form").clone();
                 var settings_image  = $(".main-editor-tools-image").clone();
                 var settings_video  = $(".main-editor-tools-video").clone();
+                var settings_gmap  = $(".main-editor-tools-gmap").clone();
 
                 // Section Hover
                 iframe.contents().find("section.section").hover(function(e) {
@@ -1173,6 +1186,23 @@
                     });
                 });
 
+                // Image Settings
+                iframe.contents().find(".easy_gmap").hover(function(e) {
+                    e.preventDefault();
+                    current_map = $(this);
+                    iframe.contents().find(".main-editor-tools-gmap").remove();
+                    $(settings_gmap).show();
+                    $(settings_gmap).insertBefore(iframe.contents().find("#content"));
+                    var position = $(this).offset();
+                    $(settings_gmap).css({top: position.top + 5, left: position.left + 5 });
+                    $(settings_gmap).find(".add_gmap_btn").click(function(e) {
+                        e.preventDefault();
+                        var html = $(current_map).html();
+                        $("#google_map_link").val($.trim(html));
+                        $(".settings_gmap_btn_nav_link").trigger("click");
+                    });
+                });
+
             }
 
             $(document).on('iframeready', myHandler);
@@ -1283,6 +1313,9 @@
                 if($(current_section).hasClass("padding-60")){
                     padding_top         = parseInt(padding_top/2);
                     var padding_bottom  = 60 - parseInt(padding_top);
+                } else if($(current_section).hasClass("padding-0")){
+                    padding_top         = 0;
+                    var padding_bottom  = 0;
                 } else{
                     padding_top         = parseInt(padding_top);
                     var padding_bottom  = 120 - parseInt(padding_top);
@@ -1637,6 +1670,21 @@
             $(document).on("click", ".close_video_settings", function (e) {
                 e.preventDefault();
                 $(".settings_video_btn_nav_link").trigger("click");
+            });
+
+            $(document).on("click", ".close_gmap_settings", function (e) {
+                e.preventDefault();
+                $(".settings_gmap_btn_nav_link").trigger("click");
+            });
+
+            $(document).on("click", "#save_button_gmap", function (e) {
+                e.preventDefault();
+                var val         = $("#google_map_link").val();
+                if(current_map && val != ""){
+                    $(current_map).html(val);
+                    current_map = null;
+                }
+                $(".settings_gmap_btn_nav_link").trigger("click");
             });
 
             function get_images(){

@@ -68,6 +68,11 @@
             $(".main-editor-tools-video").css("display", "none");
         }
         $(document).on("click", handler_video);
+        var handler_gmap = function(event){
+            if($(event.target).is(".main-editor-tools-gmap, .main-editor-tools-gmap *")) return;
+            $(".main-editor-tools-gmap").css("display", "none");
+        }
+        $(document).on("click", handler_gmap);
 
     });
 
@@ -680,7 +685,7 @@
         color: #fff;
         font-size: 1.2em;
     }
-    .main-editor-tools-image, .main-editor-tools-video {
+    .main-editor-tools-image, .main-editor-tools-video, .main-editor-tools-gmap  {
         background-color: #512293;
         border: 1px solid #AF96D3;
         border-radius: 5px;
@@ -692,14 +697,16 @@
         z-index: 1000
     }
     .main-editor-tools-image .side-tool-buttons .group-list-btn,
-    .main-editor-tools-video .side-tool-buttons .group-list-btn{
+    .main-editor-tools-video .side-tool-buttons .group-list-btn,
+    .main-editor-tools-gmap .side-tool-buttons .group-list-btn{
         display: flex;
         align-items: center;
         margin: 0px 5px;
         flex-wrap: wrap;
     }
     .main-editor-tools-image .side-tool-buttons .btn-switch-mode,
-    .main-editor-tools-video .side-tool-buttons .btn-switch-mode{
+    .main-editor-tools-video .side-tool-buttons .btn-switch-mode,
+    .main-editor-tools-gmap .side-tool-buttons .btn-switch-mode{
         background: transparent;
         display: inline-block;
         margin: 3px 3px;
@@ -712,15 +719,18 @@
         padding: 0px;
     }
     .main-editor-tools-image .side-tool-buttons .btn-switch-mode .pbicon-wrapper:hover,
-    .main-editor-tools-video .side-tool-buttons .btn-switch-mode .pbicon-wrapper:hover{
+    .main-editor-tools-video .side-tool-buttons .btn-switch-mode .pbicon-wrapper:hover,
+    .main-editor-tools-gmap .side-tool-buttons .btn-switch-mode .pbicon-wrapper:hover{
         background-color: transparent;
     }
     .main-editor-tools-image .side-tool-buttons .btn-switch-mode .pbicon-wrapper.active-btn,
-    .main-editor-tools-video .side-tool-buttons .btn-switch-mode .pbicon-wrapper.active-btn{
+    .main-editor-tools-video .side-tool-buttons .btn-switch-mode .pbicon-wrapper.active-btn,
+    .main-editor-tools-gmap .side-tool-buttons .btn-switch-mode .pbicon-wrapper.active-btn{
         background-color: #7D58AE;
     }
     .main-editor-tools-image .side-tool-buttons .btn-switch-mode .pbicon-wrapper,
-    .main-editor-tools-video .side-tool-buttons .btn-switch-mode .pbicon-wrapper{
+    .main-editor-tools-video .side-tool-buttons .btn-switch-mode .pbicon-wrapper,
+    .main-editor-tools-gmap .side-tool-buttons .btn-switch-mode .pbicon-wrapper{
         border: 1px solid #AF96D3;
         background-color: #673EA1;
         width: auto;
@@ -735,7 +745,8 @@
         cursor: pointer;
     }
     .main-editor-tools-image .pbicon-wrapper .fa,
-    .main-editor-tools-video .pbicon-wrapper .fa{
+    .main-editor-tools-video .pbicon-wrapper .fa,
+    .main-editor-tools-gmap .pbicon-wrapper .fas{
         color: #fff;
     }
     .feature-box.fbox-center .fbox-icon{
@@ -745,6 +756,10 @@
         /*display: block !important;
         width: 100%;*/
         visibility: visible !important;
+    }
+    .easy_gmap iframe{
+        width: 100% !important;
+        height: 100% !important;
     }
 </style>
 

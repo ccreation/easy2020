@@ -1208,6 +1208,35 @@
                                 </div>
                             </div>
                         </li>
+                        <!-- image -->
+                        <li class="widget__item-option-item m-0">
+                            <a class="nav-item nav-link settings_gmap_btn_nav_link hidden"><span class="widget__item-option-text"></span></a>
+                            <div class="dropdown_widget ">
+                                <div class="container">
+                                    <div class="dropdown_widget-grid">
+                                        <div class="dropdown_widget-sidebar">
+                                            <a href="#" class="close_gmap_settings px-3 px-lg-2"><span class="widget__item-option-icon"><i class="fa fa-chevron-right fa-2x"></i></span></a>
+                                            <h4 class="text-white mt-3"><b>{{__("l.google_map")}}</b></h4>
+                                        </div>
+                                        <div class="dropdown_widget-content ModalPannel" style="min-height: 180px;">
+                                            <div class="input-group container-group-option">
+                                                <div class="input-group-prepend">
+                                                    <div class="input-group-text">{{__("l.choose")}} {{__("l.google_map_link")}}</div>
+                                                </div>
+                                                <input id="google_map_link" class="form-control">
+                                            </div>
+                                            <div class="form-group mb-0 text-center">
+                                                <button class="button_shape" id="save_button_gmap">{{__("l.save")}}</button>
+                                            </div>
+
+                                            <div class="mt-2">
+                                                <a class="text-white" target="_blank" href="https://authoritynw.com/blog/how-to-add-a-google-map-to-your-website/">{{__("l.how_to_get_google_map_code")}} ?</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
                         <!-- colors -->
                         <li class="widget__item-option-item">
                             <a class="nav-item nav-link colors_link"><span class="widget__item-option-icon"><img src="{{asset("public/dashboard/images/cpanel/art-and-design.png")}}" alt=""></span><span
